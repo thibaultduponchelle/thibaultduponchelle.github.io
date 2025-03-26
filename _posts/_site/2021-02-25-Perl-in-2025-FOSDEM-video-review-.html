@@ -1,0 +1,105 @@
+<p>Once again, I have to talk you about <a href="http://leonerds-code.blogspot.com/">Paul “Leonerd” Evans</a> :smiley:</p>
+
+<p>He is the author of the video that I will review now and I have to say first that I consider that we are lucky to have such brilliant guy in Perl community :+1: :muscle:</p>
+
+<p>The video is titled <a href="https://fosdem.org/2021/schedule/event/perl_in_2025/">Perl in 2025</a> and is actually a list of <strong>open questions</strong> about Perl new operators in near future.</p>
+
+<p>Leonerd goes a bit fast, but I really enjoyed the video.</p>
+
+<h1 id="isa-signatures">isa, signatures</h1>
+<p>I won’t discuss this part, it is stable and coming in the core soon, but he explained these things, and it was very clear.</p>
+
+<h1 id="smart-match">Smart match</h1>
+<p>I started Perl when smart match (<code class="language-plaintext highlighter-rouge">~~</code>) was already around (and already not recommended to the usage). 
+<img src="/assets/images/cu9qj9g74hz6ivcuxpf7.jpeg" alt="Smartmatch" /></p>
+
+<p>I used them a bit (I was young and bold at that time :grinning:) then quickly followed the recommendations and forbid myself to use them.</p>
+
+<p><strong>But what were my needs to use smartmatch?</strong></p>
+
+<p>First, it was to emulate <strong>“is in”</strong> (“Is this value in this array?”). Yes it can be done with other operators or CPAN module but <code class="language-plaintext highlighter-rouge">~~</code> seemed so short and elegant…</p>
+
+<p>Second, as explained by Paul, another <em>hidden</em> usage of <code class="language-plaintext highlighter-rouge">~~</code> is internally in <code class="language-plaintext highlighter-rouge">given/when</code> construction (that I don’t used so much at the end).</p>
+
+<p>I would actually have loved to continue to use smartmatch, but I’m a prudent programmer so one warning was sufficient to make me run away and totally forget about this construction :joy:</p>
+
+<h1 id="sharpy-equalities">Sharpy equalities</h1>
+<p>Leonerd then discusses also about new operators <code class="language-plaintext highlighter-rouge">equ</code> and <code class="language-plaintext highlighter-rouge">===</code> that I unilaterally decided to name “nervous equalities” or “sharpy equalities” (maybe it sounds terribly bad, but yes I’m not a native english speaker :grinning:).</p>
+
+<p>The need for them comes from smartmatch (watch the video to know why!) but extends to simplify basic comparisons (<code class="language-plaintext highlighter-rouge">if(defined $var and $var eq "perl")</code>).</p>
+
+<p>It appeared to me to be at first a very sharp usage, but finally it seems very cool:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(""</span> <span class="ow">eq</span> <span class="nb">undef</span><span class="p">)</span> <span class="p">{</span> <span class="c1"># it is true</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(""</span> <span class="nv">equ</span> <span class="nb">undef</span><span class="p">)</span> <span class="p">{</span> <span class="c1"># it will be false</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The same way with numeric <code class="language-plaintext highlighter-rouge">===</code>:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="nb">undef</span><span class="p">)</span> <span class="p">{</span> <span class="c1"># it is true</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="mi">0</span> <span class="o">===</span> <span class="nb">undef</span><span class="p">)</span> <span class="p">{</span> <span class="c1"># it will be false</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h1 id="any-and-in">any and in</h1>
+<p><code class="language-plaintext highlighter-rouge">any</code> and <code class="language-plaintext highlighter-rouge">in</code> would cover the need (dig into lists) that I previously mentioned.</p>
+
+<p>Leonerd presents in as a possible metaoperator that you can “parametrize” to choose how it behaves (a bit crazy in a <a href="https://docs.raku.org/language/operators#Metaoperators">Raku way</a>).</p>
+
+<p>By detailing <code class="language-plaintext highlighter-rouge">any</code>, <code class="language-plaintext highlighter-rouge">in</code>, <code class="language-plaintext highlighter-rouge">given/when</code>, and friends, I understand the difficulty it was to properly implement smartmatch (that contains all these things).</p>
+
+<h1 id="multi-dispatch">Multi dispatch</h1>
+<p>The same way, “multi dispatch” makes me think again of Raku which is amazing on this.</p>
+
+<p>I wondered what dispatch mechanism was already implemented in Perl, since we already have a notion of <a href="https://perldoc.perl.org/mro">Method Resolution Order</a>. The answer is that there is dispatch mechanism but limited to Oriented Object Programming.</p>
+
+<p><strong>What if we try to do multi sub dispatch in the same package?</strong></p>
+
+<p>With prototypes, if you try something like:</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sub </span><span class="nf">a</span><span class="p">()</span> <span class="p">{</span> <span class="k">print</span> <span class="p">"</span><span class="s2">a</span><span class="se">\n</span><span class="p">";</span> <span class="p">}</span>
+<span class="k">sub </span><span class="nf">a</span><span class="p">($)</span> <span class="p">{</span> <span class="k">print</span> <span class="p">"</span><span class="s2">aa</span><span class="se">\n</span><span class="p">";</span> <span class="p">}</span>
+</code></pre></div></div>
+<p>Unfortunately you will get an error:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">Prototype</span> <span class="nv">mismatch:</span> <span class="k">sub </span><span class="nf">main</span><span class="err">::</span><span class="nf">a</span> <span class="p">()</span> <span class="nf">vs</span> <span class="p">($)</span> <span class="nf">at</span> <span class="nf">multi</span><span class="err">.</span><span class="nf">pl</span> <span class="nf">line</span> <span class="err">2.</span>
+</code></pre></div></div>
+
+<p>With signatures, if you try something like:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nv">v5</span><span class="mf">.20</span><span class="p">;</span>
+<span class="k">use</span> <span class="nv">feature</span> <span class="sx">qw(signatures)</span><span class="p">;</span>
+<span class="nb">no</span> <span class="nv">warnings</span> <span class="sx">qw(experimental::signatures)</span><span class="p">;</span>
+
+<span class="k">sub </span><span class="nf">b</span><span class="p">()</span> <span class="p">{</span> <span class="k">print</span> <span class="p">"</span><span class="s2">b</span><span class="se">\n</span><span class="p">";</span> <span class="p">}</span>
+<span class="k">sub </span><span class="nf">b</span><span class="p">($arg) {</span> <span class="k">print</span> <span class="p">"</span><span class="s2">bb</span><span class="se">\n</span><span class="p">";</span> <span class="p">}</span>
+
+<span class="nv">b</span><span class="p">();</span>
+<span class="nv">b</span><span class="p">("</span><span class="s2">myarg</span><span class="p">");</span>
+</code></pre></div></div>
+
+<p>The latest declaration will override the previous one and you can get <code class="language-plaintext highlighter-rouge">Too few arguments for subroutine</code> or <code class="language-plaintext highlighter-rouge">Too many arguments for subroutine</code> depending the order you declared the <code class="language-plaintext highlighter-rouge">sub b</code>.</p>
+
+<p>@mjgardner (and others) do not hesitate to correct me, you master better than me all these things.</p>
+
+<p>You can still use the flexibility of Perl and handle dispatch inside the <code class="language-plaintext highlighter-rouge">sub</code>, but it is not properly <em>native</em> dispatch.</p>
+
+<p>Back to the MRO (Method Resolution Order), <a href="https://perldoc.perl.org/mro#NAME">Perl MRO</a> is by default implemented using <a href="https://en.wikipedia.org/wiki/Depth-first_search">DFS (Depth First Search)</a> but can be configured to use <a href="https://en.wikipedia.org/wiki/C3_linearization">C3</a> from the <a href="https://metacpan.org/pod/Class::C3">CPAN module C3</a>.
+Python or Raku use C3 algorithm as default impementation.</p>
+
+<p>Then as a summary, Paul discusses about adding <strong>multi dispatch</strong> (i.e. <strong>method overriding</strong> or <strong>polymorphism</strong> in the same package) and he proposes implementations based on <code class="language-plaintext highlighter-rouge">signatures</code>, <code class="language-plaintext highlighter-rouge">isa</code> and <code class="language-plaintext highlighter-rouge">is</code> (that I do not talked but <code class="language-plaintext highlighter-rouge">is</code> is a part of possible new ops).</p>
+
+<p>My thought is… It would be nice! :smiley:</p>
+
+<h1 id="all-things-together">All things together</h1>
+<p>This is a great talk, that opens the door to discussion and implementations.</p>
+
+<p><img src="/assets/images/npqkx3kim0zypdjwhdbg.png" alt="All" /></p>
+
+<p>As a conclusion, thank you again <strong>Leonerd</strong>!</p>
+
+<p>That was the last time I talked about you… for today :grinning:</p>
+

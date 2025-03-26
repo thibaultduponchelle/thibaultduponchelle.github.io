@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Raku other implementations, archeology and glorious details | Tib</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Raku other implementations, archeology and glorious details" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Random code and thoughts" />
+<meta property="og:description" content="Random code and thoughts" />
+<link rel="canonical" href="http://localhost:4000/2021/08/19/Raku-other-implementations-archeology-and-glorious-details.html" />
+<meta property="og:url" content="http://localhost:4000/2021/08/19/Raku-other-implementations-archeology-and-glorious-details.html" />
+<meta property="og:site_name" content="Tib" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-19T11:30:23+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Raku other implementations, archeology and glorious details" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-08-19T11:30:23+02:00","datePublished":"2021-08-19T11:30:23+02:00","description":"Random code and thoughts","headline":"Raku other implementations, archeology and glorious details","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/08/19/Raku-other-implementations-archeology-and-glorious-details.html"},"url":"http://localhost:4000/2021/08/19/Raku-other-implementations-archeology-and-glorious-details.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Tib" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Tib</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Raku other implementations, archeology and glorious details</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-08-19T11:30:23+02:00" itemprop="datePublished">Aug 19, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="/assets/images/j1zdt6fezc7w44reh7t4.jpg" alt="Raku past implementations" /></p>
+
+<p>(This is a translated/improved version of the french article <a href="https://linuxfr.org/news/raku-en-2020">Raku en 2020</a> from the same author)</p>
+
+<p>Thank you to <strong>Elizabeth Mattijsen</strong> who helped to proofread and with advices.</p>
+
+<h2 id="table-of-contents">Table Of Contents</h2>
+<ul>
+  <li><a href="#raku-birth">Birth</a></li>
+  <li><a href="#renaming-perl6-to-raku">Renaming process from Perl 6 to Raku</a></li>
+  <li><a href="#parrot-implementation">Implementations based on Parrot</a></li>
+  <li><a href="#pugs-implementation">Implementations based on Pugs</a>
+    <ul>
+      <li><a href="#pugs">Pugs</a></li>
+      <li><a href="#v6">v6</a></li>
+      <li><a href="#perlito">Perlito</a></li>
+    </ul>
+  </li>
+  <li><a href="#other-implementations">Other implementations</a>
+    <ul>
+      <li><a href="#std-viv">STD VIV</a></li>
+      <li><a href="#smop">SMOP</a></li>
+      <li><a href="#mildew">Mildew</a></li>
+      <li><a href="#elf">Elf</a></li>
+      <li><a href="#ponie">Ponie</a></li>
+      <li><a href="#punie">Punie</a></li>
+      <li><a href="#yapsi">Yapsi</a></li>
+      <li><a href="#niecza">Niecza</a></li>
+      <li><a href="#topaz">Topaz</a></li>
+      <li><a href="#sapphire">Sapphire</a></li>
+    </ul>
+  </li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+<h1 id="the-history-of-raku">The history of Raku</h1>
+<p>The history of Raku interpreter and virtual machine is really not straightforward… If you’ve heard about “Parrot”, “PIR”, “PASM”, “Pugs”, “Rakudo”, “MoarVM”, “NQP”, “Rakudo on JVM”, “Rakudo on Parrot”, “Mildew”, “Ponie” but you’re lost with all these implementations then this blog post is made for you!</p>
+
+<p>I made researches :mag: to clarify all historical and technical (!) details and gathered all the results here, with several homemade and original sketches to make it crystal clear for you.</p>
+
+<p><img src="/assets/images/es4fa2fm2gkc9w278leq.png" alt="Lot of original sketches" /></p>
+
+<h2 id="the-birth-of-raku-">The birth of Raku <a name="raku-birth"></a></h2>
+<p>Raku is born on 18 July 2000 from a <a href="http://strangelyconsistent.org/blog/happy-10th-anniversary-perl-6">famous event where John Orwant threw coffee mugs against a wall during a meeting</a>.</p>
+
+<h2 id="the-renaming-process--perl6--raku-">The renaming process : Perl 6 → Raku <a name="renaming-perl6-to-raku"></a></h2>
+<p>A programming language that changes its name… it does not happens often!</p>
+
+<p>Recently, Raku celebrated its second year (or its 21 years). Here is how the renaming happened:</p>
+
+<ol>
+  <li>Long time ago (around 2005), people discussed about an alias but it never led to anything</li>
+  <li>while answering a question, Larry Wall <a href="https://www.youtube.com/watch?v=E5t8qaAGw9w&amp;t=4885s">proposed an alias</a></li>
+  <li>alias requested by <a href="http://blogs.perl.org/users/zoffix_znet/2018/10/a-request-to-larry-wall-to-create-a-language-name-alias-for-perl-6.html">some people from Perl 6 community</a></li>
+  <li>and <a href="https://twitter.com/zoffix/status/1058796898235105280">validated by Larry</a></li>
+  <li>later, one member of the <em>core team</em> (Elizabeth Mattijsen) opened an “issue” on the official GitHub of Raku to ask for a renaming:
+<img src="/assets/images/lo68b480gqv0fdl60424.png" alt="Issue from Elizabeth" /></li>
+  <li>Elizabeth then opened a merge request towards the Git official repository of Raku (requesting maintainers to vote):
+<img src="/assets/images/3p74u1yg15i9ojub2re0.png" alt="Pull Request from Elizabeth" /></li>
+  <li>people voted for (or abstained), then came the “blessing” from Larry Wall:
+<img src="/assets/images/dy40d146w352sduho8fn.png" alt="Comment from Larry Wall" /></li>
+  <li>renaming done, please welcome Raku!</li>
+</ol>
+
+<p>The renaming process in links:</p>
+<ul>
+  <li>August 2017: <em><a href="https://www.youtube.com/watch?v=E5t8qaAGw9w&amp;t=4885s">Original idea for Perl 6 Alias</a></em> </li>
+  <li>October 2018: <em><a href="https://perl6.party/post/A-Request-to-Larry-Wall-to-Create-a-Language-Name-Alias-for-Perl-6">A request to Larry Wall for an alias</a></em> </li>
+  <li>November 2018: <em><a href="https://liztormato.wordpress.com/2018/11/06/on-raku/">On Raku</a></em> </li>
+  <li>August 2019: <em><a href="https://github.com/Raku/problem-solving/issues/81">Liz issue — Perl in the name is confusing</a></em> </li>
+  <li>August 2019: <em><a href="https://github.com/Raku/problem-solving/pull/89">Liz PR — Path to Raku</a></em> </li>
+  <li>September 2019: <em><a href="https://andrewshitov.com/2019/09/24/on-renaming-perl-6/">On renaming Perl 6</a></em> </li>
+  <li>October 2019: <em><a href="https://github.com/Raku/problem-solving/pull/89#pullrequestreview-300789072">Blessing of Larry then renaming</a></em></li>
+</ul>
+
+<h1 id="compilers-frameworks-and-virtual-machines">Compilers, frameworks and virtual machines</h1>
+<p>In this second part, I will detail the past implementations of the Raku language. Get ready, acronyms are coming!</p>
+
+<p><img src="/assets/images/9rxfpytoflzo0fn51h52.jpg" alt="Scrabble letter" /></p>
+
+<h2 id="which-official-implementation">Which “official” implementation?</h2>
+<p>Short answer: <strong>Rakudo</strong> and <strong>MoarVM</strong>.</p>
+
+<p>(the details about Rakudo/MoarVM are in the previous blog post of the serie)</p>
+
+<p>Initially it was decided that no implementation would be defined as “official” for Raku but rather that “Raku is something that passes the <a href="https://github.com/Raku/roast">official test suite</a>”. In fact, since 2012 there is an official <em>de facto</em> implementation which is <strong>Rakudo + MoarVM</strong>.</p>
+
+<p>Before that, there was the Parrot framework (2002-2012) as well as Pugs (2005-2007) and various other compilers and runtime environments (Mildew, Niecza, Yapsi…). This technical and historical part will be discussed at the end of this dispatch. But let’s go back to talk about the beginnings.</p>
+
+<p>The very first announcement of the creation of Raku dates back to July 19, 2000. Larry Wall’s idea was to make it an ultra-community project right down to the language design, so he would start by asking to contribute to the specifications. It resulted in 361 <a href="https://raku.org/archive/rfc/">RFCs</a>, , from which Larry Wall produced <a href="https://raku.org/archive/doc/apocalypse.html">apocalypses</a>, which where then explained by Damian Conway in the <a href="https://raku.org/archive/doc/exegesis.html">exegesis</a> , and then later further detailed in the <a href="https://design.raku.org/">synopses</a>.</p>
+
+<p><img src="/assets/images/2yd8k3zak4omzmlntgce.png" alt="RFC Apocalypses Synopses" /></p>
+
+<p>Links for historians or the curious:</p>
+<ul>
+  <li>2000-1018: the <a href="https://github.com/Raku/museum-items">Raku museum repository</a> partially saves “events” that are part of Raku’s history</li>
+  <li>2000: <a href="https://www.perl.com/pub/2000/11/perl6rfc.html/">Old blog post criticizing the RFC process (early)</a></li>
+  <li>2005: <a href="https://www.perlmonks.org/?node_id=455979">Get involved in Pugs</a></li>
+  <li>2006: <a href="https://www.perlmonks.org/?node_id=628746">Get involved in Perl6</a></li>
+  <li>2008: <a href="https://www.perlmonks.org/?node_id=690945">Get involved in Perl6</a></li>
+  <li>2009: <a href="https://www.perlmonks.org/?node_id=771635">Get involved in Perl6</a></li>
+  <li>2010: <a href="http://strangelyconsistent.org/blog/happy-10th-anniversary-perl-6">Happy 10th anniversary Perl 6</a> (MUST READ :warning:)</li>
+  <li>2015: <a href="https://andrewshitov.com/2015/05/15/interview-with-flavio-glock/">Flavio Glock interview</a></li>
+</ul>
+
+<h1 id="parrot-">Parrot <a name="parrot-implementation"></a></h1>
+<p>Created in <a href="https://github.com/parrot/parrot/blob/master/docs/parrothist.pod">2002</a>, the framework and the <a href="http://docs.parrot.org/parrot / latest / html">Parrot virtual machine</a> have long been central to Raku’s implementation (this is no longer the case today). Parrot was born from an April Fool’s Day announcing the unification of Perl and Python and even the upcoming release of a book on the subject:</p>
+
+<p><img src="/assets/images/t2reah7ce74l48neyy0i.gif" alt="Announcement of the unification of Perl and Python" /></p>
+
+<p>Why build a <em>new</em> VM?</p>
+
+<p>The JVM was studied in 2001, but considered poorly suited to dynamic languages ​​(it still wasn’t in 2010, <em>quid</em> of 2021?).</p>
+
+<h2 id="compilation">Compilation</h2>
+<p>Parrot offers much more than a virtual machine, Parrot is a language creation, compilation and execution framework. This framework makes it possible to build high level languages ​​(HLL) easily and quickly. It has been put into practice by Rakudo for a long time.</p>
+
+<h3 id="pct">PCT</h3>
+<p>PCT stands for <em>Parrot Compiler Tools</em>. Its purpose is to enable the creation of a compiler and a high level language execution environment (HLL).</p>
+
+<p><img src="/assets/images/11s6q12bt485mx8pp49e.png" alt="PCT" /></p>
+
+<p>PCT is written in PIR (see assembly section below).</p>
+
+<h3 id="past">PAST</h3>
+<p>PAST stands for <em>Parrot Abstract Syntax Tree</em>: internal representation of a syntax tree.</p>
+
+<h3 id="hll">HLL</h3>
+<p>HLL stands for <em>High Level Language</em>.</p>
+
+<h3 id="pge">PGE</h3>
+<p>Originally called P6GE, <strong>PGE</strong> stands for <em>Perl Grammar Engine</em>. Based on <strong>HLLCompiler</strong>. A PGE rule looks like this:</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">rule</span> <span class="nv">term</span>   <span class="p">{</span> <span class="o">&lt;</span><span class="nv">number</span><span class="o">&gt;</span> <span class="o">|</span> <span class="o">\</span><span class="p">(</span> <span class="o">&lt;</span><span class="nv">expr</span><span class="o">&gt;</span> <span class="o">\</span><span class="p">)</span> <span class="p">}</span>
+<span class="nv">rule</span> <span class="nv">number</span> <span class="p">{</span> <span class="o">\</span><span class="nv">d</span><span class="o">+</span> <span class="p">}</span>
+<span class="nv">rule</span> <span class="nv">expr</span>   <span class="p">{</span> <span class="o">&lt;</span><span class="nv">term</span><span class="o">&gt;</span> <span class="p">(</span> <span class="p">'</span><span class="s1">+</span><span class="p">'</span> <span class="o">&lt;</span><span class="nv">term</span><span class="o">&gt;</span> <span class="p">)</span><span class="o">*</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>PGE was used by Pugs, another Raku compiler (see below).</p>
+
+<h3 id="tge">TGE</h3>
+<p>TGE stands for <em>Tree Grammar Engine</em>.</p>
+
+<h3 id="pact">PACT</h3>
+<p><a href="https://github.com/parrot/PACT">PACT</a> stands for <em>Parrot Alternate Compiler Toolkit</em>. An alternative to PCT because PCT was considered too limited.</p>
+
+<h2 id="assembly">Assembly</h2>
+<h3 id="pasm">PASM</h3>
+<p>PASM stands for <em>Parrot assembly language</em> (PASM). The low level code ready to be converted and executed by Parrot VM. PASM code looks like this:</p>
+
+<pre><code class="language-asm">  set     I1, 1
+REDO:
+  gt      I1, 10, END
+  print   I1
+  print   " "
+  inc     I1
+  branch  REDO
+END:
+  print "\n"
+  end
+</code></pre>
+
+<p>References:</p>
+<ul>
+  <li><a href="http://www.parrot.org/dev/examples/pasm">PASM code examples</a></li>
+  <li><a href="https://connect.ed-diamond.com/gnu-linux-magazine">LinuxMag</a> articles from <a href="http://www.mongueurs.net/">french mongueurs</a> on Parrot assembler writing: <a href="http://articles.mongueurs.net/magazines/linuxmag97.html">1</a>, <a href="http://articles.mongueurs.net/ magazines / linuxmag98.html">2</a> and <a href="http://articles.mongueurs.net/magazines/linuxmag99.html">3</a>.</li>
+</ul>
+
+<h3 id="imcc">IMCC</h3>
+<p>IMCC stands for <em>Intermediate Code Compiler</em>. It is an alternative tool for creating and running Parrot <em>bytecode</em></p>
+
+<p>IMCC brings its own language, commonly known as <em>Parrot Intermediate Language</em> (PIR). IMCC embeds the Parrot runtime environment, so IMCC can compile from PIR to PASM, then from PASM to PBC, then execute this <em>bytecode</em>. IMCC can also do optimizations, although it doesn’t by default.</p>
+
+<h3 id="pir">PIR</h3>
+<p>First called IMC, <a href="http://docs.parrot.org/parrot/latest/html/docs/user/pir/intro.pod.html">PIR</a> is an overlay of PASM without being a language of high level. Files containing PIR code have the suffix “.imc”</p>
+
+<p>This is what PIR looks like:</p>
+
+<pre><code class="language-asm">.sub loopy
+        .local int counter
+        counter = 0
+LOOP:   if counter &gt; 10 goto DONE
+        print counter
+        print " "
+        inc counter
+        goto LOOP
+DONE:
+        print "\n"
+        end
+.end
+</code></pre>
+
+<p>You can learn more from this <a href="https://www.oreilly.com/library/view/perl-6-essentials/0596004990/ch07.html">IMCC intro</a> or this article on how to <a href="http://docs.parrot.org/parrot/latest/html/docs/user/pir/intro.pod.html">write PIR</a>. See here <a href="http://www.parrot.org/dev/examples/pir">PIR examples</a> or even the <a href="http://articles.mongueurs.net/magazines/linuxmag122 .html">detailed documentation of FR mongueurs on PIR</a>.</p>
+
+<h2 id="execution">Execution</h2>
+<h3 id="nci">NCI</h3>
+<p>NCI stands for <em>Native Call Interface</em>.</p>
+
+<h3 id="pmc">PMC</h3>
+<p>PMC stands for <em>PolyMorphic Container</em> or <em>Parrot Magic Cookies</em> (the way of representing data in the virtual machine).</p>
+
+<h3 id="pbc">PBC</h3>
+<p>PBC stands for <em>Parrot Byte Code</em></p>
+
+<h2 id="the-parrot-vm">The Parrot VM</h2>
+<p>The Parrot VM is a registry-based virtual machine, which is not the “standard” (eg JVM).</p>
+
+<p>Here are some features of the Parrot VM:</p>
+<ul>
+  <li>able to manage static and dynamic languages</li>
+  <li>Copy On Write</li>
+  <li>manages continuations and closures</li>
+  <li>can be embedded in C code</li>
+  <li>PolyMorphic Container (flexible type storage)</li>
+</ul>
+
+<p>It’s easy to include Parrot in C code or call C in Parrot (<a href="http://docs.parrot.org/parrot/latest/html/docs/pdds/draft/pdd16_native_call .pod.html">Native Call Interface</a>).</p>
+
+<h2 id="raku-implementation-based-on-parrot-2002-2012">Raku implementation based on Parrot (2002-2012)</h2>
+<p><img src="/assets/images/0f8hhhiuvjdp1qchkk85.png" alt="PCT IMCC Parrot VM" /></p>
+
+<p>Or with a merged IMCC and Parrot stage (later because IMCC contains Parrot):
+<img src="/assets/images/gz0rr0dmg0qd4qi1hjim.png" alt="PCT IMCC" /></p>
+
+<p>Below is an even more detailed/technical diagram (taken from Parrot documentation):
+<img src="/assets/images/zus5lqpqj0h62i0ys1ri.png" alt="How Parrot works" /></p>
+
+<p>Many details are available in the <a href="http://docs.parrot.org/parrot/latest/html/pdds.html">Parrot Design Document</a></p>
+
+<h2 id="problems-with-parrot">Problems with Parrot</h2>
+<p>If Parrot was initially at the center of Raku, this has changed over time:</p>
+
+<ul>
+  <li>2008: “<em>While Parrot is the most solid solution to deploy Perl 6 in the long term, on the other hand, the challenges Parrot has accepted had proven to consume more time and resources than previously expected.</em>” (<a href="https://news.perlfoundation.org/post/2008q2_grant_proposal_smop_sim">Perl foundation news</a>)</li>
+  <li>2013: “<em>The latest news is that Parrot Virtual Machine is no longer the only one enjoying Rakudo’s exclusivity.</em>” (<a href="http://www.josetteorama.com/all-about-perl-6 -interview-of-jonathan-worthington-part-1-of-3 /">all about Perl6</a>)</li>
+  <li>communication problems</li>
+  <li>Parrot gradually moved away from Perl 6 (by becoming more generalist)</li>
+</ul>
+
+<p>Little by little, the Rakudo compiler has freed itself from Parrot and is now targeting a new virtual machine.</p>
+
+<h1 id="pugs-2005-2007-">Pugs (2005-2007) <a name="pugs"></a></h1>
+<p>From here we start archeology, the real one :mag:</p>
+
+<p>In his short existence, Pugs explored many architectural choices. Pugs refers to the interpreter, compiler, runtime environment, and test suite. The compiler can compile to Haskell, JavaScript, Perl 5, or PIR (for Parrot, if you remember).</p>
+
+<p><img src="/assets/images/fs49aubnqum8n29kykix.png" alt="Pugs compilation flow" /></p>
+
+<p>Pugs is written in Haskell and falls dormant after 2007.</p>
+
+<h2 id="compilation-1">Compilation</h2>
+<p>Here are the concepts of builds around the Pugs implementation.</p>
+
+<h3 id="pcr">PCR</h3>
+<p>PCR stands for <em>Pugs Compiler Rules</em>. This is a Perl 5 implementation of Raku’s regular expression engine. PCR replaced PGE in Pugs.</p>
+
+<h3 id="lrep">LREP</h3>
+<p>LREP evolved into <em>Pugs::Compiler</em>, then, later, MiniPerl6.</p>
+
+<h3 id="pugscompiler">Pugs::Compiler</h3>
+<p><em>Pugs::Compiler</em> is a set of Perl 5 modules for compiling Raku.</p>
+
+<h3 id="miniperl6">MiniPerl6</h3>
+<p>Was part of Pugs but in a separate directory. <strong>MiniPerl6</strong> became <strong>KindaPerl6</strong> then <strong>Perlito6</strong>.</p>
+
+<h3 id="kindaperl6">KindaPerl6</h3>
+<p>KindaPerl6 or KP6 is a Raku implementation of the Raku grammar with a <em>bootstrap</em> in Perl 5. KindaPerl6 is built from MiniPerl6.</p>
+
+<h2 id="execution-1">Execution</h2>
+<h3 id="pil">PIL</h3>
+<p>PIL stands for <em>Pugs Intermediate Language</em>. PIL is not a human readable format but rather an abstract syntax tree internal to Pugs.</p>
+
+<h3 id="pil-run">PIL-Run</h3>
+<p><img src="/assets/images/520c6p3qmy2s80i7jl7y.png" alt="Pugs PIL Perl" /></p>
+
+<p>PIL-Run was built on top of a set of Perl 5 modules that read and run PIL. PIL-Run was Pugs’ back-end in Perl 5… at the start.</p>
+
+<h2 id="pugs-based-implementations-">Pugs based implementations <a name="pugs-implementation"></a></h2>
+<h3 id="pugs--various-backends">Pugs + various back‑ends</h3>
+<p>“Pugs compiles and executes”
+<img src="/assets/images/zr81m45yvcjmgir1579n.png" alt="Pugs compile and run" /></p>
+
+<p>“Pugs compiles for Parrot (PIR)”
+<img src="/assets/images/o68g2x2r9fm3n72i15ac.png" alt="Pugs PIR" /></p>
+
+<p>The compilation to PIR is done in two stages, small zoom on it:
+<img src="/assets/images/rmjpp55vf46q2tu7esup.png" alt="Pugs PIL PIR" /></p>
+
+<p>“Pugs compiles (transpiles?) To JavaScript”
+<img src="/assets/images/vlh3eqj99kstiw4owk9u.png" alt="Pugs JS" /></p>
+
+<p>“Perl compiles (transpiles?) To Perl 5”
+<img src="/assets/images/7y702czqjfsnoty5cr17.png" alt="Pugs Perl 5" /></p>
+
+<h3 id="v6-">v6 <a name="v6"></a></h3>
+<p><strong>v6-pugs</strong> then <strong>v6-alpha</strong> and now <a href="https://metacpan.org/pod/v6">v6.pm</a> is a complete rewrite of Pugs, using a mix of Raku (<em>Pugs::Compiler</em> and associated modules) and Perl 5. It reuses code from the runtime environment of PIL-Run and “half of the CPAN” :grinning:</p>
+
+<p>Now v6 is released in Perlito6. <strong>v6.pm</strong> is the front-end for Perlito and Pugs in Perl 5.</p>
+
+<h3 id="perlito-">Perlito <a name="perlito"></a></h3>
+<p>The <a href="https://github.com/fglock/Perlito">Perlito project</a> is led by <a href="https://github.com/fglock">Flavio S. Glock</a>. The Perlito project actually contains multiple compilers for multiple languages ​​in multiple languages ​​targeting various <em>back‑ends</em>:</p>
+
+<ul>
+  <li>compile Perl 5 to Java source code</li>
+  <li>run Perl5 directly in the JVM</li>
+  <li>compile Perl 5 to JavaScript source code, run Perl5 directly in the browser or Node.js</li>
+  <li>compile Raku to JavaScript source code, run Perl6 directly in the browser or Node.js</li>
+  <li>compile from Perl 5 to Perl 5</li>
+  <li>compile from Raku to Perl 5</li>
+  <li>compile from Raku to Python 2.6</li>
+  <li>compile from Perl 5 to Perl 6 (in progress)</li>
+  <li>compile from Raku to Ruby 1.9 (in progress)</li>
+  <li>compile from Raku to Go (in progress)</li>
+  <li>compile from Raku to Common Lisp (SBCL) (in progress)</li>
+</ul>
+
+<p>One thing he can’t do is translate from Perl 5 to Raku.</p>
+
+<p>MiniPerl6 and KindaPerl6 form Perlito6. Perlito5 is a port of Perlito6 to Perl5. It is “Perl 5 implemented in Perl 5”. Perlito5 itself is written in Perl. Perlito6, on the other hand, is written in Raku.</p>
+
+<p>Perlito only implements a subset of Raku called the “useful subset” which:</p>
+<ul>
+  <li>has no list context</li>
+  <li>has no inheritance</li>
+  <li>has no laziness</li>
+  <li>has closures but no coroutines or continuations</li>
+  <li>has no multis.</li>
+</ul>
+
+<p>This “useful subset” is kind of similar to <strong>NQP</strong> (see previous blog post for details about NQP).</p>
+
+<h1 id="other-compilers-runtime-environments-and-virtual-machines-">Other compilers, runtime environments and virtual machines <a name="other-implementations"></a></h1>
+<p>In this part, I will continue my tour of initiatives around compilers, runtime environments, and legacy virtual machines.</p>
+
+<h2 id="std-and-viv-">STD and viv <a name="std-viv"></a></h2>
+<p><a href="https://raku.org/compilers/std-viv">STD and viv</a> are works of Larry Wall.</p>
+
+<p>We find in <a href="https://github.com/perl6/std/blob/master/STD.pm6">STD</a> the grammar of Raku… written in Raku (which did not have a compiler at the time! :smirk: It’s the beginning of the <em>bootstrapping</em> problems :grinning:</p>
+
+<p><a href="https://github.com/perl6/std/blob/master/viv">VIV</a> or literally in Roman numerals “VI → V” (and therefore “6 to 5”) was a module capable of converting from Perl 6 to Perl 5.</p>
+
+<h2 id="smop-">SMOP <a name="smop"></a></h2>
+<p>First called YAP6, <strong>SMOP</strong> stands for <em>Simple Meta Object Programming</em></p>
+
+<p>SMOP is a compiler and runtime environment written in C for Raku, but we sometimes say SMOP to refer only to the runtime environment (which may be targeted by other compilers).</p>
+
+<p><img src="/assets/images/duyi0u0q1no2uulkav3g.png" alt="SMOP YAP6" /></p>
+
+<p>SMOP is not a virtual machine but a runtime environment that resembles that of Perl 5, while having functionality to manage Raku.</p>
+
+<h2 id="mildew-">Mildew <a name="mildew"></a></h2>
+<p>Mildew was an STD to SMOP compiler.</p>
+
+<p><img src="/assets/images/m37lmxax10b3ri06l67e.png" alt="Mildew SMOP" /></p>
+
+<p>It directly uses the STD grammar.</p>
+
+<h2 id="elf-">Elf <a name="elf"></a></h2>
+<p>Elf was a compiler written in Raku with a Ruby grammar. It could issue Perl 5 or Lisp. It was never completed. It was expected that Elf could target SMOP.</p>
+
+<h2 id="ponie-">Ponie <a name="ponie"></a></h2>
+<p><a href="http://www.poniecode.org/">Ponie</a> stands for <em>Perl On a New Internal Engine</em>. This involved running Perl 5 in the Parrot virtual machine. Stopped in 2006.</p>
+
+<p><a href="https://www.nntp.perl.org/group/perl.ponie.dev/2006/08/msg487.html">Announcement Jesse Vincent</a></p>
+
+<p><img src="/assets/images/7df6hvy7bk4dtm3usf9a.png" alt="Ponie" /></p>
+
+<h2 id="punie-">Punie <a name="punie"></a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Punie">Punie</a> (direct reference to Ponie) was a Perl 1 compiler to Parrot.</p>
+
+<h2 id="yapsi-">Yapsi <a name="yapsi"></a></h2>
+<p><a href="https://github.com/masak/yapsi">Yapsi</a> for <em>Yet Another Perl Six Implementation</em> is an implementation of the compiler and its Raku runtime environments and virtual machines in Raku.</p>
+
+<p><img src="/assets/images/l02832y9zhv3ipojelao.png" alt="Yapsi" /></p>
+
+<p><strong>SIC</strong> means <em>(S??) Instruction Code</em>, this is Yapsi’s own <em>byte code</em>.</p>
+
+<h2 id="niecza-">Niecza <a name="niecza"></a></h2>
+<p><a href="https://github.com/sorear/niecza">Niecza</a> is a Raku compiler written in C# that targets CLR (<a href="https://wiki.winehq.org/Mono">Mono</a>).</p>
+
+<p><img src="/assets/images/883yjl1p5f6ql50layt9.png" alt="Niecza Mono" /></p>
+
+<h2 id="topaz-">Topaz <a name="topaz"></a></h2>
+<p><a href="http://topaz.sourceforge.net/">Topaz</a> was a Perl 5 core rewrite in C++ started before Perl 6, finally abandoned.</p>
+
+<h2 id="sapphire-">Sapphire <a name="sapphire"></a></h2>
+<p><a href="https://www.perl.com/pub/2000/09/sapphire.html/">Sapphire</a> was another rewrite of Perl 5 internals in September 2000, shortly after the announcement of Perl 6. More experimentation than something else.</p>
+
+<p>Phew! It was the last one, we’re done. :grinning:</p>
+
+<h1 id="conclusion-">Conclusion <a name="conclusion"></a></h1>
+<p>There are many interesting concepts to be found in Raku as well as in its history and the history of its implementations (although most of them are part of a vanished world, they well deserved a little closer look).</p>
+
+<p>I hope that this long blog post has been able to lift the fog around the twists and turns of Raku’s implementations, its history and to highlight the concepts of the language.</p>
+
+  </div><a class="u-url" href="/2021/08/19/Raku-other-implementations-archeology-and-glorious-details.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Tib</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Tib</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Random code and thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

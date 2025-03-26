@@ -1,0 +1,142 @@
+<p>(picture from <a href="https://www.pexels.com/fr-fr/@elevate/">elevate</a>)</p>
+
+<p>For various reasons, you might want to install CPAN modules from a git repository.</p>
+
+<p>It can be because somehow a git repository is in advance against CPAN:</p>
+<ul>
+  <li>A fix was merged in official git repository but never released to CPAN</li>
+  <li>A branch or a fork contains some valuable changes (this <em>very-little-but-absolutely-needed</em> fix)</li>
+</ul>
+
+<p>Or it can be because the modules are actually not in CPAN: not public and not in a alternative/private CPAN (see Addendum) or simply they are only “experiments”</p>
+
+<p>But this post is not meant to discuss about the “why” but instead mainly share technically the “how” you could do that :grinning:</p>
+
+<p>I tested various syntax and installers and will share now some working examples.</p>
+
+<p>:point_up: Before we continue, be sure to upgrade your installers (<code class="language-plaintext highlighter-rouge">App::cpm</code> and <code class="language-plaintext highlighter-rouge">App::cpanminus</code>) to their latest</p>
+
+<h2 id="installing-from-command-line-with-cpm">Installing from command line with <code class="language-plaintext highlighter-rouge">cpm</code></h2>
+<p>Installing with <code class="language-plaintext highlighter-rouge">cpm</code> is straighforward:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpm <span class="nb">install </span>https://github.com/plack/Plack.git <span class="nt">--verbose</span>
+33257 DONE fetch     <span class="o">(</span>0.971sec<span class="o">)</span> https://github.com/plack/Plack.git
+33257 DONE configure <span class="o">(</span>0.033sec<span class="o">)</span> https://github.com/plack/Plack.git
+33257 DONE resolve   <span class="o">(</span>0.031sec<span class="o">)</span> Clone -&gt; Clone-0.46 <span class="o">(</span>from MetaDB<span class="o">)</span>
+...
+33257 DONE <span class="nb">install</span>   <span class="o">(</span>0.364sec<span class="o">)</span> URI-5.28
+33257 DONE <span class="nb">install</span>   <span class="o">(</span>0.046sec<span class="o">)</span> https://github.com/plack/Plack.git
+31 distributions installed.
+</code></pre></div></div>
+
+<p>It can also work the same with ssh <code class="language-plaintext highlighter-rouge">git@github.com:plack/Plack.git</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpm <span class="nb">install </span>git@github.com:plack/Plack.git <span class="nt">--verbose</span>
+64383 DONE fetch     <span class="o">(</span>2.498sec<span class="o">)</span> git@github.com:plack/Plack.git
+64383 DONE configure <span class="o">(</span>0.039sec<span class="o">)</span> git@github.com:plack/Plack.git
+...
+64383 DONE <span class="nb">install</span>   <span class="o">(</span>0.045sec<span class="o">)</span> git@github.com:plack/Plack.git
+31 distributions installed.
+</code></pre></div></div>
+
+<h2 id="installing-from-command-line-with-cpanminus">Installing from command line with <code class="language-plaintext highlighter-rouge">cpanminus</code></h2>
+<p>Installing with <code class="language-plaintext highlighter-rouge">cpanm</code> is not harder:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpanm https://github.com/plack/Plack.git
+Cloning https://github.com/plack/Plack.git ... OK
+<span class="nt">--</span><span class="o">&gt;</span> Working on https://github.com/plack/Plack.git
+...
+Building and testing Plack-1.0051 ... OK
+Successfully installed Plack-1.0051
+45 distributions installed
+</code></pre></div></div>
+
+<h2 id="installing-from-cpanfile">Installing from <code class="language-plaintext highlighter-rouge">cpanfile</code></h2>
+<p>The correct syntax is the following (thank you @haarg):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>requires <span class="s1">'Plack'</span>, git <span class="o">=&gt;</span> <span class="s1">'https://github.com/plack/Plack.git'</span>, ref <span class="o">=&gt;</span> <span class="s1">'master'</span><span class="p">;</span>
+</code></pre></div></div>
+<p>(<code class="language-plaintext highlighter-rouge">ref =&gt; 'master'</code> is optional)</p>
+
+<p>And it would just work later with <code class="language-plaintext highlighter-rouge">cpm</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpm <span class="nb">install</span> <span class="nt">--verbose</span>
+Loading requirements from cpanfile...
+33257 DONE fetch     <span class="o">(</span>0.971sec<span class="o">)</span> https://github.com/plack/Plack.git
+33257 DONE configure <span class="o">(</span>0.033sec<span class="o">)</span> https://github.com/plack/Plack.git
+33257 DONE resolve   <span class="o">(</span>0.031sec<span class="o">)</span> Clone -&gt; Clone-0.46 <span class="o">(</span>from MetaDB<span class="o">)</span>
+...
+33257 DONE <span class="nb">install</span>   <span class="o">(</span>0.364sec<span class="o">)</span> URI-5.28
+33257 DONE <span class="nb">install</span>   <span class="o">(</span>0.046sec<span class="o">)</span> https://github.com/plack/Plack.git
+31 distributions installed.
+</code></pre></div></div>
+<p>:warning: Despite being a <code class="language-plaintext highlighter-rouge">cpanfile</code>, please note the use of <code class="language-plaintext highlighter-rouge">cpm</code></p>
+
+<h2 id="installing-from-cpmfile">Installing from <code class="language-plaintext highlighter-rouge">cpmfile</code></h2>
+<p>Let’s write our first <a href="https://github.com/skaji/cpmfile">cpmfile</a>  and save it as <code class="language-plaintext highlighter-rouge">cpm.yml</code>:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">prereqs</span><span class="pi">:</span>
+  <span class="na">runtime</span><span class="pi">:</span>
+    <span class="na">requires</span><span class="pi">:</span>
+      <span class="na">Plack</span><span class="pi">:</span>
+        <span class="na">git</span><span class="pi">:</span> <span class="s">https://github.com/plack/Plack.git</span>
+        <span class="na">ref</span><span class="pi">:</span> <span class="s">master</span>
+</code></pre></div></div>
+
+<p>And then it would just work with <code class="language-plaintext highlighter-rouge">cpm</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpm <span class="nb">install</span> <span class="nt">--verbose</span>
+Loading requirements from cpm.yml...
+66419 DONE resolve   <span class="o">(</span>0.000sec<span class="o">)</span> Plack -&gt; https://github.com/plack/Plack.git@master <span class="o">(</span>from Custom<span class="o">)</span>
+66419 DONE fetch     <span class="o">(</span>1.695sec<span class="o">)</span> https://github.com/plack/Plack.git
+66419 DONE configure <span class="o">(</span>0.034sec<span class="o">)</span> https://github.com/plack/Plack.git
+...
+66419 DONE <span class="nb">install</span>   <span class="o">(</span>0.023sec<span class="o">)</span> https://github.com/plack/Plack.git
+31 distributions installed.
+</code></pre></div></div>
+
+<h2 id="beware-of-incomplete-repositories">Beware of “incomplete” repositories</h2>
+<p>Releases on CPAN are standardized and generally contain what is needed for installers, but distributions living in git repositories are more for development and very often not in a “ready to install” state.</p>
+
+<p>(thank you @karenetheridge)</p>
+
+<p>There’s some limitations that you can encounter:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cpm</code> would refuse to install if no META file is found (but <code class="language-plaintext highlighter-rouge">cpanm</code> would be OK with that)</li>
+  <li><code class="language-plaintext highlighter-rouge">cpm</code> would refuse to install if no <code class="language-plaintext highlighter-rouge">Makefile.PL</code> nor <code class="language-plaintext highlighter-rouge">Build.PL</code> is found, except if <a href="https://blogs.perl.org/users/shoichi_kaji1/2017/03/make-your-cpan-module-static-installable.html">x_static_install: 1</a> is declared in META (<code class="language-plaintext highlighter-rouge">cpanm</code> would still refuse)</li>
+</ul>
+
+<p>Should I mention the repositories with only a <code class="language-plaintext highlighter-rouge">dist.ini</code>? (used by authors to generate everything else)</p>
+
+<p>And you would get similar trouble with distributions using <code class="language-plaintext highlighter-rouge">Module::Install</code> but having not versioned it.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>You should probably not rely too much on “install from git” method but still, it can provide an handy way to install modules to test fixes or experiments.</p>
+
+<p>And now with this post you should have good examples of “how” you can achieve that.</p>
+
+<h1 id="addendum">Addendum</h1>
+
+<h2 id="alternative-cpan">Alternative CPAN</h2>
+<p>For alternative/private CPAN, several tools can come to your rescue:</p>
+<ul>
+  <li><a href="https://metacpan.org/dist/CPAN-Mini/view/bin/minicpan">minicpan</a></li>
+  <li><a href="https://metacpan.org/pod/App::opan">opan</a></li>
+  <li><a href="https://metacpan.org/pod/OrePAN2">OrePAN2</a></li>
+  <li><a href="https://metacpan.org/dist/Pinto/view/bin/pinto">pinto</a></li>
+</ul>
+
+<h2 id="what-is-not-working-2024">What is <em>not</em> working (2024)</h2>
+<h3 id="cpanm-with-cpanfile">cpanm with cpanfile</h3>
+<p>Look at following <code class="language-plaintext highlighter-rouge">cpanfile</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>requires <span class="s1">'Plack'</span>, git <span class="o">=&gt;</span> <span class="s1">'https://github.com/plack/Plack.git'</span>, ref <span class="o">=&gt;</span> <span class="s1">'master'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>It is not well “honored” by <code class="language-plaintext highlighter-rouge">cpanminus</code>.</p>
+
+<h3 id="broken-syntax">Broken syntax</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>requires <span class="s2">"MyExperimental::Module"</span> <span class="o">=&gt;</span> <span class="s2">"git://github.com/lestrrat/p5-MyExperimental-Module.git"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="resources">Resources</h2>
+<p>(some of them are outdated)</p>
+<ul>
+  <li><a href="https://stackoverflow.com/questions/38603421/is-it-possible-to-require-a-git-repo-in-a-cpanfile-for-cpanm">Is it possible to require a git repo in a cpanfile for cpanm</a></li>
+  <li><a href="https://blogs.perl.org/users/lestrrat/2013/03/the-main-problem-with-cpan-modules-on-github.html">The Main Problem With CPAN Modules On Github</a></li>
+  <li><a href="https://github.com/miyagawa/cpanminus/issues/381">Private Git URLs &amp; the –installdeps option</a></li>
+  <li><a href="https://github.com/miyagawa/qahack-tokyo/issues/6">cpanfile: support git URL</a></li>
+</ul>
+

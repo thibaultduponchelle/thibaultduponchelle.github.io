@@ -1,0 +1,106 @@
+<p>This post explains how to implement a simple Perl client/server using TCP sockets :tada:</p>
+
+<p>I use <a href="https://metacpan.org/pod/IO::Socket::INET">IO::Socket::INET</a> which is a core module (no need to install). How to know it’s a <em>core</em> module? Check the <a href="https://perldoc.perl.org/modules">list of core modules in perldoc</a> or simply use <code class="language-plaintext highlighter-rouge">corelist</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>corelist IO::Socket::INET
+
+Data <span class="k">for </span>2019-05-22
+IO::Socket::INET was first released with perl v5.6.0
+</code></pre></div></div>
+
+<p>Without waiting, let’s move on to the Perl TCP client implementation :+1:</p>
+
+<h2 id="perl-tcp-client">Perl TCP Client</h2>
+<p>A very simple client, sending a message (containing “japh - “ + the client timestamp) every 3 sec and stopping on signal (Control-C).</p>
+
+<p>The target is localhost (for demo I’m running client and server on same machine) but it could be totally another IP or hostname (obviously… :grinning:).</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="k">use</span> <span class="nv">strict</span><span class="p">;</span>
+<span class="k">use</span> <span class="nv">warnings</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nn">IO::Socket::</span><span class="nv">INET</span><span class="p">;</span>
+<span class="c1"># auto-flush on socket</span>
+<span class="vg">$|</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="k">my</span> <span class="nv">$continue</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nv">$SIG</span><span class="p">{</span><span class="nv">INT</span><span class="p">}</span> <span class="o">=</span> <span class="k">sub </span><span class="p">{</span> <span class="nv">$continue</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">};</span>
+
+
+<span class="k">while</span> <span class="p">(</span><span class="nv">$continue</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">my</span> <span class="nv">$timestamp</span> <span class="o">=</span> <span class="nb">localtime</span><span class="p">(</span><span class="nb">time</span><span class="p">);</span>
+	<span class="k">my</span> <span class="nv">$msg</span> <span class="o">=</span> <span class="p">"</span><span class="s2">japh - </span><span class="si">$timestamp</span><span class="p">";</span>
+
+	<span class="c1"># Create a connecting socket</span>
+	<span class="k">my</span> <span class="nv">$socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nn">IO::Socket::</span><span class="nv">INET</span> <span class="p">(</span>
+		<span class="s">PeerHost</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">localhost</span><span class="p">',</span>
+		<span class="s">PeerPort</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">7777</span><span class="p">',</span>
+		<span class="s">Proto</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">tcp</span><span class="p">',</span>
+	<span class="p">);</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="nv">$socket</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">my</span> <span class="nv">$size</span> <span class="o">=</span> <span class="nv">$socket</span><span class="o">-&gt;</span><span class="nb">send</span><span class="p">(</span><span class="nv">$msg</span><span class="p">);</span>
+		<span class="k">print</span> <span class="p">"</span><span class="s2">Sent!</span><span class="se">\n</span><span class="p">";</span>
+		<span class="nv">$socket</span><span class="o">-&gt;</span><span class="nb">close</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="nb">sleep</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Start client:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>perl client.pl
+</code></pre></div></div>
+
+<p>The client sends data then wait 3 seconds, then sends data again and wait, and do it again and again…</p>
+
+<p>As soon as we have the server running, a client live run will look like this:
+<img src="/assets/images/vjdfcix1f2p5mzdte4g4.gif" alt="Client" /></p>
+
+<p>If you wonder, if the server is not available, no problem, the client will stay alive (and send to nobody until a server is started).</p>
+
+<h2 id="perl-tcp-server">Perl TCP Server</h2>
+<p>The server looks the same, but is just a bit more complicated with more parameters to <code class="language-plaintext highlighter-rouge">$socket</code> constructor and an <code class="language-plaintext highlighter-rouge">accept()</code> step:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="k">use</span> <span class="nv">strict</span><span class="p">;</span>
+<span class="k">use</span> <span class="nv">warnings</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nn">IO::Socket::</span><span class="nv">INET</span><span class="p">;</span>
+<span class="c1"># auto-flush on socket</span>
+<span class="vg">$|</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+
+<span class="c1"># Creating a listening socket</span>
+<span class="k">my</span> <span class="nv">$socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nn">IO::Socket::</span><span class="nv">INET</span> <span class="p">(</span>
+    <span class="s">LocalHost</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">0.0.0.0</span><span class="p">',</span>
+    <span class="s">LocalPort</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">7777</span><span class="p">',</span>
+    <span class="s">Proto</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">tcp</span><span class="p">',</span>
+    <span class="s">Listen</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s">Reuse</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+<span class="p">);</span>
+<span class="nb">die</span> <span class="p">"</span><span class="s2">Cannot create socket $!</span><span class="se">\n</span><span class="p">"</span> <span class="k">unless</span> <span class="nv">$socket</span><span class="p">;</span>
+
+<span class="nv">$SIG</span><span class="p">{</span><span class="nv">INT</span><span class="p">}</span> <span class="o">=</span> <span class="k">sub </span><span class="p">{</span> <span class="nv">$socket</span><span class="o">-&gt;</span><span class="nb">close</span><span class="p">();</span> <span class="nb">exit</span> <span class="mi">0</span><span class="p">;</span> <span class="p">};</span>
+
+<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">my</span> <span class="nv">$client_socket</span> <span class="o">=</span> <span class="nv">$socket</span><span class="o">-&gt;</span><span class="nb">accept</span><span class="p">();</span>
+
+    <span class="c1"># Get information about a newly connected client</span>
+    <span class="k">my</span> <span class="nv">$client_address</span> <span class="o">=</span> <span class="nv">$client_socket</span><span class="o">-&gt;</span><span class="nv">peerhost</span><span class="p">();</span>
+
+    <span class="c1"># Read up to 1024 characters from the connected client</span>
+    <span class="k">my</span> <span class="nv">$data</span> <span class="o">=</span> <span class="p">"";</span>
+    <span class="nv">$client_socket</span><span class="o">-&gt;</span><span class="nb">recv</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+    <span class="k">print</span> <span class="p">"</span><span class="si">$client_address</span><span class="s2"> - </span><span class="si">$data</span><span class="se">\n</span><span class="p">";</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">$socket-&gt;accept()</code> is blocking and will unblock when the client initiates the connection (<code class="language-plaintext highlighter-rouge">new IO::Socket::INET</code> on client side).</p>
+
+<p>The server will retrieve the message (<code class="language-plaintext highlighter-rouge">$msg</code>) but also the IP address (<code class="language-plaintext highlighter-rouge">$client_address</code> via <code class="language-plaintext highlighter-rouge">peerhost()</code> method). It is listening forever and can handle multiple clients.</p>
+
+<p>Below a demo of a running server:
+<img src="/assets/images/wjf5jswet53zzrj5jygt.gif" alt="Server" /></p>
+
+<p>Now with these sample code in your toolbox, you’re ready to implement a custom simple small client/server or a very basic monitoring software! :grin: :muscle:</p>

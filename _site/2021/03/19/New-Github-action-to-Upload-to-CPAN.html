@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>New Github action to Upload to CPAN | Tib</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="New Github action to Upload to CPAN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I don’t release CPAN modules so often, but when I do, I try to do it with class! :smile:" />
+<meta property="og:description" content="I don’t release CPAN modules so often, but when I do, I try to do it with class! :smile:" />
+<link rel="canonical" href="http://localhost:4000/2021/03/19/New-Github-action-to-Upload-to-CPAN.html" />
+<meta property="og:url" content="http://localhost:4000/2021/03/19/New-Github-action-to-Upload-to-CPAN.html" />
+<meta property="og:site_name" content="Tib" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-19T08:51:13+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="New Github action to Upload to CPAN" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-03-19T08:51:13+01:00","datePublished":"2021-03-19T08:51:13+01:00","description":"I don’t release CPAN modules so often, but when I do, I try to do it with class! :smile:","headline":"New Github action to Upload to CPAN","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/03/19/New-Github-action-to-Upload-to-CPAN.html"},"url":"http://localhost:4000/2021/03/19/New-Github-action-to-Upload-to-CPAN.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Tib" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Tib</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">New Github action to Upload to CPAN</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-03-19T08:51:13+01:00" itemprop="datePublished">Mar 19, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I don’t release CPAN modules so often, but when I do, I try to do it with class! :smile:</p>
+
+<p><img src="/assets/images/lpyca80s6wr3zhraw3yf.png" alt="Style" /></p>
+
+<p>Some days ago, I got the idea that it could be nice to have a Github action to automatically upload a distribution to CPAN.</p>
+
+<p>I wondered how to upload a distribution from command line (I never needed such thing) and luckily there is already a perfect existing solution for this: <a href="https://metacpan.org/pod/distribution/CPAN-Uploader/bin/cpan-upload">cpan-upload</a></p>
+
+<p>I never created before a Github action but surprisingly it is very easy. There are 2 types of actions:</p>
+<ul>
+  <li><a href="https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action">javascript actions</a></li>
+  <li><a href="https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action">dockerfile actions</a></li>
+</ul>
+
+<p>I started with javascript version but since it required more customization, I quickly switched to dockerfile action.</p>
+
+<p>So finally here is it:</p>
+
+<h2 id="thibaultduponchelleaction-upload-to-cpan-sparkles"><a href="https://github.com/thibaultduponchelle/action-upload-to-cpan">thibaultduponchelle/action-upload-to-cpan</a> :sparkles:</h2>
+
+<p>I tested it with <a href="https://metacpan.org/pod/Acme::Automatix">Acme::Automatix</a></p>
+
+<p>The yml file describing the process of building and releasing my repository source code is like this:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">]</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build-and-release</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Build and release Acme::Automatix to CPAN</span>
+    <span class="na">steps</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Configure</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="s">perl Makefile.PL</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="s">make</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Deliver locally</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="s">make dist</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Upload to CPAN</span>
+      <span class="na">id</span><span class="pi">:</span> <span class="s">upload</span>
+      <span class="na">uses</span><span class="pi">:</span> <span class="s">thibaultduponchelle/action-upload-to-cpan@master</span>
+      <span class="na">with</span><span class="pi">:</span>
+          <span class="na">username</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">password</span><span class="pi">:</span> <span class="s">$</span>
+</code></pre></div></div>
+<p>Since credentials are required to upload to CPAN, you have to give your username and password, but you don’t want to share them with everybody so you have to put them in as <strong>“secrets”</strong>. Go to “Settings” then “Secrets” and you can add your secret credentials.
+<img src="/assets/images/d9ocq1sfnmlzjof6v7hd.png" alt="Secrets" /></p>
+
+<p>Only the password is really secret, so I can show you how I added my username (yes I’m “CONTRA” on CPAN):
+<img src="/assets/images/xehneatvry4a68fh75ye.png" alt="CONTRA" /></p>
+
+<p>And later they well appear obfuscated in the logs :smile:
+<img src="/assets/images/0ygkgkmcrv2ikbp1fkcc.png" alt="Secrets" /></p>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">upload-to-cpan</code> will try to upload any tarball in the root directory of your github repo (could maybe change that in the future). Also I’m using <code class="language-plaintext highlighter-rouge">@master</code> version of the action but this will change in the future.</p>
+
+<p>If you forget to update the version, the releasing with fail with a “conflict”.</p>
+
+<p>You can be smarter than me and introduce conditions to upload (only release when merging on a “production” branch, or only release on tagging…)</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>I really think this action is useful and since I wrote it, I discovered that these kind of things exist for other ecosystems (e.g. rubygems, pypi…) so it confirmed my feeling :smile:</p>
+
+<p>Then all that remains is to wish you Happy releasing! :sparkles:</p>
+
+<p><img src="/assets/images/kco5uq6sjtyag2a7bpvy.gif" alt="Muppet" /></p>
+
+
+  </div><a class="u-url" href="/2021/03/19/New-Github-action-to-Upload-to-CPAN.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Tib</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Tib</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Random code and thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

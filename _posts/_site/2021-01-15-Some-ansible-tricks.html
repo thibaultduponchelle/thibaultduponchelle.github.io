@@ -1,0 +1,94 @@
+<p><img src="/assets/images/d1m8edn571qzdthwchxj.png" alt="Ansible" /></p>
+
+<p>In this blog post, I will share some (basic) tricks about Ansible :smiley:</p>
+
+<p>It could possibly prevent you to get bitten :mask:</p>
+
+<h2 id="quote-when-using-vars">Quote when using vars</h2>
+<p>When not using variables, you can quote (or not) indifferently:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Copy</span>
+  <span class="na">copy</span><span class="pi">:</span>
+    <span class="na">src</span><span class="pi">:</span> <span class="s">foobar</span>
+    <span class="na">dest</span><span class="pi">:</span> <span class="s">/tmp/foobar</span>
+</code></pre></div></div>
+
+<p>Or (with quotes):</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Copy</span>
+  <span class="na">copy</span><span class="pi">:</span>
+    <span class="na">src</span><span class="pi">:</span> <span class="s2">"</span><span class="s">foobar"</span>
+    <span class="na">dest</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/tmp/foobar"</span>
+</code></pre></div></div>
+
+<p>But as soon as you use variables, you should use quotes!</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Copy</span>
+  <span class="na">copy</span><span class="pi">:</span>
+    <span class="na">src</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+    <span class="na">dest</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/tmp/"</span>
+</code></pre></div></div>
+
+<p>Not all ansible versions have the same behaviour for this! Latest versions of Ansible are more flexible, but are not able to completely handle it (depends where the variable is positioned).</p>
+
+<p>For more info, see <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#when-to-quote-variables-a-yaml-gotcha">YAML gotcha</a></p>
+
+<h2 id="extra-quote-when-passing-extra-variable-in-command-line">Extra quote when passing extra variable in command line</h2>
+<p>When using the <code class="language-plaintext highlighter-rouge">--extra-vars</code> (or <code class="language-plaintext highlighter-rouge">-e</code>) to pass variables in the command line, take care of adding an extra quote to protect spaces:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                            <span class="c"># here v          and here v</span>
+<span class="nv">$ </span>ansible-playbook playbook.yml <span class="nt">-e</span> <span class="s1">'protectme="foo bar"'</span>
+                            <span class="c">#     to protect this ^</span>
+</code></pre></div></div>
+
+<h2 id="sh-gotcha">sh gotcha</h2>
+<p>This is broken:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="pi">-</span> <span class="na">hosts</span><span class="pi">:</span> <span class="s">servers</span>
+  <span class="na">tasks</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Broken</span>
+    <span class="na">shell</span><span class="pi">:</span> <span class="s1">'</span><span class="s">[[</span><span class="nv"> </span><span class="s">-z</span><span class="nv"> </span><span class="s">""</span><span class="nv"> </span><span class="s">]]</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">true'</span>
+</code></pre></div></div>
+<p>Why? Because it is executed by <code class="language-plaintext highlighter-rouge">/bin/sh</code>… not <code class="language-plaintext highlighter-rouge">bash</code> !</p>
+
+<p>You can transform it to a <code class="language-plaintext highlighter-rouge">sh</code> compatible version like this:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="pi">-</span> <span class="na">hosts</span><span class="pi">:</span> <span class="s">servers</span>
+  <span class="na">tasks</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Working</span>
+    <span class="na">shell</span><span class="pi">:</span> <span class="s1">'</span><span class="s">test</span><span class="nv"> </span><span class="s">-z</span><span class="nv"> </span><span class="s">""</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">true'</span>
+</code></pre></div></div>
+
+<p>Or specify the executable in the <code class="language-plaintext highlighter-rouge">args</code>:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="pi">-</span> <span class="na">hosts</span><span class="pi">:</span> <span class="s">servers</span>
+  <span class="na">tasks</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Broken</span>
+    <span class="na">shell</span><span class="pi">:</span> <span class="s1">'</span><span class="s">[[</span><span class="nv"> </span><span class="s">-z</span><span class="nv"> </span><span class="s">""</span><span class="nv"> </span><span class="s">]]</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">true'</span>
+    <span class="na">args</span><span class="pi">:</span>
+      <span class="na">executable</span><span class="pi">:</span> <span class="s">/bin/bash</span>
+</code></pre></div></div>
+
+<h2 id="precedence-of-vars">Precedence of vars</h2>
+<p>Some are obvious, but not all :grin:</p>
+
+<p>Here is my reminder:</p>
+<ol>
+  <li>CLI extra var <code class="language-plaintext highlighter-rouge">-e variable="foo"</code> will override…</li>
+  <li>role vars (<code class="language-plaintext highlighter-rouge">roles/common/vars/main.yml</code>) that overrides…</li>
+  <li>playbook vars (<code class="language-plaintext highlighter-rouge">playbook.yml</code>) that are taken in priority over…</li>
+  <li>role default vars (<code class="language-plaintext highlighter-rouge">roles/common/default/main.yml</code>)</li>
+</ol>
+
+<p>For more infos, check the official doc about <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#ansible-variable-precedence">complete list of precedence</a></p>
+
+<h2 id="edit-variable-after-initialization">Edit variable after initialization</h2>
+
+<p>You can do this with the module <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/set_fact_module.html#ansible-collections-ansible-builtin-set-fact-module">set fact</a>!</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span>
+  <span class="na">set_fact</span><span class="pi">:</span>
+    <span class="na">var1</span><span class="pi">:</span> <span class="s2">"</span><span class="s">new</span><span class="nv"> </span><span class="s">value"</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>That’s all for the tricks.</p>
+
+<p>Happy provisioning! :smiley:</p>
+
+<p><img src="/assets/images/zat57oucm3twctukfnlr.jpeg" alt="Happy provisioning" /></p>

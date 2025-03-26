@@ -1,0 +1,161 @@
+<p>Modules (and CPAN) are one of the “killer feature” of Perl, this article will discuss module loading/calling and some subtleties around this topic.</p>
+
+<h2 id="where-modules-live-do-not-dictate-how-they-are-called">Where modules live do not dictate how they are called.</h2>
+<p>It is something important to understand early when you learn Perl programming, how you will load a module does not dictate its future package name (how it will be called).</p>
+
+<p>Let’s start with a simple example with a empty module stored in a <code class="language-plaintext highlighter-rouge">File.pm</code> in a subdirectory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Directory
+└── Directory
+    └── File.pm
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">File.pm</code> contains nothing but a <code class="language-plaintext highlighter-rouge">true</code> return value:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1;
+</code></pre></div></div>
+<p>The import is done by pointing to the <strong>path</strong> of the <strong>pm</strong> file:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="k">use</span> <span class="nn">Directory::Directory::</span><span class="nv">File</span><span class="p">;</span>
+</code></pre></div></div>
+<p>So far, all good! :D</p>
+
+<p>But it is too simple, so let’s continue with a more real world example that actually <em>calls something</em>:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">package</span> <span class="nn">Directory::Directory::</span><span class="nv">File</span><span class="p">;</span>
+
+<span class="k">sub </span><span class="nf">foobar</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">print</span> <span class="p">"</span><span class="s2">Foo Bar!</span><span class="se">\n</span><span class="p">";</span>
+<span class="p">}</span>
+
+<span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+<p>It is imported and called like the following:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="c1"># Import </span>
+<span class="k">use</span> <span class="nn">Directory::Directory::</span><span class="nv">File</span><span class="p">;</span>
+
+<span class="c1"># Call</span>
+<span class="nn">Directory::Directory::File::</span><span class="nv">foobar</span><span class="p">();</span>
+</code></pre></div></div>
+<p>Notice that <code class="language-plaintext highlighter-rouge">Directory::Directory::File::foobar();</code> matches the package declaration in the module file… Where actually when <em>calling</em> the modules functions/variables, we have to follow the package name decided by the author for its module (read the doc).</p>
+
+<p>It could be <code class="language-plaintext highlighter-rouge">Directory::Directory::File::foobar()</code> or something totally different from the <strong>path</strong>.</p>
+
+<p>Look at this new example:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Directory
+└── Directory
+    └── File.pm
+</code></pre></div></div>
+<p>The module is stored in <code class="language-plaintext highlighter-rouge">Directory/Directory/File.pm</code> but belongs to package <strong>“Misleading”</strong> and declares/defines once again a function <code class="language-plaintext highlighter-rouge">foobar</code>:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">package</span> <span class="nv">Misleading</span><span class="p">;</span>
+
+<span class="k">sub </span><span class="nf">foobar</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">print</span> <span class="p">"</span><span class="s2">Foo Bar!</span><span class="se">\n</span><span class="p">";</span>
+<span class="p">}</span>
+
+<span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+<p>On importer side, the <code class="language-plaintext highlighter-rouge">use</code> and later the function call are not using the same “id” name:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="c1"># Import </span>
+<span class="k">use</span> <span class="nn">Directory::Directory::</span><span class="nv">File</span><span class="p">;</span>
+
+<span class="c1"># But package is actually named "Misleading" !!!</span>
+<span class="nn">Misleading::</span><span class="nv">foobar</span><span class="p">();</span>
+
+<span class="c1"># WON'T WORK!</span>
+<span class="c1"># Directory::Directory::File::foobar();</span>
+</code></pre></div></div>
+
+<p>N.B.: Please note that the good practice is to make match path and package name. But you can meet <a href="https://metacpan.org/pod/DDP">aliases</a></p>
+
+<h2 id="use-vs-require">use vs require</h2>
+<p>The <code class="language-plaintext highlighter-rouge">use</code> and <code class="language-plaintext highlighter-rouge">require</code> are doing <em>almost</em> the same thing but at different phases.</p>
+
+<p>The <a href="https://perldoc.perl.org/functions/require">require documentation</a> ends with “For a yet-more-powerful import facility, see <code class="language-plaintext highlighter-rouge">use</code> and perlmod.”</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">use</code> keyword executes at compilation phase means before execution even if it’s the last line of your program.</p>
+
+<p>Here is my sample “Bazinga” module:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">package</span> <span class="nv">Bazinga</span><span class="p">;</span>
+
+<span class="k">sub </span><span class="nf">joke</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">print</span> <span class="p">"</span><span class="s2">Bazinga!</span><span class="se">\n</span><span class="p">";</span>
+<span class="p">}</span>
+
+<span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+<p>And trying to call the function <code class="language-plaintext highlighter-rouge">joke</code> before to actually load it works very well:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perl -I. -e 'Bazinga::joke(); use Bazinga;'
+Bazinga!
+</code></pre></div></div>
+<p>It would not be the same with imports at runtime.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perl -I. -e 'Bazinga::joke(); require Bazinga;'
+Undefined subroutine &amp;Bazinga::joke called at -e line 1.
+</code></pre></div></div>
+
+<p>With runtime imports, I can also import conditionally a module.</p>
+
+<p>The following example will reload a module:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="nv">Bazinga</span><span class="p">;</span>
+
+<span class="nv">joke</span><span class="p">();</span>
+
+<span class="c1"># Is it already loaded?</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$INC</span><span class="p">{"</span><span class="s2">Bazinga.pm</span><span class="p">"})</span> <span class="p">{</span>
+    <span class="k">print</span> <span class="p">"</span><span class="s2">Press ENTER to reload module:</span><span class="p">";</span>
+    <span class="o">&lt;</span><span class="bp">STDIN</span><span class="o">&gt;</span><span class="p">;</span>
+    <span class="nb">delete</span> <span class="nv">$INC</span><span class="p">{"</span><span class="s2">Bazinga.pm</span><span class="p">"};</span> <span class="c1"># Remove it from list</span>
+    <span class="nb">require</span> <span class="nv">Bazinga</span><span class="p">;</span> <span class="c1"># Reload it</span>
+    <span class="nv">joke</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p>When you run this code, it will import and execute <code class="language-plaintext highlighter-rouge">joke</code> then reload the module on “Enter” (and run <code class="language-plaintext highlighter-rouge">joke</code> again).
+Since it reloads the module, I can even change the module (the content of the <code class="language-plaintext highlighter-rouge">joke</code> function) during the execution of the program:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sub </span><span class="nf">joke</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">print</span> <span class="p">"</span><span class="s2">Knock Knock Knock Penny!</span><span class="se">\n</span><span class="p">";</span>
+    <span class="k">print</span> <span class="p">"</span><span class="s2">Knock Knock Knock Penny!</span><span class="se">\n</span><span class="p">";</span>
+    <span class="k">print</span> <span class="p">"</span><span class="s2">Knock Knock Knock Penny!</span><span class="se">\n</span><span class="p">";</span>
+<span class="p">}</span>
+
+<span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+<p>And everything becomes more <em>dynamic</em>:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">Bazinga</span><span class="o">!</span>
+<span class="nv">Press</span> <span class="nv">ENTER</span> <span class="nv">to</span> <span class="nv">reload</span> <span class="nv">module:</span>    
+<span class="nv">Knock</span> <span class="nv">Knock</span> <span class="nv">Knock</span> <span class="nv">Penny</span><span class="o">!</span>
+<span class="nv">Knock</span> <span class="nv">Knock</span> <span class="nv">Knock</span> <span class="nv">Penny</span><span class="o">!</span>
+<span class="nv">Knock</span> <span class="nv">Knock</span> <span class="nv">Knock</span> <span class="nv">Penny</span><span class="o">!</span>
+</code></pre></div></div>
+
+<h2 id="perl-module-return-value">Perl module return value</h2>
+<p>Modules have to return a “true” value, it sometimes confuse beginners, but I read somewhere that it comes from <code class="language-plaintext highlighter-rouge">Perl 4</code> where importing a module was much more like executing a subscript.</p>
+
+<p>So what if we try to return a “false” value?</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+<p>When importing it, we get in trouble:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perl -I. -e 'use Boom;'
+Boom.pm did not return a true value at -e line.
+BEGIN failed--compilation aborted at -e line 1.
+</code></pre></div></div>
+<p>Why are there is 2 messages here? 
+There is one about importing and one about compilation because of the “phases” I mentioned just above.</p>
+
+<p>Just replace <code class="language-plaintext highlighter-rouge">use</code> per <code class="language-plaintext highlighter-rouge">require</code> to change the phase where the import is processed and it will now only print the import failure:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perl -I. -e 'require Boom;'
+Boom.pm did not return a true value at -e line 1.
+</code></pre></div></div>
+
+<p>Some people are playing with modules return codes like <a href="https://github.com/schwern">Michael G Schwern</a> see <a href="https://stackoverflow.com/a/1864035">his stackoverflow response</a> or more recently <strong>PEVANS</strong> with a <code class="language-plaintext highlighter-rouge">0x55AA</code> in its <a href="https://metacpan.org/release/Faster-Maths/source/lib/Faster/Maths.pm#L104">Faster::Math</a></p>
+
+<p>You can find more example of return values thanks to <a href="https://returnvalues.plix.at/values.html">Acme::ReturnValue</a></p>
+
+<h2 id="-m">-M</h2>
+<p>You can import a module with command line switch <code class="language-plaintext highlighter-rouge">-M</code> like the following:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perl -I. -MBazinga -e 'joke()'
+Bazinga!
+</code></pre></div></div>
+
+<h2 id="visibility">Visibility</h2>
+<p>Namespace pollution and symbols export is an important topic that I will not discuss today but I leave you in <a href="https://perldoc.perl.org/Exporter#Selecting-What-to-Export">a good company</a> :grinning:</p>

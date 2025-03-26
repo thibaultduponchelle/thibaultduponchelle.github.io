@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>The difficult road to Perl | Tib</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="The difficult road to Perl" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Around 2010, I was in the middle of my CS studies and I was a pythonista. :clap: :snake:" />
+<meta property="og:description" content="Around 2010, I was in the middle of my CS studies and I was a pythonista. :clap: :snake:" />
+<link rel="canonical" href="http://localhost:4000/2022/02/03/The-difficult-road-to-Perl.html" />
+<meta property="og:url" content="http://localhost:4000/2022/02/03/The-difficult-road-to-Perl.html" />
+<meta property="og:site_name" content="Tib" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-03T16:39:50+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The difficult road to Perl" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-03T16:39:50+01:00","datePublished":"2022-02-03T16:39:50+01:00","description":"Around 2010, I was in the middle of my CS studies and I was a pythonista. :clap: :snake:","headline":"The difficult road to Perl","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/02/03/The-difficult-road-to-Perl.html"},"url":"http://localhost:4000/2022/02/03/The-difficult-road-to-Perl.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Tib" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Tib</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The difficult road to Perl</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-02-03T16:39:50+01:00" itemprop="datePublished">Feb 3, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Around 2010, I was in the middle of my CS studies and I was a pythonista. :clap: :snake:</p>
+
+<p><img src="/assets/images/getblu2zkitswfpaxbsn.jpg" alt="Python" /></p>
+
+<p>At that time, it was <strong>python 2.6</strong> dominating but some people were starting to use the new <strong>python 2.7</strong> :new:</p>
+
+<p><strong>python 2</strong> was far not as good as <strong>python 3</strong> is today (who have been impressively improved :scream:)… but it was so cool! And I loved it!</p>
+
+<p>Python language was <em>my</em> thing :heart:</p>
+
+<h2 id="it-was-another-era">It was another era…</h2>
+<p><strong>python 3</strong> was out but nobody was using it.</p>
+
+<p>People were posting in forums, do you remember? :grin:</p>
+
+<p>Python had still the reputation of not doing breaking changes.</p>
+
+<p><img src="/assets/images/vuslhak5kxr9fex4exug.gif" alt="Lol" /></p>
+
+<p>(only Ruby was assuming this mindset)</p>
+
+<p>I think that list comprehension existed (looking at <a href="https://docs.python.org/3/whatsnew/2.0.html#list-comprehensions">python 2.0 changelog</a>) but I don’t remember using it (?).</p>
+
+<p>It was possible to type <code class="language-plaintext highlighter-rouge">print "hello world"</code> without parenthesis… :+1:</p>
+
+<p>I remember some pain points, like <code class="language-plaintext highlighter-rouge">easy_install</code>, <code class="language-plaintext highlighter-rouge">None</code> concatenation or UTF-8.</p>
+
+<h2 id="some-python-2-pain-points">Some python 2 pain points</h2>
+<p>First, there was no fstrings :scream: therefore you would fall often into the trap: <code class="language-plaintext highlighter-rouge">TypeError: cannot concatenate 'str' and 'NoneType' objects</code></p>
+
+<p>UTF-8 file encoding was not default then leading to this annoying error:
+<code class="language-plaintext highlighter-rouge">SyntaxError: Non-ASCII character '\xc3' in file utf8.py on line 1, but no encoding declared;</code> (and commenting the line would not save you!)</p>
+
+<p>The <a href="https://www.python.org/dev/peps/pep-0020/">“There should be one– and preferably only one –obvious way to do it.”</a> was often more a curse than a blessing. It’s terrible how you can spend 15 minutes on understanding a construction when you’re just experimenting.</p>
+
+<p>And the toolchain…</p>
+
+<h2 id="perl-what-a-weird-choice"><em>“Perl?”</em> What a weird choice</h2>
+<p>At that time I gave some talks and helped organizing <a href="https://jm2l.linux-azur.org/">JM2L</a>, an open source event organized by <a href="https://www.linux-azur.org/">Linux Azur</a> near Cannes/Antibes (France).</p>
+
+<p><img src="/assets/images/h2hgyenypvmfom5xfdpr.png" alt="Linux Azur" /></p>
+
+<p>I remember contacting speakers (CFP) and in particular one email thread with a regular speaker. I was asking details about “his” free software, he told me it was in Perl. I hesitated… then asked him anyway:</p>
+<ul>
+  <li>Why it is written in Perl, such a weird choice ?!</li>
+</ul>
+
+<p>(I really asked this way)</p>
+
+<p>He answered me gently that “It was the language of choice when he started the project”.</p>
+
+<p>Long time later, I wonder even how I dared asking this question. It’s judging, useless and not professional (even if we were not in a professional exchange).</p>
+
+<p>At that time, I hadn’t ever seen any line of Perl, I was judging, without any reason.</p>
+
+<p>I was just ANTI-Perl. One more soldier in the army of <a href="https://dev.to/thibaultduponchelle/the-hate-of-perl-in-memes-469e">Perl haters</a>.</p>
+
+<p><img src="/assets/images/r15jw4unakhmvp2nhj86.jpeg" alt="Perl WTF" /></p>
+
+<p>And I was so sure of myself and so sure that everybody shared the same evidence, that I asked this question.</p>
+
+<p>This judgement is probably something that appeared and consolidated during my studies through contact with school friends (?) or communities of programmers in general (?)</p>
+
+<p>Because in my older memory (1998-2008), my view of Perl was not so bad. I remember Perl having a reputation of hacker’s choice, legendary coders, super heroes of command line and UNIX, smart but mad peoples. :sunglasses:</p>
+
+<p><img src="/assets/images/xx2ip12gkonvhsq86rwj.png" alt="Mad" /></p>
+
+<p>In a coder’s mind, it was more something fascinating.</p>
+
+<p>I was seeing the community around Perl like a “sect” (e.g. mongers…) like the <a href="https://dev.to/thibaultduponchelle/perl-programmers-are-mandalorians-l0b">Mandalorians</a>.</p>
+
+<p><img src="/assets/images/7yc04wpgxswh12otxxm7.jpeg" alt="Mandalorian" /></p>
+
+<p>Mandalorians respect the creed!</p>
+
+<h2 id="introduction-to-perl">Introduction to Perl</h2>
+<p>Then I joined my job in 2013. I remember people studying me in the first days (they confessed they had looked for my name in Google before I joined). I had a first meeting with my team leader. He explained the very high level architecture of my department and technologies.</p>
+
+<ul>
+  <li>We have a lot of C, some bash and a lot of Perl…</li>
+  <li>I don’t know Perl at all, I said</li>
+  <li>You will learn!</li>
+</ul>
+
+<p>I was then introduced to Perl like this, <em>by constraint</em>.</p>
+
+<p>I’m lucky enough since it became for years my language of choice and this was the first time I studied so deep programming languages principles, thanks to Perl but largely beyond Perl (hello Python :wave:, hello Ruby :wave:, hello Raku :wave:, hello <a href="https://ruslanspivak.com/lsbasi-part1/">lsbasi</a> :wave:, etc…).</p>
+
+<p>But even if I changed my view on Perl (proving that I’m open minded :wink: or just respecting the hierarchy :relieved:), I wanted to share how <strong>the road to (learning) Perl is full of obstacles</strong>.</p>
+
+<p>Please take a moment to think about it.</p>
+
+<h2 id="i-enjoy-perl">I enjoy Perl</h2>
+<p>If you read my posts, you know that most of my current posts talk about Perl. It has several qualities that I cherish (stable, robust, <a href="https://metacpan.org/">CPAN</a>…) that are maybe not super trendy in the current “ship fast and break things” world but talk to me.</p>
+
+<p>And it is fun to write!</p>
+
+<p>What I found in Perl was the freedom, less boilerplate and a very close integration in Linux. And also maybe a more “artistic” approach of programming.</p>
+
+<p>But I consider myself as a polyglot programmer, <a href="https://dev.to/davorg/don-t-be-a-perl-programmer-4h2d">I don’t call myself a Perl programmer</a> (why would I do? It’s not my first neither my last language). I enjoy it and I don’t like how reputation is more important than actual qualities. This is something I liked between programmers, how we don’t judge that much by appearance.</p>
+
+<p>Today I do much more Python than Perl, and each time I switch from Python to Perl I see Perl defects (OOP, REPL, collections containers…) the same way when I switch from Perl to Python I see Python pain points (toolchain, strictness…), but luckily I enjoy much more the qualities than I suffer the imperfections! :grin::grin::grin:</p>
+
+<p>Having dodged the python 2 to 3 migration frustration, and with all sweets of python 3, I’m still close to be a kind of pythonista somewhere inside but since I said “I’m not a Perl programmer” there is no reason I would consider myself as a “Python programmer” neither. And while I used, I’m using and I will use Python a lot for a long time, I can’t say that I was ever <em>involved</em> in Python while it’s clear that I <em>cared</em> about Perl :camel:</p>
+
+  </div><a class="u-url" href="/2022/02/03/The-difficult-road-to-Perl.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Tib</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Tib</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Random code and thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

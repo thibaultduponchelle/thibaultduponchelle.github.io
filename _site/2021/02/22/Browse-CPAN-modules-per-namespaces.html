@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Browse CPAN modules per namespaces | Tib</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Browse CPAN modules per namespaces" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I once was looking to filter out CPAN modules per namespace. Namespaces generally have meaning in CPAN since there are conventions and Perl folks try to be rigourous and to fit well in the existing naming" />
+<meta property="og:description" content="I once was looking to filter out CPAN modules per namespace. Namespaces generally have meaning in CPAN since there are conventions and Perl folks try to be rigourous and to fit well in the existing naming" />
+<link rel="canonical" href="http://localhost:4000/2021/02/22/Browse-CPAN-modules-per-namespaces.html" />
+<meta property="og:url" content="http://localhost:4000/2021/02/22/Browse-CPAN-modules-per-namespaces.html" />
+<meta property="og:site_name" content="Tib" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-22T15:07:34+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Browse CPAN modules per namespaces" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-22T15:07:34+01:00","datePublished":"2021-02-22T15:07:34+01:00","description":"I once was looking to filter out CPAN modules per namespace. Namespaces generally have meaning in CPAN since there are conventions and Perl folks try to be rigourous and to fit well in the existing naming","headline":"Browse CPAN modules per namespaces","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/22/Browse-CPAN-modules-per-namespaces.html"},"url":"http://localhost:4000/2021/02/22/Browse-CPAN-modules-per-namespaces.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Tib" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Tib</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Browse CPAN modules per namespaces</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-02-22T15:07:34+01:00" itemprop="datePublished">Feb 22, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I once was looking to filter out CPAN modules per namespace. Namespaces generally have <em>meaning</em> in CPAN since there are conventions and Perl folks try to be rigourous and to <a href="http://prepan.org">fit well in the existing naming</a></p>
+
+<p>So back again to my research, I was looking for a way to filter out CPAN modules per namespaces.</p>
+
+<h1 id="become-the-master-of-metacpan-search">Become the master of MetaCPAN search</h1>
+<p>From <a href="https://metacpan.org/about/faq">METACPAN faq</a> you can get some tips like the <strong>module:</strong> prefix
+<img src="/assets/images/yv1570s030v3onxsl9h6.png" alt="MetaCPAN tips" /></p>
+
+<p>With this trick, you can search for instance all <a href="https://metacpan.org/search?p=7&amp;q=module%3AXML">XML related modules</a></p>
+
+<p>It works well, but does not achieve exactly what I want since it returns me also for instance the <strong>SVG::XML</strong> which is not actually prefixed by <strong>XML::</strong>
+<img src="/assets/images/696xvyzky4j2edsvdnsr.png" alt="Problem" /></p>
+
+<h1 id="cpanmeta-the-great">CPANMeta the great</h1>
+<p>By asking on the good old IRC, I get a solution thanks to <a href="https://cpanmeta.grinnz.com">CPANMeta</a></p>
+
+<p>You can then list all <a href="https://cpanmeta.grinnz.com/packages?module=XML%3A%3A&amp;match_mode=prefix">XML::* modules</a> 
+<img src="/assets/images/mahc6obx5924sd6fw7jy.png" alt="CPANMeta" /></p>
+
+<h1 id="manual-grep">Manual grep</h1>
+<p>The quick and dirty hack!</p>
+
+<p>I downloaded the <code class="language-plaintext highlighter-rouge">02packages.details.txt</code> file from <a href="https://www.cpan.org/modules/02packages.details.txt">CPAN.org</a></p>
+
+<p>Then using a grep</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">grep</span> <span class="s2">"^XML::"</span> 02packages.details.txt
+</code></pre></div></div>
+
+<p>And the output is a long list of modules:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>XML::XSS                         v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::Comment                v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::Document               v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::Element                v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::ProcessingInstruction  v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::Role::Renderer         v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::Role::StyleAttribute   v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::StyleAttribute         v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::Stylesheet::HTML2TD    v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::Template               v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XSS::Text                   v0.3.5  Y/YA/YANICK/XML-XSS-0.3.5.tar.gz
+XML::XUpdate::LibXML           0.006000  P/PA/PAJAS/XML-XUpdate-LibXML-0.6.0.tar.gz
+XML::YYLex                         0.04  B/BO/BOEWE/XML-YYLex-0.04.tar.gz
+</code></pre></div></div>
+
+<h1 id="more-experiments">More experiments</h1>
+<p>I tried also to use <a href="https://metacpan.org/pod/CPAN::02Packages::Search">CPAN::02Packages::Search</a> but it seems to only allow exact match.</p>
+
+<p>Look at this working code</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="k">use</span> <span class="nn">CPAN::02Packages::</span><span class="nv">Search</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">Data::</span><span class="nv">Dumper</span><span class="p">;</span>
+ 
+<span class="k">my</span> <span class="nv">$index</span> <span class="o">=</span> <span class="nn">CPAN::02Packages::</span><span class="nv">Search</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="s">file</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">./02packages.details.txt</span><span class="p">');</span>
+<span class="k">my</span> <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$index</span><span class="o">-&gt;</span><span class="nv">search</span><span class="p">('</span><span class="s1">Plack</span><span class="p">');</span> 
+
+<span class="k">print</span> <span class="nv">Dumper</span><span class="p">(</span><span class="nv">$res</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>I tried to tweak it with ` $index-&gt;search(‘XML::<em>’);<code class="language-plaintext highlighter-rouge"> or </code>$index-&gt;search(‘XML::.</em>’);` but it is not valid :confused:</p>
+
+<p><a href="https://metacpan.org/pod/CPAN::Common::Index#search_packages-(ABSTRACT)">CPAN::Common::Index::Mirror</a> is promising to do the job according to the documentation
+<img src="/assets/images/7ck8wq5gg14cm5ig3eyj.png" alt="Index" /></p>
+
+<p>But I was not able to make it work <em>at first</em> :smiley:</p>
+
+<p>I started with this code snippet</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="k">use</span> <span class="nn">CPAN::Common::Index::Mux::</span><span class="nv">Ordered</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">Data::</span><span class="nv">Dumper</span><span class="p">;</span>
+ 
+<span class="k">my</span> <span class="nv">$index</span> <span class="o">=</span> <span class="nn">CPAN::Common::Index::Mux::</span><span class="nv">Ordered</span><span class="o">-&gt;</span><span class="nv">assemble</span><span class="p">(</span>
+    <span class="s">MetaDB</span> <span class="o">=&gt;</span> <span class="p">{},</span>
+    <span class="s">Mirror</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s">mirror</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">http://cpan.cpantesters.org</span><span class="p">"</span> <span class="p">},</span>
+<span class="p">);</span>
+ 
+<span class="k">my</span> <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$index</span><span class="o">-&gt;</span><span class="nv">search_packages</span><span class="p">(</span> <span class="p">{</span> <span class="s">package</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">XML::LibXML</span><span class="p">'</span> <span class="p">}</span> <span class="p">);</span>
+ 
+<span class="k">print</span> <span class="nv">Dumper</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>And tried various <code class="language-plaintext highlighter-rouge">XML::*</code> and <code class="language-plaintext highlighter-rouge">XML::.*</code> and <code class="language-plaintext highlighter-rouge">/^XML::.*/</code> and <code class="language-plaintext highlighter-rouge">m/^XML::.*/</code> and the same with <code class="language-plaintext highlighter-rouge">-</code> instead of <code class="language-plaintext highlighter-rouge">::</code> but no way :grimacing:</p>
+
+<p>Thanks to @Grinnz, I get it!</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="k">use</span> <span class="nn">CPAN::Common::Index::Mux::</span><span class="nv">Ordered</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">Data::</span><span class="nv">Dumper</span><span class="p">;</span>
+
+<span class="k">my</span> <span class="nv">$index</span> <span class="o">=</span> <span class="nn">CPAN::Common::Index::Mux::</span><span class="nv">Ordered</span><span class="o">-&gt;</span><span class="nv">assemble</span><span class="p">(</span>
+    <span class="s">MetaDB</span> <span class="o">=&gt;</span> <span class="p">{},</span>
+    <span class="s">Mirror</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s">mirror</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">http://cpan.cpantesters.org</span><span class="p">"</span> <span class="p">},</span>
+<span class="p">);</span>
+
+<span class="k">my</span> <span class="nv">@result</span> <span class="o">=</span> <span class="nv">$index</span><span class="o">-&gt;</span><span class="nv">search_packages</span><span class="p">(</span> <span class="p">{</span> <span class="s">package</span> <span class="o">=&gt;</span> <span class="sx">qr/^XML::/</span> <span class="p">});</span>
+
+<span class="k">print</span> <span class="nv">Dumper</span><span class="p">(</span><span class="nv">@result</span><span class="p">);</span>
+</code></pre></div></div>
+<p>That will returns several packages:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$VAR2326</span> <span class="o">=</span> <span class="p">{</span>
+             <span class="p">'</span><span class="s1">version</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">undef</span><span class="p">',</span>
+             <span class="p">'</span><span class="s1">package</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">XML::XSH::Parser</span><span class="p">',</span>
+             <span class="p">'</span><span class="s1">uri</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">cpan:///distfile/CHOROBA/XML-XSH-1.8.6.tar.gz</span><span class="p">'</span>
+           <span class="p">};</span>
+<span class="nv">$VAR2327</span> <span class="o">=</span> <span class="p">{</span>
+             <span class="p">'</span><span class="s1">version</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">0.48</span><span class="p">',</span>
+             <span class="p">'</span><span class="s1">package</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">XML::XSLT</span><span class="p">',</span>
+             <span class="p">'</span><span class="s1">uri</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">cpan:///distfile/JSTOWE/XML-XSLT-0.48.tar.gz</span><span class="p">'</span>
+           <span class="p">};</span>
+<span class="nv">$VAR2328</span> <span class="o">=</span> <span class="p">{</span>
+             <span class="p">'</span><span class="s1">package</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">XML::XSLT::DOM::TextDOE</span><span class="p">',</span>
+             <span class="p">'</span><span class="s1">version</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">0.31</span><span class="p">',</span>
+             <span class="p">'</span><span class="s1">uri</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">cpan:///distfile/MAHEX/XML-XSLT-0.31.tar.gz</span><span class="p">'</span>
+           <span class="p">};</span>
+</code></pre></div></div>
+
+<p>I see there are also some other possible alternatives like <a href="https://metacpan.org/pod/App::CPANIDX">App::CPANIDX</a> or maybe <a href="https://metacpan.org/pod/distribution/CPANDB/lib/CPANDB/Module.pod">CPANDB</a>?</p>
+
+<h1 id="metacpan-native-treeview">MetaCPAN native treeview</h1>
+<p>I wonder if it should not simply be part of MetaCPAN. I other words a <strong>native tree view in MetaCPAN</strong> :dancer:</p>
+
+<p>Maybe I’m missing a point, but a feature like this would make me happy for a while.</p>
+
+<p>What about something like 
+<img src="/assets/images/w8zn3qriemgtm2rf84ip.png" alt="CPAN treeview" /></p>
+
+<p>What do you think?</p>
+
+  </div><a class="u-url" href="/2021/02/22/Browse-CPAN-modules-per-namespaces.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Tib</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Tib</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Random code and thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<p><a href="https://metacpan.org/pod/Log::Progress">Log::Progess</a> is Perl module to display progress in a configurable manner.</p>
+
+<h1 id="install-logprogress">Install Log::Progress</h1>
+<p>Install as usual with <code class="language-plaintext highlighter-rouge">cpanm Log::Progress</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cpanm Log::Progress
+Fetching http://www.cpan.org/authors/id/N/NE/NERDVANA/Log-Progress-0.12.tar.gz ... OK
+Configuring Log-Progress-0.12 ... OK
+Building and testing Log-Progress-0.12 ... OK
+Successfully installed Log-Progress-0.12
+1 distribution installed
+</code></pre></div></div>
+
+<p>At this point you shoule be able to <code class="language-plaintext highlighter-rouge">use Log::Progress</code> in your program without any complaints from <code class="language-plaintext highlighter-rouge">perl</code> :grin:</p>
+
+<h1 id="report-progress">Report progress</h1>
+
+<p>This is what contains my sample below:</p>
+<ol>
+  <li>Creation of a progress</li>
+  <li>Configure when to report progress</li>
+  <li>Set the max and current progress</li>
+  <li>Actually progress (and let <code class="language-plaintext highlighter-rouge">Log::Progress</code> report when appropriate)</li>
+</ol>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nn">Log::</span><span class="nv">Progress</span><span class="p">;</span>
+
+<span class="k">my</span> <span class="nv">$progress</span><span class="o">=</span> <span class="nn">Log::</span><span class="nv">Progress</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
+<span class="nv">$progress</span><span class="o">-&gt;</span><span class="nv">squelch</span><span class="p">(</span><span class="mf">.1</span><span class="p">);</span> <span class="c1"># Only emit messages every 10%</span>
+<span class="k">my</span> <span class="nv">$max</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="nv">$progress</span><span class="o">-&gt;</span><span class="nv">at</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$max</span><span class="p">);</span> <span class="c1"># Set current progress and target</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="nv">$max</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">sleep</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nv">$progress</span><span class="o">-&gt;</span><span class="nv">at</span><span class="p">(</span><span class="nv">$i</span><span class="p">);</span> <span class="c1"># Will not report each time</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And then I get this progress report:</p>
+
+<p><img src="/assets/images/8s0zny9k88uqi241ct2c.gif" alt="Log" /></p>
+
+<p>That’s all! :smiley:
+<img src="/assets/images/884k6dg22dk09jyub61z.jpg" alt="House" /></p>

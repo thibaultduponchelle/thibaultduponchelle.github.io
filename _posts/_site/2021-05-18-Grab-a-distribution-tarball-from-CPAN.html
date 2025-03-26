@@ -1,0 +1,68 @@
+<p>This is another “CPAN utils” post (sort of) but this time around resolving and fetching tarballs :smiley:</p>
+
+<ol>
+  <li><a href="#cpan">cpan -g</a></li>
+  <li><a href="#sourcepan">sourcepan</a></li>
+  <li><a href="#cpan-get">cpan-get</a></li>
+  <li><a href="#mcpan-httpsimple">MetaCPAN::Client + HTTP::Simple</a></li>
+</ol>
+
+<h2 id="cpan--g-">cpan -g <a name="cpan"></a></h2>
+<p>First let’s start by using the <em>venerable</em> <a href="https://metacpan.org/pod/CPAN">CPAN</a>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cpan -g Parser::MGC 
+Checking Parser::MGC
+Reading '/home/tduponchelle/.local/share/.cpan/Metadata'
+  Database was generated on Sat, 15 May 2021 16:41:03 GMT
+CPAN: LWP::UserAgent loaded ok (v6.53)
+Fetching with LWP:
+http://www.cpan.org/authors/01mailrc.txt.gz
+CPAN: YAML loaded ok (v1.30)
+Reading '/home/tduponchelle/.local/share/.cpan/sources/authors/01mailrc.txt.gz'
+CPAN: Compress::Zlib loaded ok (v2.102)
+............................................................................DONE
+Fetching with LWP:
+http://www.cpan.org/modules/02packages.details.txt.gz
+Reading '/home/tduponchelle/.local/share/.cpan/sources/modules/02packages.details.txt.gz'
+  Database was generated on Tue, 18 May 2021 12:29:03 GMT
+............................................................................DONE
+Debug(CPAN,CPAN.pm,703,[Index,Index.pm,483,all_objects]): mgr[CPAN=HASH(0x563dc712a9e8)] class[CPAN::Module]
+Debug(CPAN,CPAN.pm,703,[Index,Index.pm,483,all_objects]): mgr[CPAN=HASH(0x563dc712a9e8)] class[CPAN::Bundle]
+Debug(CPAN,CPAN.pm,703,[Index,Index.pm,483,all_objects]): mgr[CPAN=HASH(0x563dc712a9e8)] class[CPAN::Distribution]
+Fetching with LWP:
+http://www.cpan.org/modules/03modlist.data.gz
+Reading '/home/tduponchelle/.local/share/.cpan/sources/modules/03modlist.data.gz'
+DONE
+Writing /home/tduponchelle/.local/share/.cpan/Metadata
+Use of uninitialized value in concatenation (.) or string at /usr/share/perl/5.26/App/Cpan.pm line 1186.
+Downloaded [Parser::MGC] to []
+</code></pre></div></div>
+
+<h2 id="sourcepan-">sourcepan <a name="sourcepan"></a></h2>
+<p>Then look at the more <em>developer oriented</em> <a href="https://metacpan.org/pod/sourcepan">sourcepan</a>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sourcepan Acme::LSD
+Reading '/home/tduponchelle/.local/share/.cpan/Metadata'
+  Database was generated on Tue, 18 May 2021 12:29:03 GMT
+CONTRA/Acme-LSD-0.04.tar.gz =&gt; Acme-LSD-0.04.tar.gz
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">sourcepan --git</code> could even init for you a repository…</p>
+
+<h2 id="cpan-get-">cpan-get <a name="cpan-get"></a></h2>
+<p>Continue with the <em>newborn</em> <a href="https://metacpan.org/release/App-CPAN-Get">cpan-get</a>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cpan-get Test::More
+'http://cpan.metacpan.org/authors/id/E/EX/EXODIST/Test-Simple-1.302183.tar.gz' was downloaded.
+</code></pre></div></div>
+
+<h2 id="metacpanclient--httpsimple-">MetaCPAN::Client + HTTP::Simple <a name="mcpan-httpsimple"></a></h2>
+<p>And finish by a mixed <a href="https://metacpan.org/pod/MetaCPAN::Client">MetaCPAN API client</a> + an <a href="https://metacpan.org/pod/HTTP::Simple">HTTP client</a> (with no error handling at all :skull:):</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Init MetaCPAN client</span>
+<span class="k">use</span> <span class="nn">MetaCPAN::</span><span class="nv">Client</span><span class="p">;</span>
+<span class="k">my</span> <span class="nv">$mcpan</span> <span class="o">=</span> <span class="nn">MetaCPAN::</span><span class="nv">Client</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
+
+<span class="c1"># Resolve url</span>
+<span class="k">my</span> <span class="nv">$download_url</span> <span class="o">=</span> <span class="nv">$mcpan</span><span class="o">-&gt;</span><span class="nv">download_url</span><span class="p">('</span><span class="s1">ExtUtils::MakeMaker</span><span class="p">');</span>
+
+<span class="c1"># Download</span>
+<span class="k">use</span> <span class="nn">HTTP::</span><span class="nv">Simple</span><span class="p">;</span>
+<span class="nv">getstore</span><span class="p">(</span><span class="nv">$download_url</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">data</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">download_url</span><span class="p">},</span> <span class="p">"</span><span class="s2">EUMM.tgz</span><span class="p">");</span>
+</code></pre></div></div>
+<p>(Should be possible fetch with MetaCPAN::Client, if you know how, please comment)</p>

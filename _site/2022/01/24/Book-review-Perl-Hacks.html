@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Book review “Perl Hacks” | Tib</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Book review “Perl Hacks”" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Random code and thoughts" />
+<meta property="og:description" content="Random code and thoughts" />
+<link rel="canonical" href="http://localhost:4000/2022/01/24/Book-review-Perl-Hacks.html" />
+<meta property="og:url" content="http://localhost:4000/2022/01/24/Book-review-Perl-Hacks.html" />
+<meta property="og:site_name" content="Tib" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-24T10:07:20+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Book review “Perl Hacks”" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-01-24T10:07:20+01:00","datePublished":"2022-01-24T10:07:20+01:00","description":"Random code and thoughts","headline":"Book review “Perl Hacks”","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/01/24/Book-review-Perl-Hacks.html"},"url":"http://localhost:4000/2022/01/24/Book-review-Perl-Hacks.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Tib" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Tib</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Book review &quot;Perl Hacks&quot;</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-01-24T10:07:20+01:00" itemprop="datePublished">Jan 24, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="/assets/images/m4q06jhyy9b6d3eyq0x6.jpg" alt="Perl Hacks" /></p>
+
+<h1 id="intro">Intro</h1>
+<p><a href="https://www.oreilly.com/library/view/perl-hacks/0596526741/">Perl Hacks</a> is not a book like you’re used to read. It’s not a <a href="https://www.oreilly.com/library/view/learning-perl-8th/9781492094944/">tutorial</a> or developing a topic like <a href="https://www.oreilly.com/library/view/network-programming-with/0201615711/">network programming</a>. It’s even not <a href="https://perlschool.com/books/the-best-of-perl-hacks/">a selection of blog posts</a>.</p>
+
+<p>It’s a collection of 101 tricks for Perl developers from <em>programming masters</em>. To improve your daily life, your programming skills or your “Perl fu”.</p>
+
+<p>I’m a big fan of <a href="https://en.wikipedia.org/wiki/Chromatic_(programmer)">Chromatic</a> and its <a href="http://modernperlbooks.com/">Modern Perl</a> which I consider a masterpiece. I’m shy to have no review of it on this blog, one day maybe.</p>
+
+<p><a href="https://www.oreilly.com/library/view/perl-hacks/0596526741/">Perl Hacks</a> starts with a presentation of authors (there is 3 main ones + plenty of well known Perl community members). It is really nice and make me think of the recent <a href="https://dev.to/mjgardner/highlighting-members-of-the-perl-family-1kgi">Highlighting members of the Perl family</a> from <a href="https://dev.to/mjgardner">Mark Gardner</a> :grinning:</p>
+
+<p>The book is not for beginners. It is old and some hacks are outdated because of this. And finally some hacks are just not interesting but this is really a tiny portion of the 101 hacks.</p>
+
+<h1 id="productivity-hacks">Productivity Hacks</h1>
+<p>It starts smooth with less known <strong>perldoc</strong> arguments (do you know that you can “search” the perldoc with <code class="language-plaintext highlighter-rouge">-q</code>)</p>
+
+<p>Ever heard about <a href="https://metacpan.org/pod/Pod::Webserver">Pod::Webserver</a>?
+<img src="/assets/images/fa5d7882efofx66qby6x.png" alt="podwebserver" /></p>
+
+<p>There are hacks for enlightened users of vim or emacs like testing syntax on file saving, fix indent, run tests…</p>
+
+<h1 id="user-interaction-hacks">User Interaction Hacks</h1>
+<p>It’s fun how the first hack is exactly something that I coded myself in the past (Perl static site generator).
+<img src="/assets/images/blow-mind-mind-blown.gif" alt="Mind blow" /></p>
+
+<p>The next tricks are real life problems (make interactive programs silent when not interactive) or use <code class="language-plaintext highlighter-rouge">prompt</code> for better prompts (lists, hierarchical menus…)! It’s expanded later into the usage of <a href="https://metacpan.org/pod/ExtUtils::MakeMaker">ExtUtils::MakeMaker</a> (when a module needs to ask user for informations).</p>
+
+<p>It’s great how each contributor came with its area of expertise… Like the <a href="https://www.libsdl.org/">SDL</a> introduction by Guillaume Cottenceau. Yes… the guy behind <a href="http://www.frozen-bubble.org/">Frozen-Bubble</a>!</p>
+
+<p><img src="/assets/images/5k8gm1ajabinwhq1tsw5.png" alt="Frozen Bubble" /></p>
+
+<p>And finally a nice <a href="https://metacpan.org/pod/HTTP::Proxy">HTTP::Proxy</a> trick.</p>
+
+<h1 id="data-munging-hacks">Data Munging Hacks</h1>
+<p>“A little subtlety, style and finesse and you can write easy-to-understand code that’s just as powerful as the wild-eyed forge-ahead-at-all-costs just-do-the-job code.”</p>
+
+<p>Slurping and tying CSV files into Perl arrays, spreadsheets portability or reading file backwards (simple but not simple).</p>
+
+<p>I discovered <a href="https://metacpan.org/pod/SQL::Library">SQL::Library</a> which is interesting concept (does a language portable version of this exists?).</p>
+
+<p>Of course SQL statements bindings are introduced (hello <a href="https://bobby-tables.com/">little Bobby</a> :wave:) with the <code class="language-plaintext highlighter-rouge">NAME_lc</code> trick (read the book to know what it is :stuck_out_tongue_winking_eye:).</p>
+
+<p>It ends with iterator and <code class="language-plaintext highlighter-rouge">wantarray</code>.</p>
+
+<h1 id="working-with-modules-hacks">Working With Modules Hacks</h1>
+<p>Aliasing package names, PERL5LIB, <code class="language-plaintext highlighter-rouge">use lib</code>, configure, sitecustomize, reload modules, modules bundles, trace modules (code reference in <code class="language-plaintext highlighter-rouge">@INC</code>)… So much fun!</p>
+
+<p>This is EXACTLY for these kind of “hacks” that I was eager to read this book (I think some of these hacks have leaked and I fall on these somewhere :D).</p>
+
+<p>Monkey Patching external modules is a morally questionable hack but still interesting. I learned that <code class="language-plaintext highlighter-rouge">die</code> is often better than <code class="language-plaintext highlighter-rouge">exit</code> since <code class="language-plaintext highlighter-rouge">die</code> can be caught.</p>
+
+<p>The hack “Drink to the CPAN” is… original… to say the less :grin:</p>
+
+<p>Hacks about packaging with PAR.</p>
+
+<p>One hack is more “social”: a complete walk-through about how to be a good open source bug reporter.</p>
+
+<h1 id="object-hacks">Object Hacks</h1>
+<p>Hacks about Oriented Object Programming like attributes, true private methods dealing with typeglob (this hack is totally mad!), auto declare arguments or auto generate accessor, access control, polymorphism.</p>
+
+<p>I think I leaned somewhere in this chapter the <code class="language-plaintext highlighter-rouge">$" = "]["</code> trick which I found very cool.</p>
+
+<h1 id="debugging-hacks">Debugging Hacks</h1>
+<p>Some debugging hacks from basic ones (<code class="language-plaintext highlighter-rouge">perl -c</code> or bracketing your variables in your printf debugging sessions) to more intermediate things like using tests cases or <a href="https://metacpan.org/pod/Smart::Comments">Smart::Comments</a> (great!) or extend stacktrace on error (or deparse/name anonymous subs) or even customize the debugger.</p>
+
+<h1 id="developer-tricks-hacks">Developer Tricks Hacks</h1>
+<p>This sections provides hacks at module level (segregate tests, helper script to rebuild a module, run tests automatically or print test failures in color).</p>
+
+<p>Beware of the fact that studying <a href="https://metacpan.org/pod/ExtUtils::MakeMaker">ExtUtils::MakeMaker</a> source code will make you “wake up fully clothed and shivering in the shower several hours later”.
+<img src="https://media1.giphy.com/media/xT0xeHkthod39vab0k/giphy.gif?cid=ecf05e472k2phd1y0e0cg4bwwc28dm8ln9znist60nuer9dn&amp;rid=giphy.gif&amp;ct=g" alt="Shivering" /></p>
+
+<p>In previous chapter, <em>closure</em> were introduced, now it’s time for the another cool programming feature <em>memoize</em>! (and <a href="https://en.wikipedia.org/wiki/Ackermann_function">Ackerman function</a>).</p>
+
+<p>Some other hacks concern building Perl from source and using a file watcher to constantly run tests :+1:</p>
+
+<h1 id="know-thy-code-hacks">Know Thy Code Hacks</h1>
+<p>It starts with PHASES (you know BEGIN/END/CHECK…) then continue with dump, <code class="language-plaintext highlighter-rouge">corelist</code> and tracing core modules (<em>survival</em> must have hacks).</p>
+
+<p>This is probably the most “sysadmin” chapter:
+“For sysadmin, stability is a way of life, not a goal” and “We are in the golden age of Perl testing”.</p>
+
+<p>Other hacks are about typeglobs (find them) or Backend compiler collection (<a href="https://metacpan.org/pod/B::Concise">B::Concise</a> or <a href="https://metacpan.org/pod/B::TerseSize">B::TerseSize</a>) or <a href="https://metacpan.org/pod/Devel::Symdump">Devel::SymDump</a>, very interesting!</p>
+
+<p>An interesting (but I bet outdated) hack introduces <a href="https://metacpan.org/pod/PersistentPerl">PersistentPerl</a>.</p>
+
+<p>Actually more you advance in the book and the less there is to trash, 30 last hacks are just all competing being more mad than each others!</p>
+
+<p><img src="https://media3.giphy.com/media/VkoJ9yd1VOePal8KyY/giphy.gif?cid=ecf05e47irm0zv09i28l1zmdp30z6wb57holgeed2gaz46jj&amp;rid=giphy.gif&amp;ct=g" alt="Fireworks" /></p>
+
+<p>Trace ops…
+Write your own warnings….
+Dualvar…
+Play with soft and hard refs…
+Lock hash keys (prevent autovivication)…
+Replacing CORE sub…
+Contextual return value…
+Active values…
+<a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">List comprehension</a> in Perl…
+Add your own Perl syntax… (“Although Perl is not perfect, it is Perfectable”)
+Use shared library…
+Calculation with intervals…
+Operator overload… :dizzy_face: (“Perl is a operator-oriented language” -&gt; behavior of datas depends on what ops you decide to perform on them)</p>
+
+<p>It’s sweet nectar. :heart_eyes:</p>
+
+<p>It ends with an advice on deobfuscation of <a href="https://en.wiktionary.org/wiki/JAPH#English">JAPHs</a></p>
+
+<p>If you read so far, it’s clear that you’re <em>just another Perl hacker</em> too! :camel:</p>
+
+
+  </div><a class="u-url" href="/2022/01/24/Book-review-Perl-Hacks.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Tib</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Tib</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Random code and thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

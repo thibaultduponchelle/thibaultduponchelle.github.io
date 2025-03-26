@@ -1,0 +1,66 @@
+<p>I don’t release CPAN modules so often, but when I do, I try to do it with class! :smile:</p>
+
+<p><img src="/assets/images/lpyca80s6wr3zhraw3yf.png" alt="Style" /></p>
+
+<p>Some days ago, I got the idea that it could be nice to have a Github action to automatically upload a distribution to CPAN.</p>
+
+<p>I wondered how to upload a distribution from command line (I never needed such thing) and luckily there is already a perfect existing solution for this: <a href="https://metacpan.org/pod/distribution/CPAN-Uploader/bin/cpan-upload">cpan-upload</a></p>
+
+<p>I never created before a Github action but surprisingly it is very easy. There are 2 types of actions:</p>
+<ul>
+  <li><a href="https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action">javascript actions</a></li>
+  <li><a href="https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action">dockerfile actions</a></li>
+</ul>
+
+<p>I started with javascript version but since it required more customization, I quickly switched to dockerfile action.</p>
+
+<p>So finally here is it:</p>
+
+<h2 id="thibaultduponchelleaction-upload-to-cpan-sparkles"><a href="https://github.com/thibaultduponchelle/action-upload-to-cpan">thibaultduponchelle/action-upload-to-cpan</a> :sparkles:</h2>
+
+<p>I tested it with <a href="https://metacpan.org/pod/Acme::Automatix">Acme::Automatix</a></p>
+
+<p>The yml file describing the process of building and releasing my repository source code is like this:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">]</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build-and-release</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Build and release Acme::Automatix to CPAN</span>
+    <span class="na">steps</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Configure</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="s">perl Makefile.PL</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="s">make</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Deliver locally</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="s">make dist</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Upload to CPAN</span>
+      <span class="na">id</span><span class="pi">:</span> <span class="s">upload</span>
+      <span class="na">uses</span><span class="pi">:</span> <span class="s">thibaultduponchelle/action-upload-to-cpan@master</span>
+      <span class="na">with</span><span class="pi">:</span>
+          <span class="na">username</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">password</span><span class="pi">:</span> <span class="s">$</span>
+</code></pre></div></div>
+<p>Since credentials are required to upload to CPAN, you have to give your username and password, but you don’t want to share them with everybody so you have to put them in as <strong>“secrets”</strong>. Go to “Settings” then “Secrets” and you can add your secret credentials.
+<img src="/assets/images/d9ocq1sfnmlzjof6v7hd.png" alt="Secrets" /></p>
+
+<p>Only the password is really secret, so I can show you how I added my username (yes I’m “CONTRA” on CPAN):
+<img src="/assets/images/xehneatvry4a68fh75ye.png" alt="CONTRA" /></p>
+
+<p>And later they well appear obfuscated in the logs :smile:
+<img src="/assets/images/0ygkgkmcrv2ikbp1fkcc.png" alt="Secrets" /></p>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">upload-to-cpan</code> will try to upload any tarball in the root directory of your github repo (could maybe change that in the future). Also I’m using <code class="language-plaintext highlighter-rouge">@master</code> version of the action but this will change in the future.</p>
+
+<p>If you forget to update the version, the releasing with fail with a “conflict”.</p>
+
+<p>You can be smarter than me and introduce conditions to upload (only release when merging on a “production” branch, or only release on tagging…)</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>I really think this action is useful and since I wrote it, I discovered that these kind of things exist for other ecosystems (e.g. rubygems, pypi…) so it confirmed my feeling :smile:</p>
+
+<p>Then all that remains is to wish you Happy releasing! :sparkles:</p>
+
+<p><img src="/assets/images/kco5uq6sjtyag2a7bpvy.gif" alt="Muppet" /></p>
+

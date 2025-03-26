@@ -1,0 +1,158 @@
+<p><img src="/assets/images/2t33a9d2rkmicle13i3k.jpg" alt="Mastering Perl" /></p>
+
+<p><a href="https://www.oreilly.com/library/view/mastering-perl/9780596527242/">Mastering Perl</a> is a book from <a href="https://en.wikipedia.org/wiki/Brian_d_foy">brian d foy</a></p>
+
+<p>If you like this post, read my other <a href="https://dev.to/thibaultduponchelle/about-perl-books-review-1cj6">Perl books reviews</a> :grinning:</p>
+
+<h2 id="becoming-a-perl-master">Becoming a Perl master</h2>
+<p>This is a good paragraph title because this is what this book is about, to make you a better programmer and particularly a better Perl programmer.</p>
+
+<p>The goal is even more fairly high since it aims to (give you hints) to make you a <em>master</em>.</p>
+
+<p><img src="/assets/images/ulwoh9w8b4pl4wt9qdgv.jpg" alt="Splinter" /></p>
+
+<p>There is an interesting introduction about how to become a master <em>in general</em>, how it involves studying methods from multiple masters, working on a masterpiece and knowing multiple languages.</p>
+
+<h2 id="book-structure">Book structure</h2>
+<p>The book is composed of a serie of totally independent chapters. Each chapter focuses on one topic and has the same structure: a kind of introduction, the main content with paragraphs, a list of resources and a conclusion.</p>
+
+<p>There are a lot of names dropping and references so you can continue your path to mastering :grinning:</p>
+
+<p>Reading this book requires to know Perl basics.</p>
+
+<h2 id="regex">Regex</h2>
+<p>Regex as first chapter is a bit rough :grinning: but there are a lot of interesting bits like explanations about modifiers, <code class="language-plaintext highlighter-rouge">lookahead</code> and <code class="language-plaintext highlighter-rouge">lookbehind</code>, the <code class="language-plaintext highlighter-rouge">use re "debug";</code></p>
+
+<h2 id="security">Security</h2>
+<p>This chapter suffers from being old (the book I have into my hands was published in 2007) and all topics are very well known today (but does not mean they are no longer true).</p>
+
+<p>I enjoyed the description of different forms of system calls and the explanation about setuid.</p>
+
+<h2 id="debugging-perl">Debugging Perl</h2>
+<p>A lot of very nice tricks here, like <code class="language-plaintext highlighter-rouge">redefine</code> or wrapping subs or even using <code class="language-plaintext highlighter-rouge">-d</code> for a <code class="language-plaintext highlighter-rouge">Devel::</code> shortcut :+1:</p>
+
+<p>Have you ever used all debugging functions from this list?</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">print</code> (of course! Who does not?!)</li>
+  <li><code class="language-plaintext highlighter-rouge">warn</code> (yes, a customized print)</li>
+  <li><code class="language-plaintext highlighter-rouge">croak</code> (people says it is the magic wand)</li>
+  <li><code class="language-plaintext highlighter-rouge">carp</code> (how is it different from croak?)</li>
+  <li><code class="language-plaintext highlighter-rouge">cluck</code> (WUT?)</li>
+  <li><code class="language-plaintext highlighter-rouge">confess</code> (how many are there?)</li>
+</ol>
+
+<h2 id="profiling">Profiling</h2>
+<p>This is a great and not so great chapter in the same time. There is plenty of profilers listed here like <a href="https://metacpan.org/pod/Devel::SmallProf">Devel::SmallProf</a> (not updated since 2007, still good?) or <a href="https://metacpan.org/pod/DBI::ProfileDumper">DBI::ProfileDumper</a> or <a href="https://metacpan.org/pod/Devel::DProf">Devel::Dprof</a> (deprecated).</p>
+
+<p>I must add <a href="https://metacpan.org/dist/Devel-NYTProf">Devel::NYTProf</a> because it’s a must! I think it is not mentioned because it was not created when this book was released.</p>
+
+<p>There is even a paragraph to explain how to write your own debugger.</p>
+
+<p>It’s not so great because the first edition of Mastering Perl is old, code is not really modern and it is a bit “too personal” for me (this last point could be a good point for other people, matter of taste).</p>
+
+<h2 id="benchmark">Benchmark</h2>
+<p>In addition to pure benchmark tips like <code class="language-plaintext highlighter-rouge">-DDEBUGGING_MSTATS</code> compilation flag and benchmark functions like <code class="language-plaintext highlighter-rouge">timethese</code> there are technical details from perl internals (and this is something I really enjoy)</p>
+
+<p>“perl trades memory for processing speed” or “perl does a lot of lookup instead a lot of compilation” or even about memory management (perl takes big memory chunk and tries to reuse them)</p>
+
+<p>Some usage of <a href="https://metacpan.org/pod/Devel::Peek">Devel::Peek</a> and <a href="https://metacpan.org/pod/Devel::Size">Devel::Size</a> are showing how perl behaves (SV, PV, PVIV, how data is stored) and how we can inspect this even from running program.</p>
+
+<p>I really loved this chapter!</p>
+
+<h2 id="clean-up-perl">Clean Up Perl</h2>
+<p>This chapter is about managing a codebase and does not fall into the trap of giving details about coding style but keeps about generic concepts:</p>
+<ul>
+  <li>“Code isn’t bad because a novice Perl programmer can’t read it”</li>
+  <li>“[You should] Be able to understand handful major coding styles”</li>
+  <li>“Be coherent and mimic existing style”</li>
+</ul>
+
+<h2 id="typeglobs">Typeglobs</h2>
+<p>Very interesting explanations about scopes (<code class="language-plaintext highlighter-rouge">my</code>, <code class="language-plaintext highlighter-rouge">local</code>, <code class="language-plaintext highlighter-rouge">our</code>, <code class="language-plaintext highlighter-rouge">packages</code>) passing functions as parameters or return values of functions.
+It opens the door to the next chapter about “Dynamic Subs”</p>
+
+<h2 id="dynamic-subroutines">Dynamic subroutines</h2>
+<p>A lot of black magic here about references, symbolic references, <a href="https://metacpan.org/pod/Data::Constraint">Data::Constraint</a> (that I found pretty clever), Autoload, Autosplit.</p>
+
+<p>Code samples are dirty: hacks + <code class="language-plaintext highlighter-rouge">goto</code> + <code class="language-plaintext highlighter-rouge">&amp;{$AUTOLOAD}</code> + regex + <code class="language-plaintext highlighter-rouge">$1</code> + <code class="language-plaintext highlighter-rouge">$_</code> + <code class="language-plaintext highlighter-rouge">no stricts</code> + <code class="language-plaintext highlighter-rouge">$sub = sub</code> + <code class="language-plaintext highlighter-rouge">die</code> + <code class="language-plaintext highlighter-rouge">$_[0]</code></p>
+
+<p>But hey it’s gory details, at some point if we want to understand all Perl internals…</p>
+
+<p>And as I said it is really black magic!</p>
+
+<h2 id="modifying-and-jury-rigging-modules">Modifying and jury rigging modules</h2>
+<p>This chapter explains how to debug/patch modules.</p>
+
+<p>For the record:</p>
+<ul>
+  <li>Local patch with very high version</li>
+  <li>Redefine sub in caller code</li>
+  <li>Wrap sub in caller code</li>
+  <li>Subclass (if possible) sub in caller code</li>
+</ul>
+
+<h2 id="configuring-perl-programs">Configuring Perl programs</h2>
+<p>Various methods described:</p>
+<ol>
+  <li>Config in Perl code</li>
+  <li>Config in external Perl code (e.g. code.pl <code class="language-plaintext highlighter-rouge">require</code> config.pl)</li>
+  <li>Config in ENV vars</li>
+  <li>Command line args (via GetOpt or <code class="language-plaintext highlighter-rouge">perl -s</code>). Raku has MAIN</li>
+  <li>Config file (ini, yaml…)</li>
+  <li>Configure according to filename (modern trick like git-log)</li>
+  <li>Interactive questions (if interactive shell <code class="language-plaintext highlighter-rouge">-t STDOUT</code>)</li>
+  <li>Heavy config <code class="language-plaintext highlighter-rouge">use Config</code></li>
+</ol>
+
+<h2 id="error-reporting-and-logging">Error reporting and logging</h2>
+<p>We don’t really have exceptions in Perl, we have <code class="language-plaintext highlighter-rouge">eval</code> + <code class="language-plaintext highlighter-rouge">die</code> to simulate or <code class="language-plaintext highlighter-rouge">try</code>/<code class="language-plaintext highlighter-rouge">catch</code> coming into core right now but is it not universally used. The chapter details about sending and retrieving errors or propagating them.</p>
+
+<p>Logging chapter presents some logging facilities and especially <code class="language-plaintext highlighter-rouge">log4perl</code> which is very powerful.</p>
+
+<h2 id="data-persistence">Data persistence</h2>
+<p>Once again this chapter gives you pointers:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">pack</code></li>
+  <li><a href="https://metacpan.org/pod/Data::Dumper">Data::Dumper</a> to serialize as string</li>
+  <li>YAML</li>
+  <li><a href="https://metacpan.org/pod/Storable">Storable</a></li>
+  <li>DBM (not always portable if we use different driver)</li>
+</ol>
+
+<p>Concerning serialization, I must add <a href="https://metacpan.org/pod/Sereal">Sereal</a>, ProtocolBuffer and Avro.
+I think none of them existed when the book was released.</p>
+
+<p>EDIT: some more… MessagePack, XDR :grinning:</p>
+
+<h2 id="working-with-bits-and-tied-variables">Working with bits and tied variables</h2>
+<p>Diving into functions “close to material” with <code class="language-plaintext highlighter-rouge">vec</code> or <a href="https://metacpan.org/pod/Bit::Vector">Bit::Vector</a> an <a href="https://metacpan.org/pod/Tie::Cycle">Tie::Cycle</a> or <a href="https://metacpan.org/pod/Tie::BoundedInteger">Tie::BoundedInteger</a> etc…</p>
+
+<h2 id="modules-as-programs">Modules as programs</h2>
+<p>Very nice trick with <code class="language-plaintext highlighter-rouge">caller()</code></p>
+
+<h2 id="tricks-in-bulk">Tricks in bulk</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@{[ ]}</code> see <a href="https://metacpan.org/dist/perlsecret/view/lib/perlsecret.pod#Baby-cart">baby cart</a></li>
+  <li>using <code class="language-plaintext highlighter-rouge">keys map</code> to untaint</li>
+  <li><code class="language-plaintext highlighter-rouge">WARN</code> is  signal!</li>
+  <li><code class="language-plaintext highlighter-rouge">L::*</code> (I think it’s <a href="https://pause.perl.org/pause/query?ACTION=pause_namingmodules#Local">like Local::*</a>)</li>
+  <li><code class="language-plaintext highlighter-rouge">dualvar</code> for error for instance</li>
+  <li>END blocks are executed after a <code class="language-plaintext highlighter-rouge">die</code></li>
+  <li><code class="language-plaintext highlighter-rouge">$^E</code> for OS specific errors</li>
+  <li>You can put perl code in log4perl conf</li>
+  <li><a href="https://metacpan.org/pod/Data::Dumper">Data::Dumper</a> does not work for subs</li>
+  <li><code class="language-plaintext highlighter-rouge">vec</code> can be a lvalue</li>
+  <li><code class="language-plaintext highlighter-rouge">make disttest</code>, <code class="language-plaintext highlighter-rouge">make tardist</code></li>
+</ul>
+
+<h2 id="citations">Citations</h2>
+<ul>
+  <li>“Humility is the principal virtue of a maintenance programmer”</li>
+  <li>“Talk to your Perl therapist”</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>While being imperfect (mainly due to the age of the book, <del>only one and last edition in 2007</del>), <a href="https://www.oreilly.com/library/view/mastering-perl/9780596527242/">Mastering Perl</a> is rewarding and teaches a lot of useful things from programming concepts to Perl details (more the latter actually).</p>
+
+<p>I can recommend this book since I learned a lot of tricks :grinning:</p>
+

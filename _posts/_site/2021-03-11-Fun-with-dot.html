@@ -1,0 +1,242 @@
+<p>I don’t know how to introduce this post :smiley: I will just play with you using various usage of <code class="language-plaintext highlighter-rouge">.</code> in Perl but not only (see second part).</p>
+
+<h2 id="table-of-contents">Table Of Contents</h2>
+<ol>
+  <li><a href="#with-perl">Fun with dot in Perl</a></li>
+  <li><a href="#without-perl">Fun with dot in everything but Perl</a></li>
+</ol>
+
+<h2 id="fun-with-dot-in-perl-">Fun with dot in Perl <a name="with-perl"></a></h2>
+<h3 id="concat-strings-with-">Concat strings with .</h3>
+<p>In Perl like in a lot of other languages, you can concat strings with <code class="language-plaintext highlighter-rouge">.</code></p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span> <span class="p">"</span><span class="s2">Fun</span><span class="p">"</span> <span class="o">.</span> <span class="p">"</span><span class="s2"> with </span><span class="p">"</span> <span class="o">.</span> <span class="p">"</span><span class="s2">.</span><span class="p">"</span> <span class="o">.</span> <span class="p">"</span><span class="se">\n</span><span class="p">";</span>
+</code></pre></div></div>
+
+<p>But you can also concat <em>without quotes</em> which is less usual:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span> <span class="nv">Dota</span><span class="o">.</span><span class="nv">All</span><span class="o">.</span><span class="nv">Star</span><span class="p">;</span>
+</code></pre></div></div>
+<p>It’s less flexible and if you want my opinion I don’t recommend to use this form.</p>
+
+<h3 id="match-a-lot-with-">Match a lot with .</h3>
+<p><code class="language-plaintext highlighter-rouge">.</code> normally matches almost any character (including a dot itself).
+You can even extend what is matched by <code class="language-plaintext highlighter-rouge">.</code> using <a href="https://perldoc.perl.org/perlre#s"><code class="language-plaintext highlighter-rouge">/s</code></a> modifier.</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="vg">$_</span> <span class="o">=~</span> <span class="sr">s/(...)./$1/g</span><span class="p">;</span>
+    <span class="k">print</span> <span class="vg">$_</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>That will match 4 characters and keep only 3 and repeat:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"foo bar baz"</span> | perl keep3.pl
+foobarbaz
+</code></pre></div></div>
+
+<p>You can make your dot match more (“greedy dot”):</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="vg">$_</span> <span class="o">=~</span> <span class="sr">s/(.*) foo/$1/g</span><span class="p">;</span>
+    <span class="k">print</span> <span class="vg">$_</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>That will match as much as possible:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"foo foo foo"</span> | perl greedy.pl
+foo foo
+</code></pre></div></div>
+
+<p>But you can also make the contrary (“non greedy dot”):</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="vg">$_</span> <span class="o">=~</span> <span class="sr">s/(.*?) foo/$1/g</span><span class="p">;</span>
+    <span class="k">print</span> <span class="vg">$_</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>That will match the minimum possible valid match:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"foo foo foo"</span> | perl nongreedy.pl 
+foo
+</code></pre></div></div>
+
+<h3 id="v-strings">v-strings</h3>
+<p>Another use of dot can be the <a href="https://perldoc.perl.org/perldata#Version-Strings">version strings</a> (or “v-strings”):</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nv">perl</span> <span class="o">-</span><span class="nv">e</span> <span class="p">'</span><span class="s1">print v74.65.80.72</span><span class="p">'</span>
+<span class="nv">JAPH</span>
+</code></pre></div></div>
+
+<p>Or even mixing vstring with “non quote” trick:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nv">perl</span> <span class="o">-</span><span class="nv">e</span> <span class="p">'</span><span class="s1">print etc.v46.46.46</span><span class="p">'</span>
+<span class="nv">etc</span><span class="o">...</span>
+</code></pre></div></div>
+
+<p>If you read “version” in version strings and you are interested in creating and comparing versions in Perl please read this <a href="https://dev.to/grinnz/a-guide-to-versions-in-perl-3ng1">great blog post about versions</a>.</p>
+
+<h3 id="terminates-format">Terminates format</h3>
+<p>The format is an old and powerful (but less and less commonly used) feature of Perl. It is used to do formatting as the name suggests :smiley:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">format</span> <span class="n">STDOUT</span> <span class="p">=</span>
+<span class="si">@&lt;&lt;  @||||||   @&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+"Fun",   "with",   "dot !"
+.
+</span><span class="nb">write</span><span class="p">;</span>
+</code></pre></div></div>
+<p>The output is:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>perl format.pl 
+Fun   with                                  dot <span class="o">!</span>
+</code></pre></div></div>
+
+<h3 id="the-range-operator">The range operator</h3>
+<p>A great Perl feature is the <a href="https://perldoc.perl.org/perlop#Range-Operators">range operator</a> <code class="language-plaintext highlighter-rouge">..</code> or <code class="language-plaintext highlighter-rouge">...</code>:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">my</span> <span class="nv">@r</span> <span class="o">=</span> <span class="nv">aa</span><span class="o">...</span><span class="nv">bb</span><span class="p">;</span>
+<span class="k">print</span> <span class="nb">join</span> <span class="p">"</span><span class="s2"> </span><span class="p">",</span> <span class="nv">@r</span><span class="p">;</span>
+</code></pre></div></div>
+<p>(Here <code class="language-plaintext highlighter-rouge">...</code> is equivalent to <code class="language-plaintext highlighter-rouge">..</code>)</p>
+
+<p>That produces:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aa ab ac ad ae af ag ah ai aj ak al am an ao ap aq ar as at au av aw ax ay az ba bb
+</code></pre></div></div>
+
+<p>I wanted to find a <code class="language-plaintext highlighter-rouge">python</code> equivalent to show, but it seems <a href="https://stackoverflow.com/questions/3264271/what-is-the-python-equivalent-to-perl-a-azc">not straighforward at all</a> (not an operator or even a one line thing). Seems like <a href="https://docs.python.org/fr/3/library/stdtypes.html#range">range</a> is for integers only, and something naive like:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">itertools</span><span class="p">.</span><span class="n">product</span><span class="p">(</span><span class="s">'abcdefghijklmnopqrstuvwxyz'</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">it</span>
+</code></pre></div></div>
+<p>Is not producing the right thing, because I don’t want the first character to vary outside “a” and “b”…</p>
+
+<p>If you have a simple equivalent, feel free to comment!</p>
+
+<p>Now, a much more <em>strange</em> range:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+<span class="k">use</span> <span class="nv">strict</span><span class="p">;</span>
+<span class="k">use</span> <span class="nv">warnings</span><span class="p">;</span>
+
+<span class="k">while</span><span class="p">(</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="sr">/&gt;&gt;&gt;/</span><span class="o">..</span><span class="sr">/&lt;&lt;&lt;/</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="sr">/^&gt;&gt;&gt;$/</span> <span class="ow">and</span> <span class="o">!</span><span class="sr">/^&lt;&lt;&lt;$/</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">chomp</span><span class="p">;</span> <span class="k">print</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To apply on this file:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ignore me
+&gt;&gt;&gt;
+Kawa
+&lt;&lt;&lt;
+Ignore
+me
+&gt;&gt;&gt;
+bunga
+&lt;&lt;&lt;
+
+&gt;&gt;&gt;
+!
+&lt;&lt;&lt;
+</code></pre></div></div>
+
+<p>Execute with:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat </span>file.txt | perl sections.pl 
+Kawabunga!
+</code></pre></div></div>
+
+<h3 id="the-ellipsis">The ellipsis</h3>
+<p>The <a href="https://perldoc.perl.org/perlsyn#The-Ellipsis-Statement">ellipsis</a> or “yada-yada” or “triple-dot” is a way to mark a place as <strong>unimplemented</strong>.</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nv">perl</span> <span class="o">-</span><span class="nv">e</span> <span class="p">'</span><span class="s1">... if 1;</span><span class="p">'</span>
+<span class="nv">Unimplemented</span> <span class="nv">at</span> <span class="o">-</span><span class="nv">e</span> <span class="nv">line</span> <span class="mi">1</span><span class="o">.</span>
+</code></pre></div></div>
+<p>It is resolved at runtime so will only throw the <strong>Unimplemented</strong> if the code actually reach the ellipsis.</p>
+
+<h3 id="unsafe-dot">Unsafe dot</h3>
+<p>Starting Perl <strong>5.26.0</strong>, the current directory (<code class="language-plaintext highlighter-rouge">.</code>) was removed from default INC. You can still add them with <code class="language-plaintext highlighter-rouge">-I.</code> or <code class="language-plaintext highlighter-rouge">use lib "."</code> or compile the interpreter with <code class="language-plaintext highlighter-rouge">PERL_USE_UNSAFE_INC=1</code></p>
+
+<h2 id="fun-with-dot-in-all-but-perl-">Fun with dot in all but Perl <a name="without-perl"></a></h2>
+<h3 id="calling-methods">Calling methods</h3>
+<p>The dot is used to call methods in several languages (e.g. <code class="language-plaintext highlighter-rouge">python</code> or <code class="language-plaintext highlighter-rouge">ruby</code>).</p>
+
+<h3 id="un-point-cest-tout">Un point c’est tout</h3>
+<p>For a very long time, when you asked “how to concat 2 string in PHP?” on <a href="https://www.google.fr/">google.fr</a>, the first answer was a forum where a guy answered <em>tersely</em> “un point c’est tout” (meaning “a dot and that’s all!” or “this is like this!”).</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+<span class="nv">$a</span> <span class="o">=</span> <span class="s2">"hello"</span> <span class="mf">.</span> <span class="s2">"world"</span><span class="p">;</span>
+<span class="k">print</span> <span class="nv">$a</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+<p>Since it is also a french expression, it has a double sense and was not well understood by newbies despite being completely correct :smiley:</p>
+
+<h3 id="the-dotfiles">The dotfiles</h3>
+<p>Dotfiles are user config in files starting with dot (e.g. <code class="language-plaintext highlighter-rouge">.vimrc</code>). People sometimes put them and share them in git.</p>
+
+<h3 id="nasty-dot">Nasty dot</h3>
+<p>On GNU/Linux, if you want to be a <del>hacker</del> script kiddie like <strong>Kim DotCom</strong> you can “hide” files by naming them <code class="language-plaintext highlighter-rouge">. </code> or <code class="language-plaintext highlighter-rouge">...</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>touch ". " ...
+</code></pre></div></div>
+<p>As they start with dot, an usual <code class="language-plaintext highlighter-rouge">ls</code> won’t print them.</p>
+
+<p>Of course if you really want to hide a file, you need a more robust method.</p>
+
+<h3 id="safe-navigation-operator">Safe Navigation operator</h3>
+<p>For instance in groovy <code class="language-plaintext highlighter-rouge">.?</code></p>
+
+<p>See <a href="https://en.wikipedia.org/wiki/Safe_navigation_operator">Safe Navigation operator</a></p>
+
+<h3 id="dota">Dota</h3>
+<p>Completely off topic but it starts with “dot” and I played it when I was younger :grinning:
+<img src="/assets/images/kx94kxovzo5b9uexy9xn.jpg" alt="Dota" /></p>
+
+<p>What is the sense of this post after all? I don’t know…</p>
+
+<h3 id="git">Git</h3>
+<p>Git also propose <code class="language-plaintext highlighter-rouge">..</code> and <code class="language-plaintext highlighter-rouge">...</code> for commit ranges. e.g.
+<code class="language-plaintext highlighter-rouge">git diff abc..def</code> or <code class="language-plaintext highlighter-rouge">git diff abc...def</code> the secong is more strict (introduce ordering).</p>
+
+<p>There is the kind of thing (with different meaning) for <code class="language-plaintext highlighter-rouge">git log</code>.</p>
+
+<h3 id="c-structs">C structs</h3>
+<p>Access C struct elements with <code class="language-plaintext highlighter-rouge">.</code>:</p>
+<pre><code class="language-C">/* Declare the struct with integer members x, y */
+struct point {
+   int    x;
+   int    y;
+};
+/* Define a variable p of type point, and set members using designated initializers*/
+struct point p;
+p.x = 0;
+p.y = 0;
+</code></pre>
+
+<p>Or the less common set with <strong>designated variables</strong>:</p>
+<pre><code class="language-C">/* Declare the struct with integer members x, y */
+struct point {
+   int    x;
+   int    y;
+};
+/* Define a variable p of type point, and set members using designated initializers*/
+struct point p = { .y = 2, .x = 1 };
+</code></pre>
+
+<h3 id="the-final-dot-in-url">The final dot in url</h3>
+<p>Do you know that <a href="http://example.com/">example.com</a> can also be written <a href="http://example.com/">example.com.</a> ?</p>
+
+<p>The same way we can access my “Fun with perl shebang” article using <a href="https://www.perl.com./article/bang-bang/">perl.com.</a></p>
+
+<p>But I read that <a href="https://url.spec.whatwg.org/#concept-domain">it is not equivalent</a>.</p>
+
+<p>I don’t know much about this, if you have details, please comment!</p>
+
+<h3 id="the-more-expensive-dot-of-history">The more expensive dot of history?</h3>
+<p>One of my teacher told me one day about the rocket explosion caused by a bug where a dot was used instead a comma.</p>
+
+<p>He was referencing the FORTRAN punctuation error occured on Mariner 1 in 1962. It’s seems to be an urban legend, but still interesting to mention right?</p>
+
+<h3 id="the-printf-of-brainfuck">The printf of Brainfuck</h3>
+<p>Do you know Brainfuck? If you don’t, you should maybe not try to :grinning: for you mental sanity</p>
+
+<p>The dot is the printf in Brainfuck (<code class="language-plaintext highlighter-rouge">putchar(*ptr);​</code>)</p>
+
+<h3 id="execute-and-source">Execute and source</h3>
+<p>Execution with <code class="language-plaintext highlighter-rouge">./a.out</code> and source with <code class="language-plaintext highlighter-rouge">. config.sh</code> (or <code class="language-plaintext highlighter-rouge">source ./config.sh</code>)</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>This post was not published on <strong>slashdot</strong> but on <strong>dev.to</strong> that is a blog platform not running <strong>dotclear</strong>.</p>
+
+<p>The majority of samples are written in <strong>Perl 5.32</strong>, don’t expect them to run in <strong>dotnet</strong>.</p>
+
+<p>Sorry for this conclusion… :speak_no_evil: :dizzy_face:</p>
+
+<p>Do you have more <code class="language-plaintext highlighter-rouge">.</code> usages  in Perl or other fields? Or more IT related puns with the word “dot”? :grinning:</p>

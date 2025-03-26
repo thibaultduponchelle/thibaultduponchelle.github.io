@@ -1,0 +1,143 @@
+<p>Somewhat related to <a href="https://stackoverflow.com/q/282329">What are five things you hate about your favorite language?</a> from <strong>brian d foy</strong></p>
+
+<p>There are some Perl syntax that I don’t feel comfortable with.</p>
+
+<p><img src="/assets/images/1uwoux4pae3r2hbeyuhk.png" alt="Kid think" /></p>
+
+<p>This is my list of 5 things ! :smiley:</p>
+
+<h2 id="variant-sigils">Variant sigils</h2>
+<p>It is not original, but invariant sigils would make sense for me.</p>
+
+<p>I’m not arguing to drop context or slices (even not at all) but I would feel better with invariant sigil (that simply shows what the <em>container</em> type is).</p>
+
+<p>(<a href="https://www.raku.org/">Raku</a> is doing this)</p>
+
+<p>In the same kind of things, having <code class="language-plaintext highlighter-rouge">$var</code> different from <code class="language-plaintext highlighter-rouge">@var</code> different from <code class="language-plaintext highlighter-rouge">%var</code> (etc…) is cool… but dangerous.</p>
+
+<p><img src="/assets/images/xth48478cr39o5idonv2.jpg" alt="Same" /></p>
+
+<h2 id="array-and-hash-declaration">Array and hash declaration</h2>
+<p>I would prefer to use <code class="language-plaintext highlighter-rouge">{}</code> to declare hash (not hashref) and <code class="language-plaintext highlighter-rouge">[]</code> to declare array (not arrayref).</p>
+
+<p>These symbols are just the same that we use to access the elements, it simply makes sense for me.</p>
+
+<p>Working Perl :</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Hash </span>
+<span class="k">my</span> <span class="nv">%h</span> <span class="o">=</span> <span class="p">(</span> <span class="s">k1</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">1</span><span class="p">",</span> <span class="s">k2</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">2</span><span class="p">"</span> <span class="p">);</span> 
+<span class="k">print</span> <span class="nv">$h</span><span class="p">{'</span><span class="s1">k2</span><span class="p">'};</span>
+
+<span class="c1"># Array</span>
+<span class="k">my</span> <span class="nv">@a</span> <span class="o">=</span> <span class="p">(</span> <span class="p">"</span><span class="s2">a</span><span class="p">",</span> <span class="p">"</span><span class="s2">b</span><span class="p">"</span> <span class="p">);</span> 
+<span class="k">print</span> <span class="nv">$a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+<span class="c1"># Hashref</span>
+<span class="k">my</span> <span class="nv">$h</span> <span class="o">=</span> <span class="p">{</span> <span class="s">k1</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">1</span><span class="p">",</span> <span class="s">k2</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">2</span><span class="p">"</span> <span class="p">};</span> 
+<span class="k">print</span> <span class="nv">$h</span><span class="o">-&gt;</span><span class="p">{'</span><span class="s1">k2</span><span class="p">'};</span>
+
+<span class="c1"># Arrayref</span>
+<span class="k">my</span> <span class="nv">$a</span> <span class="o">=</span> <span class="p">[</span> <span class="p">"</span><span class="s2">a</span><span class="p">",</span> <span class="p">"</span><span class="s2">b</span><span class="p">"</span> <span class="p">];</span> 
+<span class="k">print</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>Since <code class="language-plaintext highlighter-rouge">{}</code> is the symbol to access a hash key and <code class="language-plaintext highlighter-rouge">[]</code> the symbol to access a array index, why it is linked to an hash<em>ref</em> and an array<em>ref</em> ?</p>
+
+<p>And what about <em>simply</em> reusing the reference operator <code class="language-plaintext highlighter-rouge">\</code> for the refs ?</p>
+
+<p>Imaginary code :</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Hash </span>
+<span class="k">my</span> <span class="nv">%h</span> <span class="o">=</span> <span class="p">{</span> <span class="s">k1</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">1</span><span class="p">",</span> <span class="s">k2</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">2</span><span class="p">"</span> <span class="p">};</span> <span class="c1"># Same symbol to declare and access</span>
+<span class="k">print</span> <span class="nv">$h</span><span class="p">{'</span><span class="s1">k2</span><span class="p">'};</span> 
+
+<span class="c1"># Array</span>
+<span class="k">my</span> <span class="nv">@a</span> <span class="o">=</span> <span class="p">[</span> <span class="p">"</span><span class="s2">a</span><span class="p">",</span> <span class="p">"</span><span class="s2">b</span><span class="p">"</span> <span class="p">];</span> <span class="c1"># Same symbol to declare and access</span>
+<span class="k">print</span> <span class="nv">$a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> 
+
+<span class="c1"># Hashref</span>
+<span class="k">my</span> <span class="nv">$h</span> <span class="o">=</span> <span class="o">\</span><span class="p">{</span> <span class="s">k1</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">1</span><span class="p">",</span> <span class="s">k2</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">2</span><span class="p">"</span> <span class="p">};</span> <span class="c1"># \ is the "get ref" symbol</span>
+<span class="k">print</span> <span class="nv">$h</span><span class="o">-&gt;</span><span class="p">{'</span><span class="s1">k2</span><span class="p">'};</span> 
+
+<span class="c1"># Arrayref</span>
+<span class="k">my</span> <span class="nv">$a</span> <span class="o">=</span> <span class="o">\</span><span class="p">[</span> <span class="p">"</span><span class="s2">a</span><span class="p">",</span> <span class="p">"</span><span class="s2">b</span><span class="p">"</span> <span class="p">];</span> <span class="c1"># \ is the "get ref" symbol</span>
+<span class="k">print</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> 
+</code></pre></div></div>
+
+<p>Of course, I like the features like array/hash conversion, array flattening and fat comma, I’m just a bit confused by how we declare arrayref and hashref.</p>
+
+<h2 id="the-missing-comma">The missing comma</h2>
+<p>The <em>justifiable</em> but <em>error prone</em> missing comma when printing to filehandles :</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span> <span class="nv">$fh</span> <span class="nv">ARGS</span>
+</code></pre></div></div>
+
+<p>I don’t feel good with this :/</p>
+
+<p><img src="/assets/images/80el4b7cb8uk4q8fvtiy.jpg" alt="Sad" /></p>
+
+<h2 id="better-oo-in-the-core">Better OO in the core</h2>
+
+<p>Ok (1), it’s just a matter of installing a module…</p>
+
+<p>Ok (2), it is coming with <a href="https://github.com/Ovid/Cor/wiki">Cor</a> :smiley:</p>
+
+<p><img src="/assets/images/e2mtth7t96mkqld8gd2u.gif" alt="Snoop" /></p>
+
+<h2 id="still-unclear-about-function-prototypes-or-signatures">Still unclear about function prototypes or signatures</h2>
+<p>I’m really still unclear about what to use for function declaration. Some resources about it :</p>
+<ul>
+  <li><a href="https://stackoverflow.com/questions/297034/why-are-perl-5s-function-prototypes-bad">Why are function prototypes bad</a></li>
+  <li><a href="https://perldoc.perl.org/perlsub#Prototypes">Perldoc prototypes</a></li>
+  <li><a href="https://perldoc.perl.org/perlsub#Signatures">Perldoc signatures</a></li>
+</ul>
+
+<p>I <strong>NEED</strong> prototypes or function signatures.</p>
+
+<p>I usually declare all my functions at the top of a file with comments :</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Describe fn</span>
+<span class="k">sub </span><span class="nf">fn</span><span class="err">($$</span><span class="p">;</span><span class="err">$</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>I do this for clarity and because it checks parameters (if not called with <code class="language-plaintext highlighter-rouge">&amp;</code>).
+In addition, since I gather all predeclarations with comments, it gives an API for humans :smile:</p>
+
+<p>The “predeclaration” could also just be <em>required</em> (depending the ordering and if you call the sub without parenthesis) but that’s not the main goal (again you can bypass with <code class="language-plaintext highlighter-rouge">&amp;</code>).</p>
+
+<p>Then I define function like this :</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sub </span><span class="nf">fn</span><span class="p">($$;$) {</span>
+    <span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+    <span class="k">my</span> <span class="nv">$age</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+    <span class="k">my</span> <span class="nv">$optional_comment</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+    
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>That I prefer over :</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sub </span><span class="nf">fn</span><span class="p">($$;$) {</span>
+    <span class="k">my</span> <span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$age</span><span class="p">,</span> <span class="nv">$optional_comment</span><span class="p">)</span> <span class="o">=</span> <span class="nv">@_</span><span class="p">;</span>
+
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Or even worse (:scream:) :</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sub </span><span class="nf">fn</span><span class="p">($$,$) {</span>
+    <span class="k">print</span> <span class="vg">$_</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">print</span> <span class="vg">$_</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="k">print</span> <span class="vg">$_</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>But honestly, I don’t know, <code class="language-plaintext highlighter-rouge">signatures</code> are marked experimental and <code class="language-plaintext highlighter-rouge">prototypes</code> should not be used because they change the behaviour of a function.</p>
+
+<p>What is <em>the</em> right way then ?</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>That’s it, that was my list ! :smiley:</p>
+
+<p><img src="/assets/images/4jzwz3gvcrz0px3igrjk.jpg" alt="List" /></p>
+
+<p>What is yours ?</p>

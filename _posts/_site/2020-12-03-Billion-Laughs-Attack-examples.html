@@ -1,0 +1,81 @@
+<p><img src="/assets/images/3ujp7rhznmid96gfxl5y.gif" alt="lololol" /></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Billion_laughs_attack">Billion laughs attack</a> are a type of <strong>DDoS attack</strong> :skull:, initially targetting the <strong>XML</strong> documents and parsers.</p>
+
+<h2 id="xml-lol-will-make-you-cry">XML lol will make you cry</h2>
+<p>This is the most common example of <strong>XML Billions Laughs Attack</strong> :</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE lolz [
+ &lt;!ENTITY lol "lol"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol1 "&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol2 "&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol3 "&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol4 "&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol5 "&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol6 "&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol7 "&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol8 "&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lol9 "&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;"&gt;</span>
+ <span class="cp">&lt;!ENTITY lolz "&amp;lol9;"&gt;</span>
+]&gt;
+<span class="nt">&lt;root&gt;</span><span class="ni">&amp;lolz;</span><span class="nt">&lt;/root&gt;</span>
+</code></pre></div></div>
+
+<p>This attack is well known and several countermeasures are in place in parsers.</p>
+
+<p>If you check one major <strong>XML parsing library</strong>, <code class="language-plaintext highlighter-rouge">libxml</code> (and by extension <code class="language-plaintext highlighter-rouge">xmllint</code>) is obviously not longer sensitive to this threat.</p>
+
+<p>First there is check for reference loops so <code class="language-plaintext highlighter-rouge">xmllint</code> will return you an error:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entity: line 1: parser error : Detected an entity reference loop
+</code></pre></div></div>
+
+<p>Second, the <code class="language-plaintext highlighter-rouge">resolving of entities</code> was years ago disabled by default.</p>
+
+<p>But if you want to try, you can do something like (force dangerous mode explicitely with <code class="language-plaintext highlighter-rouge">--noent</code>):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xmllint lolz.xml <span class="nt">--noent</span>
+</code></pre></div></div>
+
+<p>(with a reduced set of entities to bypass the reference loop)</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE lolz [
+&lt;!ENTITY lol "lol"&gt;</span>
+<span class="cp">&lt;!ENTITY lolz "&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;"&gt;</span>
+]&gt;
+<span class="nt">&lt;root&gt;</span>lollollollollollollollollollol<span class="nt">&lt;/root&gt;</span>
+</code></pre></div></div>
+
+<h2 id="yaml-laughs-out-loud">YAML laughs out loud</h2>
+<p><code class="language-plaintext highlighter-rouge">XML</code> is not the only language impacted by this problem, 
+every markup language with reference support is sensitive the same way to this potential DDoS attack.</p>
+
+<p>There is a “billion laughs attack’ in YAML :</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">lol1</span><span class="pi">:</span> <span class="nl">&amp;lol1</span> <span class="pi">[</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">,</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">,</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">,</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">,</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">,</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">,</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">,</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">,</span><span class="s2">"</span><span class="s">lol"</span><span class="pi">]</span>
+<span class="na">lol2</span><span class="pi">:</span> <span class="nl">&amp;lol2</span> <span class="pi">[</span><span class="nv">*lol1</span><span class="pi">,</span><span class="nv">*lol1</span><span class="pi">,</span><span class="nv">*lol1</span><span class="pi">,</span><span class="nv">*lol1</span><span class="pi">,</span><span class="nv">*lol1</span><span class="pi">,</span><span class="nv">*lol1</span><span class="pi">,</span><span class="nv">*lol1</span><span class="pi">,</span><span class="nv">*lol1</span><span class="pi">,</span><span class="nv">*lol1</span><span class="pi">]</span>
+<span class="na">lol3</span><span class="pi">:</span> <span class="nl">&amp;lol3</span> <span class="pi">[</span><span class="nv">*lol2</span><span class="pi">,</span><span class="nv">*lol2</span><span class="pi">,</span><span class="nv">*lol2</span><span class="pi">,</span><span class="nv">*lol2</span><span class="pi">,</span><span class="nv">*lol2</span><span class="pi">,</span><span class="nv">*lol2</span><span class="pi">,</span><span class="nv">*lol2</span><span class="pi">,</span><span class="nv">*lol2</span><span class="pi">,</span><span class="nv">*lol2</span><span class="pi">]</span>
+<span class="na">lol4</span><span class="pi">:</span> <span class="nl">&amp;lol4</span> <span class="pi">[</span><span class="nv">*lol3</span><span class="pi">,</span><span class="nv">*lol3</span><span class="pi">,</span><span class="nv">*lol3</span><span class="pi">,</span><span class="nv">*lol3</span><span class="pi">,</span><span class="nv">*lol3</span><span class="pi">,</span><span class="nv">*lol3</span><span class="pi">,</span><span class="nv">*lol3</span><span class="pi">,</span><span class="nv">*lol3</span><span class="pi">,</span><span class="nv">*lol3</span><span class="pi">]</span>
+<span class="na">lol5</span><span class="pi">:</span> <span class="nl">&amp;lol5</span> <span class="pi">[</span><span class="nv">*lol4</span><span class="pi">,</span><span class="nv">*lol4</span><span class="pi">,</span><span class="nv">*lol4</span><span class="pi">,</span><span class="nv">*lol4</span><span class="pi">,</span><span class="nv">*lol4</span><span class="pi">,</span><span class="nv">*lol4</span><span class="pi">,</span><span class="nv">*lol4</span><span class="pi">,</span><span class="nv">*lol4</span><span class="pi">,</span><span class="nv">*lol4</span><span class="pi">]</span>
+<span class="na">lol6</span><span class="pi">:</span> <span class="nl">&amp;lol6</span> <span class="pi">[</span><span class="nv">*lol5</span><span class="pi">,</span><span class="nv">*lol5</span><span class="pi">,</span><span class="nv">*lol5</span><span class="pi">,</span><span class="nv">*lol5</span><span class="pi">,</span><span class="nv">*lol5</span><span class="pi">,</span><span class="nv">*lol5</span><span class="pi">,</span><span class="nv">*lol5</span><span class="pi">,</span><span class="nv">*lol5</span><span class="pi">,</span><span class="nv">*lol5</span><span class="pi">]</span>
+<span class="na">lol7</span><span class="pi">:</span> <span class="nl">&amp;lol7</span> <span class="pi">[</span><span class="nv">*lol6</span><span class="pi">,</span><span class="nv">*lol6</span><span class="pi">,</span><span class="nv">*lol6</span><span class="pi">,</span><span class="nv">*lol6</span><span class="pi">,</span><span class="nv">*lol6</span><span class="pi">,</span><span class="nv">*lol6</span><span class="pi">,</span><span class="nv">*lol6</span><span class="pi">,</span><span class="nv">*lol6</span><span class="pi">,</span><span class="nv">*lol6</span><span class="pi">]</span>
+<span class="na">lol8</span><span class="pi">:</span> <span class="nl">&amp;lol8</span> <span class="pi">[</span><span class="nv">*lol7</span><span class="pi">,</span><span class="nv">*lol7</span><span class="pi">,</span><span class="nv">*lol7</span><span class="pi">,</span><span class="nv">*lol7</span><span class="pi">,</span><span class="nv">*lol7</span><span class="pi">,</span><span class="nv">*lol7</span><span class="pi">,</span><span class="nv">*lol7</span><span class="pi">,</span><span class="nv">*lol7</span><span class="pi">,</span><span class="nv">*lol7</span><span class="pi">]</span>
+<span class="na">lol9</span><span class="pi">:</span> <span class="nl">&amp;lol9</span> <span class="pi">[</span><span class="nv">*lol8</span><span class="pi">,</span><span class="nv">*lol8</span><span class="pi">,</span><span class="nv">*lol8</span><span class="pi">,</span><span class="nv">*lol8</span><span class="pi">,</span><span class="nv">*lol8</span><span class="pi">,</span><span class="nv">*lol8</span><span class="pi">,</span><span class="nv">*lol8</span><span class="pi">,</span><span class="nv">*lol8</span><span class="pi">,</span><span class="nv">*lol8</span><span class="pi">]</span>
+<span class="na">lolz</span><span class="pi">:</span> <span class="nl">&amp;lolz</span> <span class="pi">[</span><span class="nv">*lol9</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>And for the anecdote, <strong>Kubernetes</strong> was very recently <a href="https://github.com/kubernetes/kubernetes/issues/83253">impacted by this</a> !</p>
+
+<h2 id="details">Details</h2>
+<p>What is the problem with this exactly ?</p>
+
+<p>I mean, whatever the language you could produce malicious (or dumb) code that will consume all stack, memory, resources…</p>
+
+<p>The problem here is that XML and YAML are formats intended to store datas but with <strong>programming capabilities</strong> (the references).</p>
+
+<p>Everybody agree that if you let an user enter some python code to be executed as is on server side, it is dangerous. But when it comes to process XML or YAML, processing (parsing) seems “safe” where it is sometimes not.</p>
+
+<p>The threat then comes that we seems to exchange inoffensive data where user can actually hide function calls (and system reads ! but we do not discussed XXE attacks :smile:).</p>
+

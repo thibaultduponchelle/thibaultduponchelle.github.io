@@ -1,0 +1,106 @@
+<p>This is my quick walk-through exploration of <a href="https://slapbirdapm.com/">SlapBirdAPM</a> with my Perl web framework of choice (<a href="https://www.mojolicious.org/">Mojolicious</a> of course!)</p>
+
+<h3 id="setup-mojolicious-web-app">Setup Mojolicious Web App</h3>
+<p>Install Mojolicious:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cpanm Mojolicious
+--&gt; Working on Mojolicious
+Fetching http://www.cpan.org/authors/id/S/SR/SRI/Mojolicious-9.38.tar.gz ... OK
+Configuring Mojolicious-9.38 ... OK
+Building and testing Mojolicious-9.38 ... OK
+Successfully installed Mojolicious-9.38 (upgraded from 9.32)
+1 distribution installed
+</code></pre></div></div>
+
+<p>Generate project:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir webapp
+$ cd webapp
+$ mojo generate lite-app bird
+  [exist] /home/tib/Code/webapp
+  [write] /home/tib/Code/webapp/bird
+  [chmod] /home/tib/Code/webapp/bird 744
+</code></pre></div></div>
+
+<p>Test:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>morbo bird
+Web application available at http://127.0.0.1:3000
+</code></pre></div></div>
+
+<p>And check in your browser <a href="http://127.0.0.1:3000/">http://127.0.0.1:3000/</a></p>
+
+<h2 id="create-slapbirdapm-account">Create SlapBirdAPM account</h2>
+<p>Go visit <a href="https://www.slapbirdapm.com">SlapBirdAPM</a>:
+<img src="/assets/images/zn3b9am7io9k3ua5stny.png" alt="Image description" /></p>
+
+<p>Login with GitHub:
+<img src="/assets/images/de5jkkbl7e1rvty0ugxe.png" alt="Image description" /></p>
+
+<p>Create new app:
+<img src="/assets/images/zv3iq8ghxvrhbomcczmt.png" alt="Image description" /></p>
+
+<p>And get your API Key:
+<img src="/assets/images/f1ld3h64t3vxe5s36woz.png" alt="Image description" /></p>
+
+<h2 id="install-slapbirdapm-in-web-app">Install SlapBirdAPM in Web App</h2>
+<p>First install Mojolicious plugin:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpanm SlapbirdAPM::Agent::Mojo
+<span class="nt">--</span><span class="o">&gt;</span> Working on SlapbirdAPM::Agent::Mojo
+Fetching http://www.cpan.org/authors/id/R/RA/RAWLEYFOW/SlapbirdAPM-Agent-Mojo-0.005.tar.gz ... OK
+Configuring SlapbirdAPM-Agent-Mojo-0.005 ... OK
+<span class="o">==&gt;</span> Found dependencies: Const::Fast, System::Info
+<span class="nt">--</span><span class="o">&gt;</span> Working on Const::Fast
+Fetching http://www.cpan.org/authors/id/L/LE/LEONT/Const-Fast-0.014.tar.gz ... OK
+Configuring Const-Fast-0.014 ... OK
+Building and testing Const-Fast-0.014 ... OK
+Successfully installed Const-Fast-0.014
+<span class="nt">--</span><span class="o">&gt;</span> Working on System::Info
+Fetching http://www.cpan.org/authors/id/H/HM/HMBRAND/System-Info-0.065.tgz ... OK
+Configuring System-Info-0.065 ... OK
+Building and testing System-Info-0.065 ... OK
+Successfully installed System-Info-0.065
+Building and testing SlapbirdAPM-Agent-Mojo-0.005 ... OK
+Successfully installed SlapbirdAPM-Agent-Mojo-0.005
+3 distributions installed
+</code></pre></div></div>
+
+<p>And add <code class="language-plaintext highlighter-rouge">plugin SlapbirdAPM;</code> to your web app.</p>
+
+<p>Our full application now looks like this:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+<span class="k">use</span> <span class="nn">Mojolicious::</span><span class="nv">Lite</span> <span class="o">-</span><span class="nv">signatures</span><span class="p">;</span>
+
+<span class="nv">plugin</span> <span class="p">'</span><span class="s1">SlapbirdAPM</span><span class="p">';</span>
+
+<span class="nv">get</span> <span class="p">'</span><span class="s1">/</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="k">sub </span><span class="p">($c) {</span>
+  <span class="nv">$c</span><span class="o">-&gt;</span><span class="nv">render</span><span class="p">(</span><span class="s">template</span> <span class="o">=&gt;</span> <span class="p">'</span><span class="s1">index</span><span class="p">');</span>
+<span class="p">};</span>
+
+<span class="nv">app</span><span class="o">-&gt;</span><span class="nv">start</span><span class="p">;</span>
+<span class="cp">__DATA__
+
+@@ index.html.ep
+% layout 'default';
+% title 'Welcome';
+&lt;h1&gt;Welcome to the Mojolicious real-time web framework!&lt;/h1&gt;
+
+@@ layouts/default.html.ep
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;&lt;%= content %&gt;&lt;/body&gt;
+&lt;/html&gt;
+</span></code></pre></div></div>
+
+<h2 id="test">Test!</h2>
+<p>Let’s restart the application with the plugin and an API Key:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export SLAPBIRDAPM_API_KEY=01ABCDEFGHIJKLMNOPKtest-app &amp;&amp; morbo bird
+Web application available at http://127.0.0.1:3000
+[2024-08-27 11:33:27.51107] [8402] [info] Slapbird configured and active on this application.
+</code></pre></div></div>
+
+<p>Use your favorite browser to browse <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a> or <code class="language-plaintext highlighter-rouge">curl http://127.0.0.1:3000</code>.</p>
+
+<p>Your activity will immediately reflect in your SlapBirdAPM portal 
+<img src="/assets/images/a3mxp69pekqyvglnqu5p.png" alt="Image description" /></p>
+
+<h2 id="were-done-grinning">We’re done! :grinning:</h2>

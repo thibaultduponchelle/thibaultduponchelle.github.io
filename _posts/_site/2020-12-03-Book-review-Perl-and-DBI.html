@@ -1,0 +1,100 @@
+<p><img src="/assets/images/sjw7l4i324yt7mzcxfln.jpg" alt="Perl and DBI" /></p>
+
+<p>First, this is <a href="https://metacpan.org/pod/DBI">DBI</a> :)</p>
+
+<h2 id="a-kind-writer">A kind writer</h2>
+<p>I really love the way it is written, simple and direct and the book progress is very smooth.</p>
+
+<p>One of the greatness of the book it to talk about DBI which is great by itself.</p>
+
+<p>Provides links to resources related to the book, very cool.</p>
+
+<h2 id="interesting-curiosities">Interesting curiosities</h2>
+<ul>
+  <li>DBI was created in 1992 !!</li>
+  <li>Do you know <strong>mSQL</strong> ? <strong>bdb</strong> ? <strong>ndbm</strong> <strong>gdbm</strong> <strong>sdbm</strong> <strong>odbm</strong> ? <strong>Ingres</strong> ? <strong>Empress</strong> ?</li>
+  <li>Do you know <strong>dBase</strong> ? <strong>XBase</strong> ?</li>
+</ul>
+
+<h2 id="notions-about-db-internals">Notions about DB internals</h2>
+<p>The book explains concepts about data management and that is  very clear and valuable.</p>
+
+<p>The notion of <strong>delimited fields</strong> vs <strong>fixed fields</strong> :</p>
+<ul>
+  <li>Fixed field is better for random access</li>
+  <li>Delimited is better for other areas (and since we have a fast CPU)</li>
+</ul>
+
+<p>The notion of <strong>normalized data</strong> vs <strong>not normalized data</strong> :</p>
+<ul>
+  <li>Normalized schema allow non redundant info but…</li>
+  <li>Not normalized can allow fast access (views)</li>
+</ul>
+
+<p>And others topics in bulk :</p>
+<ul>
+  <li>Interesting paragraph about flock shared and exclusive</li>
+  <li><strong>OLE</strong> and <strong>ADO</strong></li>
+  <li><strong>BLOB</strong> vs <strong>CLOB</strong>
+<img src="/assets/images/pah7q5x5f35bs6w0m5ab.jpg" alt="Blob" /></li>
+</ul>
+
+<p>blob !</p>
+
+<h2 id="about-dbi-itself">About DBI itself</h2>
+<ul>
+  <li>DBI started in Perl4</li>
+  <li>DBI is the <em>interface</em> (Database Independent)</li>
+  <li>DBD is the <em>driver</em> (Database Dependent)</li>
+  <li><code class="language-plaintext highlighter-rouge">dbish</code> the <em>dbi shell</em></li>
+  <li>You can choose level or reporting and warning level with <code class="language-plaintext highlighter-rouge">attr</code></li>
+  <li>If the threading is used, then the driver uses a mutex</li>
+  <li>You should <code class="language-plaintext highlighter-rouge">bind</code> values (handy and secure) + binding values can increase perfs</li>
+  <li>The “0 but true” E0E trick</li>
+</ul>
+
+<h2 id="odbc">ODBC</h2>
+<p>DBI existed before ODBC.</p>
+
+<p>ODBC is basically :</p>
+<ul>
+  <li>A standard SQL syntax</li>
+  <li>Standard error codes</li>
+  <li>Rich metadatas</li>
+  <li>Attributes and options</li>
+</ul>
+
+<p>Why standard SQL ? Because it exists several SQL syntax (even a simple <code class="language-plaintext highlighter-rouge">concat</code> has 5 differents possible syntax)</p>
+
+<h4 id="how-smart-is-doing-odbc-for-simulating-dbidbd-">How smart is doing ODBC for simulating DBI/DBD ?</h4>
+
+<p>By trying to read SQL92 and convert into vendor DB syntax or pass directly vendor DB specific when SQL92 parsing fails :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                          SQL for MySQL
+       if SQL92         -----------------&gt; MySQL
+user -----------&gt; ODBC |
+ |      SQL92           -----------------&gt; Oracle
+ |                        SQL for Oracle     ^
+ |                                           |
+  -------------------------------------------
+       DB Specific (not parsed OK SQL92)
+</code></pre></div></div>
+
+<p>What about error codes :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ODBC -----------------------------------&gt; MySQL
+ user &lt;---------------------------------- Oracle
+               error 23000 (std error)
+</code></pre></div></div>
+
+<p>With DBI the error code can change BUT ODBC has standard error codes with  a moving standard depending the versions (!!).</p>
+
+<p>Details about <strong>Win32::ODBC</strong>, <strong>DBI::ODBC</strong>, <strong>DBI::Proxy</strong> are very cool.</p>
+
+<h2 id="this-is-the-end-my-friend">This is the end my friend</h2>
+<p>At the end, there are some appendix that to be honest I don’t read completely. The book also becomes more like a reference book.</p>
+
+<p>I come back to this book for sure the day I need again to deal with DBI :smiley:</p>
+
+<p>As a conclusion, this is a very nice book, very interesting with deep technical details.</p>
+
+<p>It explores the master piece that is DBI, and I truly recommend this book.</p>

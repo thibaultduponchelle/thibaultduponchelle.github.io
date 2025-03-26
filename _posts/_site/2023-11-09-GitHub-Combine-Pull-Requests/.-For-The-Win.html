@@ -1,0 +1,110 @@
+<p>Picture from <a href="https://unsplash.com/photos/brown-metal-train-rail-near-rocky-mountain-during-daytime-nShLC-WruxQ">Lance Grandahl</a></p>
+
+<p>In GitHub, whether you want to improve merge velocity, test interdependent changes or setup some sort of releasing model, you could be interested in grouping code changes.</p>
+
+<p>It is called “bundling” or “combining” pull requests.</p>
+
+<p>It allows multiple pull requests to be built and tested together (in CI) and qualified together (e.g. pre-production deployment with shadow traffic).</p>
+
+<p>In order to achieve this easily, you would need some automation. You’re lucky, I’m going to share an elegant solution to solve this.</p>
+
+<p>(before we continue, also think about <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue">GitHub merge queues</a>)</p>
+
+<h2 id="demo">Demo!</h2>
+<p>I have 2 pull requests (from forks) targeting <code class="language-plaintext highlighter-rouge">main</code>. They have passed minimal tests running on PR but I now would like to run <em>long</em> and <em>consuming</em> tests together. I also want to check they work well together without merging first one of them to <code class="language-plaintext highlighter-rouge">main</code> (or to a release branch).</p>
+
+<p>My plan for the two following changes is to target the next release <code class="language-plaintext highlighter-rouge">v2.3</code>, so I added a label <code class="language-plaintext highlighter-rouge">v2.3</code> to the pull requests:
+<img src="/assets/images/jwq8ug4jdxl7p32ceutm.png" alt="Label v2.3" /></p>
+
+<p>In order to trigger the bundle creation, I create the branch <code class="language-plaintext highlighter-rouge">v2.3</code> from <code class="language-plaintext highlighter-rouge">main</code>
+<img src="/assets/images/m80bhb955e05b2bnsfx8.png" alt="Create branch v2.3" /></p>
+
+<p>Once I finished to create branch, it already started to run an action:
+<img src="/assets/images/n28c5ymg1baez2cet7n1.png" alt="Combining" /></p>
+
+<p>After seconds, the run is finished:
+<img src="/assets/images/1v7p47nqbp32d8qsgedx.png" alt="Combined" /></p>
+
+<p>A new pull requests (targeting <code class="language-plaintext highlighter-rouge">main</code>) appeared: 
+<img src="/assets/images/t6ogvak0e4ii2bs6b9dr.png" alt="New PR" /></p>
+
+<p>The pull requests contains well the 2 pull requests changes (and branch <code class="language-plaintext highlighter-rouge">v2.3</code> was updated):
+<img src="/assets/images/60k5wz4ak1pb1glpgsz4.png" alt="PR combined contains 2 PRs" /></p>
+
+<p>Later, when the bundled pull request will be merged, the combined pull requests will be automatically merged:
+<img src="/assets/images/1zyygr8qzgunxouryffy.png" alt="Remotely merged" /></p>
+
+<h2 id="hello-combine-pull-requests">Hello “combine-pull-requests”</h2>
+<p>This magic can happen thanks to the great <a href="https://github.com/bobvanderlinden/combine-pull-requests">combine-pull-requests</a> :tada:</p>
+
+<p>Thank you <a href="https://github.com/bobvanderlinden">Bob van der Linden</a> for this :+1: :rocket:</p>
+
+<p>This GitHub action makes it deadly simple to combine multiple pull requests based on their labels.</p>
+
+<p>My preferred workflow consists in triggering bundle by branch creation (but you can use other events) then push and open a pull request to <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p>I know you want to see the code, please find below my setup:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Combine</span>
+<span class="na">on</span><span class="pi">:</span> <span class="s">create</span>
+      
+<span class="na">permissions</span><span class="pi">:</span> <span class="s">write-all</span>
+      
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">combine</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">if</span><span class="pi">:</span> <span class="s">$</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">fetch-depth</span><span class="pi">:</span> <span class="m">0</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">bobvanderlinden/combine-pull-requests@master</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">label</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">repo-token</span><span class="pi">:</span> <span class="s">$</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Push changes</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">ad-m/github-push-action@master</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">github_token</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">branch</span><span class="pi">:</span> <span class="s">$</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Create pull request</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">devops-infra/action-pull-request@v0.4.1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">github_token</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">[$]</span><span class="nv"> </span><span class="s">combined!"</span>
+          <span class="na">body</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+          <span class="na">source_branch</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">target_branch</span><span class="pi">:</span> <span class="s">main</span>
+          <span class="na">template</span><span class="pi">:</span> <span class="s">.github/BUNDLE_TEMPLATE.md</span>
+          <span class="na">label</span><span class="pi">:</span> <span class="s2">"</span><span class="s">bundle</span>
+</code></pre></div></div>
+
+<p>Then you would probably put your build-test-deployment… at the end of this same workflow.</p>
+
+<p>Or you can leave the responsibility to another workflow. There’s various manners to differentiate the bundle from other pull requests, for instance you can filter the label <code class="language-plaintext highlighter-rouge">bundle</code>.</p>
+
+<p>To give you an example on how you would run/skip a workflow based on PR having the label <code class="language-plaintext highlighter-rouge">bundle</code>:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">on</span><span class="pi">:</span>
+  <span class="na">pull_request</span><span class="pi">:</span>
+    <span class="na">types</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">opened</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">run_if</span><span class="pi">:</span>
+    <span class="na">if</span><span class="pi">:</span> <span class="s">contains(github.event.pull_request.labels.*.name, 'bundle')</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">echo "This is a bundle, run more tests"</span>
+</code></pre></div></div>
+
+<h2 id="what-else">What else?</h2>
+<p>What if I pushed a new commit to one of the pull request? Just need to delete and recreate branch <code class="language-plaintext highlighter-rouge">v2.3</code>. Same procedure applies if I want to add or remove a pull request from the bundle.</p>
+
+<p>Customize to your needs, you can listen to more events than only <code class="language-plaintext highlighter-rouge">on: create</code> :innocent:</p>
+
+<p>Another great thing with labels is that same pull request can belong to multiple bundles :fire:</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>You should design tooling and branching model that suits you the best, so maybe this is not for you, but I really like how elegant is this workflow and I needed to share.</p>
+
+<p>I hope you can also find it useful for you.</p>
+
+<p>Then, now it only remains for me to wish you “happy hacking!” :grin:</p>
