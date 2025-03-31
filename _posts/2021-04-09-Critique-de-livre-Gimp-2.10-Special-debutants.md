@@ -27,6 +27,7 @@ Bon j'avoue, mes competences en matiere de retouche d'image c'etait surtout de l
 Grace a ces competences de malade, j'etais capable d'integrer des images dans un site avec des bordures jolies, ou encore de coller le visage d'un collegue sur le corps d'un body-builder ou de Rihanna.
 
 ![Body](/assets/images/x2j4ag3kdlasvuelf9w1.jpg)
+
 (Ca aurait pu etre mon oeuvre :smiley:)
 
 Il me fallait donc une vraie formation pour passer a l'etape suivante : Comprendre
@@ -38,6 +39,7 @@ Parmi les point positifs :
 - Les explications sont detaillees et justes, on peut arriver a faire les exercices difficiles meme sans tout comprendre
 - Les explications sur les prises de photos (la photographie en general) sont interessantes
 - Les ateliers se basent sur Gimp 2.10, j'ai du l'installer pour l'occasion, et quel choc, belle reussite !
+
 ![Gimp 2.10](/assets/images/h60kxi5jjmwkfyhbnha0.gif)
 
 - Le pack d'images avec le livre est vraiment bien
@@ -60,16 +62,20 @@ J'ai vraiment pris du plaisir a lire ce "cahier" et je le recommande chaudement.
 
 Ca m'a donne envie de creuser un peu plus et j'ai donc agrandi ma liste de prochains livres : 
 - [Gimp 2.8 - Débuter en retouche photo et graphisme libre](https://www.editions-eyrolles.com/Livre/9782212127003/gimp-2-8)
+
 ![Gimp 2.8](/assets/images/in12nh58jywmqs2di2dq.jpg)
 
 - [Gimp 2 efficace - Dessin et retouche photo](https://www.editions-eyrolles.com/Livre/9782212121520/gimp-2-efficace)
+
 ![imp 2 efficace](/assets/images/0ptvwrlrlqorhy7pbe3j.jpg)
 
 Ou peut etre sur Inkscape:
 - [Inkscape - Premiers pas en dessin vectoriel](https://www.editions-eyrolles.com/Livre/9782212137897/inkscape) 
+
 ![Inkscape 1](/assets/images/5nw45p7pgd8699z2m49b.jpg)
 
 - [Inkscape efficace - Reussir ses dessins vectoriels](https://www.editions-eyrolles.com/Livre/9782212124255/inkscape-efficace)
+
 ![Inkscape 2](/assets/images/npasm26pcqaha8zhyef0.jpg)
 
 EDIT : Voir aussi la [critique](https://open-source.developpez.com/livres/index/?page=GIMP#L2212674333) sur developpez.com

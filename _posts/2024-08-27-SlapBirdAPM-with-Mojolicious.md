@@ -3,6 +3,8 @@ layout: post
 title: SlapBirdAPM with Mojolicious
 date: 2024-08-27 11:14:25
 ---
+![SlapBird logo](/assets/images/slapbird.png)
+
 This is my quick walk-through exploration of [SlapBirdAPM](https://slapbirdapm.com/) with my Perl web framework of choice ([Mojolicious](https://www.mojolicious.org/) of course!)
  
 ### Setup Mojolicious Web App
@@ -37,15 +39,19 @@ And check in your browser [http://127.0.0.1:3000/](http://127.0.0.1:3000/)
 
 ## Create SlapBirdAPM account
 Go visit [SlapBirdAPM](https://www.slapbirdapm.com):
+
 ![Image description](/assets/images/zn3b9am7io9k3ua5stny.png)
 
 Login with GitHub:
+
 ![Image description](/assets/images/de5jkkbl7e1rvty0ugxe.png)
 
 Create new app:
+
 ![Image description](/assets/images/zv3iq8ghxvrhbomcczmt.png)
 
 And get your API Key:
+
 ![Image description](/assets/images/f1ld3h64t3vxe5s36woz.png)
 
 ## Install SlapBirdAPM in Web App
@@ -113,6 +119,7 @@ Web application available at http://127.0.0.1:3000
 Use your favorite browser to browse [http://127.0.0.1:3000](http://127.0.0.1:3000) or `curl http://127.0.0.1:3000`.
 
 Your activity will immediately reflect in your SlapBirdAPM portal 
+
 ![Image description](/assets/images/a3mxp69pekqyvglnqu5p.png)
 
 ## We're done! :grinning:

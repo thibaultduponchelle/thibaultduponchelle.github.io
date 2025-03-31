@@ -4,19 +4,25 @@ title: What if I tell you "Sparrow"?
 date: 2021-01-13 15:12:02
 ---
 When I read **Sparrow** I think about:
+
 ![Pirate dog](/assets/images/44r9ext2vneypddlukxo.jpeg)
 
 Or:
+
 ![Pirate dog](/assets/images/a10qil1g6r9wpy1y4u7z.jpeg)
 
-Or even :grin::
+Or even:
+
 ![Pirate dog](/assets/images/vnnhqr61fv462bagrfxy.jpeg)
 
 But I'm pretty sure that [his author](https://github.com/melezhik) sees this:
+
 ![Sparrow](/assets/images/btwr1970ogcitpon32zl.jpeg)
+
 (because it is actually what means "sparrow")
 
 Alternatively, I think about the well known contemporary pirate:
+
 ![Jack Sparrow](/assets/images/tcbkbxaq4ppw5t3zifdr.jpeg)
 
 But to be honest, my favorite stays the **pirate dog** !

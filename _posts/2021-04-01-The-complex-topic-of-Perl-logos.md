@@ -26,11 +26,15 @@ Can somebody clearly states what is the permissions of this shadowed camel?
 
 # The Perl Foundation materials
 TPF owns some logos:
+
 ![Programming Republic of Perl](/assets/images/pukr1cc8m6r39gagog58.png)
+
 (and variants)
 
 Or the onion:
+
 ![Onion](/assets/images/w39gc4ns8u4f5cpl7o0o.png)
+
 The Perl Foundation proposes these logos that can be used only after asking permission (??) and with precautions. You can't modify, you should attribute, and you can use only to promote Perl (of course).
 
 EDIT: The "Programming Republic of Perl" and "Powered by Perl" seems OK to use for indiduals without asking ("Any individual, organization, or company may use the "Powered by Perl" or "Programming Republic of Perl" logos to show support for Perl")
@@ -42,7 +46,9 @@ It's true that the [license](https://www.perlfoundation.org/trademarks.html) see
 (correct me if I'm wrong)
 
 # The Perl raptor
+
 ![Raptor](/assets/images/1iqr4848javes4sock5f.png)
+
 The Perl Raptor from [Sebastian Riedel](https://github.com/kraih) licensed under the [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) (You should attribute, link license, you can modify, you can't change the license).
 
 This one is perfectly fine for use, OK it's not a Camel, but it is cool and I personally often use it (but I force nobody to do the same, I just like it + it is convenient).
@@ -51,32 +57,44 @@ And it is at least a only logo that we can with peace of mind :grinning:
 
 # What is de facto used?
 The shadowed camel is for instance what appears in the OpenShift console:
+
 ![Perl logo in OpenShift](/assets/images/rptn8wnkocjv0oiba7ik.png)
 
 Also look at these video made by individuals that relates the popularity of programming languages over time:
+
 ![TIOBE 1](/assets/images/o675fyj0ecuuofgbyvgc.png)
+
 This one used the onion.
 
 Let's try again:
+
 ![TIOBE 2](/assets/images/r1ukglh7d1ujya3a4m3b.png)
+
 This one used the TPF Programming Republic of Perl
 
 One more?
+
 ![TIOBE 3](/assets/images/m3jkqdnryx6f5f02u5v4.png)
+
 And finally the shadowed camel!
 
 If even the makers of clickbait videos do not agree between themself... :grinning:
 
 And how my GNU/Linux machine represents them?
 Python files have their logo on top of it but Perl files have a bare "Perl" (but syntax is colored compared to Python :grinning:):
+
 ![Logos](/assets/images/h7zcf0ys7eko67tha4sp.png)
 
 EDIT: This is what I get on Ubuntu 20.04 Focal Fossa:
+
 ![Logo thumbnails for Perl and Python](/assets/images/2kwplbqc9frgi4aydexv.png)
-(I love it :heart:)
+
+(I love it)
 
 And now what if I google "perl free logo"? (spoiler: you will have a bad time)
+
 ![Perl free logo google](/assets/images/jqtie5qdci31wkfr4ojs.png)
+
 Which one would you use without potential permission issue? 
 
 # How are playing others?
@@ -95,19 +113,25 @@ Which one would you use without potential permission issue?
 **Rust** logo is [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 What a luck they have...
+
 ![Jalousy](/assets/images/zdt2z2axjboi5hgfy09z.png)
 
 Now let's look at other Perl ecosystem logos like CPAN and friends (spoiler: things are getting better).
 
 # CPAN logo 
+
 ![CPAN png](/assets/images/r8eyrrvdv1y5otahgczu.png)
+
 The CPAN logo was created by **J.C. Thorpe** and is distributed under Artistic License or GPLv1+
 
 Prefer to use [my svg version](https://raw.githubusercontent.com/thibaultduponchelle/action-upload-to-cpan/master/cpan.svg) with a better appearance and a clean background (it is licensed under the same terms). 
 
 # MetaCPAN logo
+
 ![MetaCPAN](/assets/images/ppsnzz6522nsljhi4hnu.png)
+
 (and "icon")
+
 ![MetaCPAN icon](/assets/images/fmgc6562wjlu3nmz17rz.png)
 
 The [MetaCPAN](https://metacpan.org/) logo comes from the [MetaCPAN contest](http://entries.contest.metacpan.org/2011/12/metacpan-logo-contest-is-on.html) that **Raul Matei** won.

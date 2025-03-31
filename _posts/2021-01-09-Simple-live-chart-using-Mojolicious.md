@@ -3,11 +3,11 @@ layout: post
 title: Simple live chart using Mojolicious
 date: 2021-01-09 15:56:29
 ---
-![Live](https://dev-to-uploads.s3.amazonaws.com/i/1m8vkngba6uik1ikc00o.gif)
+![Live](/assets/images/1m8vkngba6uik1ikc00o.gif)
 
 In this blog post, I will show how easy it is to write a live chart with [Perl](https://www.perl.org/), [Mojolicious::Lite](https://docs.mojolicious.org/Mojolicious/Lite) and some javascript (mainly [Highcharts](https://www.highcharts.com/)).
 
-![Mojolicious](https://dev-to-uploads.s3.amazonaws.com/i/at40r8z12e9pedz17hon.png)
+![Mojolicious](/assets/images/at40r8z12e9pedz17hon.png)
 
 ## The code
 The [Mojolicious::Lite](https://docs.mojolicious.org/Mojolicious/Lite) very small webapp. With routes and get/set urls:
@@ -161,7 +161,7 @@ The view is a big chunk of javascript and an almost empty piece of html (just on
 We have our application, now we are ready to feed and test :smiley:
 
 ## Feed with random data
-![Feed me](https://dev-to-uploads.s3.amazonaws.com/i/mn0x0azbhlltj53eyezr.jpeg)
+![Feed me](/assets/images/mn0x0azbhlltj53eyezr.jpeg)
 
 As you can see, the data source is a flat `/tmp/values.txt` file that can be fed by http GET call or manually (this is what we will do right now):
 ```bash
@@ -188,6 +188,6 @@ You set the value to 100
 
 ## The result
 Open your favorite browser and you will get this beautiful live chart:
-![Live](https://dev-to-uploads.s3.amazonaws.com/i/1m8vkngba6uik1ikc00o.gif)
+![Live](/assets/images/1m8vkngba6uik1ikc00o.gif)
 
 You can also get an overview [here](https://thibaultduponchelle.github.io/wawawa/livechart/)

@@ -3,6 +3,9 @@ layout: post
 title: GitHub Combine Pull Requests... For The Win
 date: 2023-11-09 17:03:20
 ---
+
+![Cross](/assets/images/cross.png)
+
 Picture from [Lance Grandahl](https://unsplash.com/photos/brown-metal-train-rail-near-rocky-mountain-during-daytime-nShLC-WruxQ)
 
 In GitHub, whether you want to improve merge velocity, test interdependent changes or setup some sort of releasing model, you could be interested in grouping code changes.
@@ -19,24 +22,31 @@ In order to achieve this easily, you would need some automation. You're lucky, I
 I have 2 pull requests (from forks) targeting `main`. They have passed minimal tests running on PR but I now would like to run _long_ and _consuming_ tests together. I also want to check they work well together without merging first one of them to `main` (or to a release branch).
 
 My plan for the two following changes is to target the next release `v2.3`, so I added a label `v2.3` to the pull requests:
+
 ![Label v2.3](/assets/images/jwq8ug4jdxl7p32ceutm.png)
 
 In order to trigger the bundle creation, I create the branch `v2.3` from `main`
+
 ![Create branch v2.3](/assets/images/m80bhb955e05b2bnsfx8.png)
 
 Once I finished to create branch, it already started to run an action:
+
 ![Combining](/assets/images/n28c5ymg1baez2cet7n1.png)
 
 After seconds, the run is finished:
+
 ![Combined](/assets/images/1v7p47nqbp32d8qsgedx.png)
 
 A new pull requests (targeting `main`) appeared: 
+
 ![New PR](/assets/images/t6ogvak0e4ii2bs6b9dr.png) 
 
 The pull requests contains well the 2 pull requests changes (and branch `v2.3` was updated):
+
 ![PR combined contains 2 PRs](/assets/images/60k5wz4ak1pb1glpgsz4.png)
 
 Later, when the bundled pull request will be merged, the combined pull requests will be automatically merged:
+
 ![Remotely merged](/assets/images/1zyygr8qzgunxouryffy.png)
 
 ## Hello "combine-pull-requests"

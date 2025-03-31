@@ -3,6 +3,8 @@ layout: post
 title: Crypto-mining attack in my GitHub actions through Pull Request
 date: 2021-02-09 17:03:55
 ---
+![Arrow](/assets/images/arrow.png)
+
 In summary, yesterday, I was attacked by a github user that crafted a malicious github action to start a crypto-mining program inside an action run. He triggered it in my github actions thanks to a shitty pull request.
 
 ![Mining attack](/assets/images/1yc0yxawfz8h3xxqtne6.png)

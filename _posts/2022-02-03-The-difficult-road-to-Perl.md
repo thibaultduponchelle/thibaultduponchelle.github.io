@@ -3,20 +3,20 @@ layout: post
 title: The difficult road to Perl
 date: 2022-02-03 15:39:50
 ---
-Around 2010, I was in the middle of my CS studies and I was a pythonista. :clap: :snake:
+Around 2010, I was in the middle of my CS studies and I was a pythonista.
 
 ![Python](/assets/images/getblu2zkitswfpaxbsn.jpg)
 
-At that time, it was **python 2.6** dominating but some people were starting to use the new **python 2.7** :new:
+At that time, it was **python 2.6** dominating but some people were starting to use the new **python 2.7**
 
 **python 2** was far not as good as **python 3** is today (who have been impressively improved :scream:)... but it was so cool! And I loved it! 
 
-Python language was *my* thing :heart:
+Python language was *my* thing.
 
 ## It was another era...
 **python 3** was out but nobody was using it.
 
-People were posting in forums, do you remember? :grin:
+People were posting in forums, do you remember?
 
 Python had still the reputation of not doing breaking changes.
 
@@ -26,7 +26,7 @@ Python had still the reputation of not doing breaking changes.
 
 I think that list comprehension existed (looking at [python 2.0 changelog](https://docs.python.org/3/whatsnew/2.0.html#list-comprehensions)) but I don't remember using it (?).
 
-It was possible to type `print "hello world"` without parenthesis... :+1:
+It was possible to type `print "hello world"` without parenthesis...
 
 I remember some pain points, like `easy_install`, `None` concatenation or UTF-8.
 
@@ -64,7 +64,7 @@ And I was so sure of myself and so sure that everybody shared the same evidence,
 
 This judgement is probably something that appeared and consolidated during my studies through contact with school friends (?) or communities of programmers in general (?)
 
-Because in my older memory (1998-2008), my view of Perl was not so bad. I remember Perl having a reputation of hacker's choice, legendary coders, super heroes of command line and UNIX, smart but mad peoples. :sunglasses:
+Because in my older memory (1998-2008), my view of Perl was not so bad. I remember Perl having a reputation of hacker's choice, legendary coders, super heroes of command line and UNIX, smart but mad peoples.
 
 ![Mad](/assets/images/xx2ip12gkonvhsq86rwj.png)
 
@@ -100,6 +100,6 @@ What I found in Perl was the freedom, less boilerplate and a very close integrat
 
 But I consider myself as a polyglot programmer, [I don't call myself a Perl programmer](https://dev.to/davorg/don-t-be-a-perl-programmer-4h2d) (why would I do? It's not my first neither my last language). I enjoy it and I don't like how reputation is more important than actual qualities. This is something I liked between programmers, how we don't judge that much by appearance.
 
-Today I do much more Python than Perl, and each time I switch from Python to Perl I see Perl defects (OOP, REPL, collections containers...) the same way when I switch from Perl to Python I see Python pain points (toolchain, strictness...), but luckily I enjoy much more the qualities than I suffer the imperfections! :grin::grin::grin:
+Today I do much more Python than Perl, and each time I switch from Python to Perl I see Perl defects (OOP, REPL, collections containers...) the same way when I switch from Perl to Python I see Python pain points (toolchain, strictness...), but luckily I enjoy much more the qualities than I suffer the imperfections!
 
-Having dodged the python 2 to 3 migration frustration, and with all sweets of python 3, I'm still close to be a kind of pythonista somewhere inside but since I said "I'm not a Perl programmer" there is no reason I would consider myself as a "Python programmer" neither. And while I used, I'm using and I will use Python a lot for a long time, I can't say that I was ever *involved* in Python while it's clear that I *cared* about Perl :camel:
+Having dodged the python 2 to 3 migration frustration, and with all sweets of python 3, I'm still close to be a kind of pythonista somewhere inside but since I said "I'm not a Perl programmer" there is no reason I would consider myself as a "Python programmer" neither. And while I used, I'm using and I will use Python a lot for a long time, I can't say that I was ever *involved* in Python while it's clear that I *cared* about Perl 

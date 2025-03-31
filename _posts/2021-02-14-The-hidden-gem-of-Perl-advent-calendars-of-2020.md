@@ -3,7 +3,8 @@ layout: post
 title: The hidden gem of Perl advent calendars of 2020
 date: 2021-02-14 17:47:24
 ---
-We had advent calendars once again this year :smiley:
+We had advent calendars once again this year:
+
 ![Yeah Kiss](/assets/images/3nb4l1imqqf87fk29a85.gif)
 
 There was the [Perl advent calendar 2020](http://perladvent.org/2020/) that was special this year since it was a "best of".
@@ -29,9 +30,11 @@ I recognize the effort when it personally takes me a lot of time to write blog p
 This guy clearly deserves a medal.
 
 Without mentioning that [he is writing a core Perl feature blog serie](https://dev.to/mjgardner/paul-evans-writing-a-core-perl-feature-110e) and [he pushed de-experimentalising "signatures"](https://github.com/Perl/perl5/issues/18537) that was very well received.
+
 ![Emojis](/assets/images/nk6v8qqosn56hz8gpnx7.png)
 
 And on top of that, he's a core Perl contributor.
+
 ![Strong](/assets/images/ze9didry8rai9ne72ytz.png)
 
 

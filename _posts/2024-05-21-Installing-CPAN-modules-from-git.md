@@ -3,6 +3,8 @@ layout: post
 title: Installing CPAN modules from git
 date: 2024-05-21 18:18:32
 ---
+![Elevate](/assets/images/elevate.png)
+
 (picture from [elevate](https://www.pexels.com/fr-fr/@elevate/)) 
 
 For various reasons, you might want to install CPAN modules from a git repository. 
@@ -17,7 +19,7 @@ But this post is not meant to discuss about the "why" but instead mainly share t
 
 I tested various syntax and installers and will share now some working examples.
 
-:point_up: Before we continue, be sure to upgrade your installers (`App::cpm` and `App::cpanminus`) to their latest
+Before we continue, be sure to upgrade your installers (`App::cpm` and `App::cpanminus`) to their latest
 
 ## Installing from command line with `cpm`
 Installing with `cpm` is straighforward:

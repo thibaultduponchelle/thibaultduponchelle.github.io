@@ -6,6 +6,7 @@ date: 2021-02-11 15:41:31
 This is the sequel of [Check links programmatically (with Perl)](https://dev.to/thibaultduponchelle/check-links-programmatically-with-perl-1a14)
 
 This time, I use [HTTP::Simple](https://metacpan.org/pod/HTTP::Simple)
+
 ![Dancing](/assets/images/athmdxwr0z1c6dpihpse.gif)
 
 # Rewrite with HTTP::Simple
@@ -105,5 +106,6 @@ $ cat links.txt | perl checklinks.pl
 ```
 
 And I get my pretty links checker report:
+
 ![Check](/assets/images/objz3rf0r7p39nfp622i.png)
 

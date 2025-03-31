@@ -4,10 +4,14 @@ title: 3 original Perl CPAN social concepts
 date: 2024-08-23 11:00:30
 ---
 
+![Imagine](/assets/images/imagine.png)
+
 (Picture from [Eren Li](https://www.pexels.com/fr-fr/@eren-li/))
 
 ## CPAN Lieutenants
+
 ![Man army](/assets/images/p00z9ilo7aj6ch6dak10.jpg)
+
 (Picture from [Alex Andrews](https://www.pexels.com/fr-fr/@alex-andrews-271121/))
 
 I often mentally represent modules "per namespace" (I explained it [here](https://dev.to/thibaultduponchelle/browse-cpan-modules-per-namespaces-6p)) like in a tree where we have a node "JSON" that contains all JSON related (`JSON:PP`, `JSON:XS`, etc...).
@@ -55,8 +59,14 @@ Actually, a recent discussion on [perl development mailing list](https://www.nnt
 
 **edit 3**: [DistroPrefs](https://metacpan.org/pod/CPAN#Configuration-for-individual-distributions-(Distroprefs)) - CPAN.pm patching facility
 
+**edit 4**: CPAN's ADOPTME is probably more like Debian's RFA (Request for adoption) than Debian's O(rphaned) state, as the latter allows anybody (with upload permissions to the Debian archive in general) to upload, with or w/o adopting the package. I guess that's missing in the CPAN universe (and I remember discussions on p5p about it)
+ITS (intent to salvage) is a procedure for adopting packages which are not formally orphaned but are obviously unmaintained/neglected. wiki.debian.org/PackageSalvaging and www.debian.org/doc/manuals/developers-reference/pkgs.en.html#package-salvaging
+and then we also have NMUs (non-maintainer uploads) for fixing bugs in packages maintaines by someone else: www.debian.org/doc/manuals/developers-reference/pkgs.en.html#non-maintainer-uploads-nmus
+
+
 ## CPAN Mentors
-![Helping blind](/assets/images/https3a2f2fdev-to-uploadss3amazonawscom2fuploads2farticles2fktrqmr6iufz7fe1jd9jm.jpg)
+
+![Helping blind](/assets/images/fktrqmr6iufz7fe1jd9jm.jpg)
 
 (Picture from [Thirdman](https://www.pexels.com/@thirdman/))
 
@@ -87,7 +97,9 @@ Tib
 I think the number of new monthly CPAN registrations would permit it, and reinforce the community feeling that always been a strength of Perl.
 
 ## CPAN Guards
+
 ![Guard](/assets/images/fkwc4tis671ums68rb0z.jpg)
+
 (Picture from [PhotoMix Company](https://www.pexels.com/@wdnet/))
 
 This concept joins actually a bit the CPAN Lieutenants concept.

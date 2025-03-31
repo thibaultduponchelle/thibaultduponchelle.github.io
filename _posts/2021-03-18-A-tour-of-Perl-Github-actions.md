@@ -157,7 +157,8 @@ jobs:
       run: for f in `find . -name "*.pm" -o -name "*.pl" -o -name "*.t"`; do perl -c $f; done
 ```
 
-Push then wait and see :smile:
+Push then wait and see:
+
 ![Check](/assets/images/1a7qsvjpda4ulmc52qbt.png)
 
 

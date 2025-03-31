@@ -3,6 +3,7 @@ layout: post
 title: Book review "Perl Hacks"
 date: 2022-01-24 09:07:20
 ---
+
 ![Perl Hacks](/assets/images/m4q06jhyy9b6d3eyq0x6.jpg)
 
 # Intro
@@ -20,12 +21,14 @@ The book is not for beginners. It is old and some hacks are outdated because of 
 It starts smooth with less known **perldoc** arguments (do you know that you can "search" the perldoc with `-q`)
 
 Ever heard about [Pod::Webserver](https://metacpan.org/pod/Pod::Webserver)?
+
 ![podwebserver](/assets/images/fa5d7882efofx66qby6x.png)
 
 There are hacks for enlightened users of vim or emacs like testing syntax on file saving, fix indent, run tests...
 
 # User Interaction Hacks
 It's fun how the first hack is exactly something that I coded myself in the past (Perl static site generator).
+
 ![Mind blow](/assets/images/blow-mind-mind-blown.gif)
 
 The next tricks are real life problems (make interactive programs silent when not interactive) or use `prompt` for better prompts (lists, hierarchical menus...)! It's expanded later into the usage of [ExtUtils::MakeMaker](https://metacpan.org/pod/ExtUtils::MakeMaker) (when a module needs to ask user for informations).
@@ -72,6 +75,7 @@ Some debugging hacks from basic ones (`perl -c` or bracketing your variables in 
 This sections provides hacks at module level (segregate tests, helper script to rebuild a module, run tests automatically or print test failures in color).
 
 Beware of the fact that studying [ExtUtils::MakeMaker](https://metacpan.org/pod/ExtUtils::MakeMaker) source code will make you "wake up fully clothed and shivering in the shower several hours later".
+
 ![Shivering](https://media1.giphy.com/media/xT0xeHkthod39vab0k/giphy.gif?cid=ecf05e472k2phd1y0e0cg4bwwc28dm8ln9znist60nuer9dn&rid=giphy.gif&ct=g)
 
 In previous chapter, *closure* were introduced, now it's time for the another cool programming feature *memoize*! (and [Ackerman function](https://en.wikipedia.org/wiki/Ackermann_function)).

@@ -31,9 +31,9 @@ I think I shared planning links, some "thanks" and few utils infos for the meeti
 | 18/11/2021 - 18h30  | Once Upon Perl Acronyms                                 | Thibault Duponchelle       |
 | 18/11/2021 - 18h40  | End                                                     | Thibault Duponchelle       |
 
-## Native GitHub actions in Perl 	
+## Native GitHub actions in Perl
 
-[Juan Julián Merelo Guervós](https://dev.to/thibaultduponchelle/the-ephemeral-miniconf-speaker-annoucement-4n8f) presented maybe the more "Devops" talk of the miniconf (competing with José Joaquín Atria) about GitHub actions and containers. Perl is originally probably the best tool for sysadmin and devops (because it's close to system, very UNIX oriented, easy to deal with processus and files...) and GitHub actions (or Orb or whatever) provide a fantastic facility (with `perl` always there) for continuous integration, continuous test and CD/CD. 
+[Juan Julián Merelo Guervós](https://dev.to/thibaultduponchelle/the-ephemeral-miniconf-speaker-annoucement-4n8f) presented maybe the more "Devops" talk of the miniconf (competing with José Joaquín Atria) about GitHub actions and containers. Perl is originally probably the best tool for sysadmin and devops (because it's close to system, very UNIX oriented, easy to deal with processus and files...) and GitHub actions (or Orb or whatever) provide a fantastic facility (with `perl` always there) for continuous integration, continuous test and CD/CD.
 
 ![JJ Merelo](/assets/images/d3mzibsitm8pe74dggf7.png)
 
@@ -42,14 +42,15 @@ I'm personally well versed in this area, but it has to be spread more generally 
 It was a very clean and professional talk, did I say we had only experienced speakers?
 
 ## Do you really know XML?
-This title probably makes you not dream that much but during the creation of an [XML module for minification](https://metacpan.org/pod/XML::Minifier), I had to dig very deep in XML features and spec (and libxml2 code) to cover all cases. 
+This title probably makes you not dream that much but during the creation of an [XML module for minification](https://metacpan.org/pod/XML::Minifier), I had to dig very deep in XML features and spec (and libxml2 code) to cover all cases.
 
-This presentation requires you to know XML (who does not!) to look with me at "corner invalid syntax things" (nested comments, duplicate attribute...), security (Billion Laughs attack, XXE injections, Quadratic blowup...), "lesser known" XML features (xml::space, DTD default attribute). 
+This presentation requires you to know XML (who does not!) to look with me at "corner invalid syntax things" (nested comments, duplicate attribute...), security (Billion Laughs attack, XXE injections, Quadratic blowup...), "lesser known" XML features (xml::space, DTD default attribute).
+
 ![Tib](/assets/images/92sfn0i2ail9vn7a2e1m.png)
 Then I browsed all possible libxml2 parsed node types spending more time on the ones that are "mysterious" (because this is where is the fun actually) and finally talked about how do I managed (DWIM) XML minification.
 
 ## Automatic Observability
-[José Joaquín Atria](https://dev.to/thibaultduponchelle/the-ephemeral-miniconf-jose-joaquin-atria-2m5h) came with a solid technical talk about Perl and [NewRelic](https://newrelic.com/) monitoring. His talk is built upon the creation of [NewFangle::Agent](https://github.com/cv-library/NewFangle-Agent) which allows you to easily monitor deep Perl trace events in NewRelic. 
+[José Joaquín Atria](https://dev.to/thibaultduponchelle/the-ephemeral-miniconf-jose-joaquin-atria-2m5h) came with a solid technical talk about Perl and [NewRelic](https://newrelic.com/) monitoring. His talk is built upon the creation of [NewFangle::Agent](https://github.com/cv-library/NewFangle-Agent) which allows you to easily monitor deep Perl trace events in NewRelic.
 ![Automatic Observability](/assets/images/f15szyzf9qydgn6v26bs.png)
 As I said, very solid talk (he is experienced), I always enjoy native topics (I'm hanging out on [#native channel on IRC](https://www.irc.perl.org/channels.html) :grinning:)
 
@@ -61,12 +62,14 @@ Questions were about Raku, from really easy to some harder ones about Raku inter
 ![Raku Quiz](/assets/images/j4uq2nc2zc5z3lrv2ic0.png)
 
 And at the end, @sjn won:
+
 ![Podium](/assets/images/rb1sorv1qhc71gcjrqdr.png)
 
 ## Open Food Facts
 As I said and repeat, [Open Food Facts](https://fr.openfoodfacts.org/) is a real Perl flagship. It's for me a model of successful Free Software project, and a very pragmatic one above all.
 
 The project was presented by [Stephane Gigandet](https://dev.to/thibaultduponchelle/the-ephemeral-miniconf-speaker-annoucement-314d):
+
 ![Open Food Facts](/assets/images/pgk7uqtp5e5465al13un.png)
 
 Very good talk, this project is cool and looking for manpower! What are you waiting for?
@@ -84,6 +87,7 @@ EDIT: I forgot to mention that while sharing his talk subject on twitter, Mark h
 
 ## Perl Quiz
 It was time for a second quiz!
+
 ![Perl quiz](/assets/images/en9ugtdmveapv8y3h6hv.png)
 
 This time about Perl with more questions, and the podium was  bitterly disputed :grinning:
@@ -97,15 +101,14 @@ His talks was very much appreciated and he presented a lot LDAP and "auth" conce
 
 ![Clement LDAP](/assets/images/sy0oxgiry7jp4g7zobm7.png)
 
-And guess what, he came with a ukulele and sang a LDAP song :scream:
-![Ukulele](/assets/images/s4y3d20gqcgohk66zm0u.png)
-(I don't have the picture of him singing)
+And guess what, he came with a ukulele and sang a LDAP song (I don't have the picture of him singing)
 
 Here is the song lyrics:
+
 ![Song](/assets/images/iqx47x8lyggzxwqg2kjm.png)
 
 ## Once Upon Perl Acronyms
-I prepared a second talk, this time more "fluffy". It was lightweight but worked well and people enjoyed :grinning:
+I prepared a second talk, this time more "fluffy". It was lightweight but worked well and people enjoyed:
 ![Once Upon Perl Acronyms](/assets/images/6hl5ufeyx0pk9fe38pkf.png)
 
 And it was a nice way to conclude **The ephemeral miniconf**!
@@ -113,8 +116,17 @@ And it was a nice way to conclude **The ephemeral miniconf**!
 We then opened mics and put cameras on and talked briefly, then I said I was proud of what we achieved together.
 
 And FWIW here is a well deserved GIF:
+
 ![Camel GIF](/assets/images/7ywrmbxuy9hosgdlfh1h.gif)
 
+## Videos
+- [Native GitHub actions in Perl - Juan Julián Merelo Guervós](https://m.youtube.com/watch?v=XNi8FMEI1Wo)
+- [Do you really know XML? - Thibault Duponchelle](https://m.youtube.com/watch?v=NgsDI2XeLLY)
+- [Automatic Observability - José Joaquín Atria](https://m.youtube.com/watch?v=a6mlym8nVHc)
+- [Open Food Facts - Stephane Gigandet](https://m.youtube.com/watch?v=9SOROdmJn4g)
+- [Cunningham’s Law: A Year of Being Wrong on the Internet - Mark Gardner](https://m.youtube.com/watch?v=mC_FLFH8FMw)
+- [LemonLDAP::NG - Clement Oudot](https://m.youtube.com/watch?v=6jLaZt_grtM)
+- [Once Upon Perl Acronyms - Thibault Duponchelle](https://m.youtube.com/watch?v=Zdp3rKWq3-I)
 
 
 

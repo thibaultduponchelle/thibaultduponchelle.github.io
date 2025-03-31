@@ -8,11 +8,13 @@ For a recent post, I needed a CPAN logo, so I jumped to [cpan.org](cpan.org) to 
 ![Ouch](/assets/images/vnx0k1dsvm6jpfawydhr.png)
 
 And if you look at it in gimp:
+
 ![In gimp](/assets/images/qxpon34vseu672rks5zn.png)
 
 Then I put in my mind to try to do one by myself (I'm almost a total noob at inkscape).
 
-This weekend, after *hours* (yes believe me) of trials (`potrace`, vectorizer.io, vectormagic.com, `autotrace`, `imagemagick`, `inkscape`...) I got something nice, here is my preview :dancer::
+This weekend, after *hours* (yes believe me) of trials (`potrace`, vectorizer.io, vectormagic.com, `autotrace`, `imagemagick`, `inkscape`...) I got something nice, here is my preview:
+
 ![Svg screenshot](/assets/images/88hldbbzsfnpqqecblra.png)
 This is a png because devto does not accept to embed SVG but do not use this one but [CPAN logo SVG](https://raw.githubusercontent.com/thibaultduponchelle/action-upload-to-cpan/master/cpan.svg)
 

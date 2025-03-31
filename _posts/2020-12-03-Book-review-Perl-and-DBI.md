@@ -34,6 +34,7 @@ And others topics in bulk :
 * Interesting paragraph about flock shared and exclusive
 * **OLE** and **ADO**
 * **BLOB** vs **CLOB**
+
 ![Blob](/assets/images/pah7q5x5f35bs6w0m5ab.jpg)
 
 blob !

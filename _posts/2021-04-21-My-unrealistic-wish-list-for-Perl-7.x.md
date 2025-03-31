@@ -42,7 +42,7 @@ perl -e 'use utf8; use open ":std", ":encoding(UTF-8)"; print "André\n"'
 André
 ```
 
-The topic of Unicode and UTF-8 is over complicated and I'm not an expert, but I can say that it's not transparent in Perl 5 and I can give you the link of this [blog post](https://dev.to/fgasper/perl-unicode-and-bytes-5cg7) :grinning:
+The topic of Unicode and UTF-8 is over complicated and I'm not an expert, but I can say that it's not transparent in Perl 5 and I can give you the link of this [blog post](https://dev.to/fgasper/perl-unicode-and-bytes-5cg7)
 
 Python **2** had also problems with UTF-8 and required to add a magic comment like this:
 ```python
@@ -120,6 +120,7 @@ print $array[1][1] # "a"
 ```
 
 This feature is maybe impossible to implement (is there some cases where syntax will conflict? short answer is YES, see below), but do I mentioned that this wish-list was unrealistic?
+
 ![Crazy](/assets/images/29y4ckmvzajdwzjne3xv.jpg)
 
 EDIT : As pointed by "quote-only-eeee" on reddit, it is definitely conflicting since both `$a` and `@a` could live together in a Perl program and `$a[0]` would not be able to choose on which one to apply.
@@ -128,6 +129,7 @@ EDIT : As pointed by "quote-only-eeee" on reddit, it is definitely conflicting s
 For those who don't know, there is the initiative [Cor(inna)](https://github.com/Ovid/Cor/wiki) and I'm firmly waiting for it.
 
 Go for the native Object Oriented capabilities of Perl!
+
 ![Go for it](/assets/images/68b2fr6jae0o3qjznj5w.jpg)
  
 # Signatures <a name="Signatures"/>
@@ -156,13 +158,16 @@ If you wonder, python `pip` is config-free and is in the core (since 3.4)
 It's really missing.
 
 You can emulate with HTML in POD:
+
 ![Image in POD](/assets/images/sn59pyrjcm7e5etmmtww.png)
+
 But it's not very handy.
 
 Having it directly in the POD format would be great and there was an early attempt to add it (see this [issue](https://github.com/Perl/perl5/issues/18169)).
 
 # Smart match <a name="Smart"/>
 This is a long-story subject, I know from lectures that it is "hard as hell" to implement feature (in particular has DWIM issues), but I would like it, one day, maybe, if possible, pleeaaaaase...
+
 ![Please](/assets/images/ybl4i0t67fikby9uw2wp.jpg)
 
 # A much better REPL <a name="REPL"/>

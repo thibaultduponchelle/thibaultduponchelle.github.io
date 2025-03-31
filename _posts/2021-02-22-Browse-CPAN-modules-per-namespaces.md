@@ -3,12 +3,15 @@ layout: post
 title: Browse CPAN modules per namespaces
 date: 2021-02-22 14:07:34
 ---
+![MetaCPAN board](/assets/images/cpan.png)
+
 I once was looking to filter out CPAN modules per namespace. Namespaces generally have *meaning* in CPAN since there are conventions and Perl folks try to be rigourous and to [fit well in the existing naming](http://prepan.org)
 
 So back again to my research, I was looking for a way to filter out CPAN modules per namespaces.
 
 # Become the master of MetaCPAN search
 From [METACPAN faq](https://metacpan.org/about/faq) you can get some tips like the **module:** prefix
+
 ![MetaCPAN tips](/assets/images/yv1570s030v3onxsl9h6.png)
 
 With this trick, you can search for instance all [XML related modules](https://metacpan.org/search?p=7&q=module%3AXML)

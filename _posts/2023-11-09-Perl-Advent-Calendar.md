@@ -9,6 +9,7 @@ If in 2023 I did almost no blogging at all, in 2022 I produced a decent number o
 Late 2022, I helped to make the Perl Advent Calendar tradition to run once again :santa:
 
 2022 be like:
+
 ![Blog on Devto / Blog on Perl Advent Calendar](/assets/images/i4qe59m158rdr780xp1l.jpg)
 
 Believe me, all articles in [Perl Advent Calendar](https://perladvent.org/2022/index.html) deserve a read. But let me share mine :grinning:

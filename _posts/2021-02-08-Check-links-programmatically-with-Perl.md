@@ -3,9 +3,9 @@ layout: post
 title: Check links programmatically (with Perl)
 date: 2021-02-08 12:02:27
 ---
-Links are moving too fast... And your online README.md, links directories, blog posts or whatever... rapidly give links to dead resources :cry:
+Links are moving too fast... And your online README.md, links directories, blog posts or whatever... rapidly give links to dead resources.
 
-Like in my [awesome-like Perl README.md :rocket:](https://github.com/thibaultduponchelle/perlres) that contains hundreds of links (go check it out, it is cool ! :sunglasses:).
+Like in my [awesome-like Perl README.md :rocket:](https://github.com/thibaultduponchelle/perlres) that contains hundreds of links (go check it out, it is cool!).
 
 My solution is to check periodically that the links are *still* up ! 
  
@@ -100,7 +100,7 @@ I then run it like this :
 echo "https://img.shields.io/badge/Language-Perl-blue" | perl checklinks.pl
 ```
 
-The [shields.io badge](https://img.shields.io/badge/Language-Perl-blue) is still up for humans but broken for LWP :unamused::
+The [shields.io badge](https://img.shields.io/badge/Language-Perl-blue) is still up for humans but broken for LWP:
 ```
 Checking [https://img.shields.io/badge/Language-Perl-blue]... BROKEN !
 ```
@@ -225,12 +225,12 @@ And later:
 print color('red') . " \x{2717}" . color('reset') . " --> " . $res->status_line . "\n";
 ```
 
-It does not change much the output but make it clearer and nicer :smiley:
+It does not change much the output but make it clearer and nicer:
 
 ![Pimp](/assets/images/kliu4pdrp1bpd26ywemh.png)
 
 # Conclusion
-There is more to say here :smiley: 
+There is more to say here.
 
 Like mentioning that [Mojolicious](https://docs.mojolicious.org/Mojo/UserAgent) provides a very good framework for doing the same kind of tasks (it could be perceived as a "more modern" approach).
 

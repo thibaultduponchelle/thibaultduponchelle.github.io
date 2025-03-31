@@ -44,5 +44,6 @@ And then I get this progress report:
 
 ![Log](/assets/images/8s0zny9k88uqi241ct2c.gif)
 
-That's all! :smiley:
+That's all!
+
 ![House](/assets/images/884k6dg22dk09jyub61z.jpg)

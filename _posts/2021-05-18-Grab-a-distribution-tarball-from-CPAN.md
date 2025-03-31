@@ -59,7 +59,7 @@ $ cpan-get Test::More
 ```
 
 ## MetaCPAN::Client + HTTP::Simple <a name="mcpan-httpsimple"/>
-And finish by a mixed [MetaCPAN API client](https://metacpan.org/pod/MetaCPAN::Client) + an [HTTP client](https://metacpan.org/pod/HTTP::Simple) (with no error handling at all :skull:):
+And finish by a mixed [MetaCPAN API client](https://metacpan.org/pod/MetaCPAN::Client) + an [HTTP client](https://metacpan.org/pod/HTTP::Simple) (with no error handling at all):
 ```perl
 # Init MetaCPAN client
 use MetaCPAN::Client;

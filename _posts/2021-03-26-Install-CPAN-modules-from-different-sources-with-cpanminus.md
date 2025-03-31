@@ -130,6 +130,6 @@ Successfully installed Acme-Automatix-0.06
 ```
 
 # Conclusion
-This is the end of my tour of exotic sources of [cpanm](https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm)... :+1: 
+This is the end of my tour of exotic sources of [cpanm](https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm)...
 
 Do you know other ways?

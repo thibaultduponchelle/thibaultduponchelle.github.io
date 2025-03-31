@@ -5,15 +5,17 @@ date: 2021-03-03 14:14:42
 ---
 Today I have something *useless-but-cool* to show. 
 
-My **Matrix-perlish background**! :sunglasses: :sunglasses: :sunglasses:
+![Perl Matrix](/assets/images/mtrx.png)
+
+My **Matrix-perlish background**!
 
 ![Perl Matrix](/assets/images/1gu4w7s5mytelczi5l1v.gif)
 
-Check out my github page to see a [live preview](https://thibaultduponchelle.github.io/wawawa/pmtrx/) :grinning:
+Check out my github page to see a [live preview](https://thibaultduponchelle.github.io/wawawa/pmtrx/)
 
 It's only a couple of lines of javascript derivated from the work that you can find [here](https://codepen.io/P3R0/pen/MwgoKv) or [here](https://codepen.io/wefiy/pen/WPpEwo) so I deserve absolutely zero credit but I simply modified it to make it appear *more perlish*! :+1:
 
-(or ***p@r]i$%*** if you prefer :grinning:)
+(or ***p@r]i$%*** if you prefer)
 
 
 

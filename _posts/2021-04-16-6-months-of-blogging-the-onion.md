@@ -8,12 +8,14 @@ It has been around 6 months since I started to blog **a lot**.
 I followed the calls from [Gabor Szabo](http://blogs.perl.org/users/gabor_szabo/2020/11/perl-on-devto.html), [Joel Berger](http://blogs.perl.org/users/joel_berger/2020/09/crosspost-nginxcertbot-recipe.html) and [Dave Cross](https://perlhacks.com/2020/09/blogging-for-perl/) then on top I added [mine](https://dev.to/thibaultduponchelle/a-call-to-perl-bloggers-to-come-on-dev-to-27ee)
 
 My intention was clearly to setup a "Perl blogging scene" on devto and I feel like it works, see [#Perl](https://dev.to/t/perl) and numbers from [perlweekly](https://perlweekly.com/stats.html):
+
 ![Blogs](/assets/images/3qxe3goonfapyvd1folp.png)
 
 The number of blog posts does not decreased on BPO (it was not the goal, I want *more* posts, not less!) but the number of posts on [DevTo](https://dev.to/) increased lot yeah ! :dancer:
 It reached a minimum steady number that make it a viable place to monitor for posts :) (and to make people join and contribute)
 
 It's a teamwork and I do not deserve much credits, but I did a pretty decent effort (more than 50 blog posts in 6 months):
+
 ![A lot of posts](/assets/images/t4bwduxct8dxq1u2simz.png)
 
 Will I blog as much for the coming 6 months? Probably not, but I have to say that blogging is very rewarding since I have the feeling to show Perl in a nice way and I have a lot of interactions with great people (comments :heart:). 

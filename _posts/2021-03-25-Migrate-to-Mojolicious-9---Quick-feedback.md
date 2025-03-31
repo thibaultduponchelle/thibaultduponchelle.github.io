@@ -3,7 +3,7 @@ layout: post
 title: Migrate to Mojolicious 9 - Quick feedback
 date: 2021-03-25 07:11:59
 ---
-Today I migrated one application to [Mojolicious 9](https://mojolicious.org/) :tada:
+Today I migrated one application to [Mojolicious 9](https://mojolicious.org/)
 
 ![Mojolicious 9](/assets/images/0wk9a9c05a3sntlwkydv.png)
 
@@ -38,6 +38,6 @@ use Mojo::JSON qw(decode_json encode_json);
 ```
 
 ## Conclusion
-I like Mojolicious :heart: and the way it is so actively developed. It's true that there is sometimes some small breakages (I remember in the past a breakage about [slurp](https://github.com/mimosinnet/presentation/pull/1/files)) but it is always well documented and painless :+1:
+I like Mojolicious :heart: and the way it is so actively developed. It's true that there is sometimes some small breakages (I remember in the past a breakage about [slurp](https://github.com/mimosinnet/presentation/pull/1/files)) but it is always well documented and painless.
 
 Long live to [Mojolicious](https://mojolicious.org/)!

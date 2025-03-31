@@ -9,7 +9,7 @@ There are some Perl syntax that I don't feel comfortable with.
 
 ![Kid think](/assets/images/1uwoux4pae3r2hbeyuhk.png)
 
-This is my list of 5 things ! :smiley:
+This is my list of 5 things !
 
 ## Variant sigils
 It is not original, but invariant sigils would make sense for me.
@@ -86,7 +86,7 @@ I don't feel good with this :/
 
 Ok (1), it's just a matter of installing a module... 
 
-Ok (2), it is coming with [Cor](https://github.com/Ovid/Cor/wiki) :smiley:
+Ok (2), it is coming with [Cor](https://github.com/Ovid/Cor/wiki)
 
 ![Snoop](/assets/images/e2mtth7t96mkqld8gd2u.gif)
 

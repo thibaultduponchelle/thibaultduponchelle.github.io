@@ -12,15 +12,19 @@ Experienced Perl programmers are powerful and respected, but sometimes suffer fr
 ***Perl masters were some of the most feared warriors in the galaxy.***
 
 They are now spread all over the universe, sometimes exiled. They often prefer to stay discrete.
+
 ![Hide](/assets/images/imley79qf9cfjdw9lpv2.jpeg)
 
 ***Perl programmers respect the creed:***
 ***- sharing - portability - stability -***
+
 ![Creed](/assets/images/ac501qni64swgoukw64a.jpeg)
 
 When people meet a Perl programmer, they have a strange reaction then look at him and say "so you're one of them?"
+
 ![Never met real Mandalorian](/assets/images/i3a2x62x9kibgj7m41qy.png)
 
 Perl programmers are **Mandalorians**
+
 ![Perl users are Mandalorians](/assets/images/f2t0zisq4rqvobxq7evi.jpeg)
 

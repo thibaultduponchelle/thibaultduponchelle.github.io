@@ -3,7 +3,7 @@ layout: post
 title: New Github action to Upload to CPAN
 date: 2021-03-19 07:51:13
 ---
-I don't release CPAN modules so often, but when I do, I try to do it with class! :smile:
+I don't release CPAN modules so often, but when I do, I try to do it with class!
 
 ![Style](/assets/images/lpyca80s6wr3zhraw3yf.png)
 
@@ -19,7 +19,7 @@ I started with javascript version but since it required more customization, I qu
 
 So finally here is it: 
 
-## [thibaultduponchelle/action-upload-to-cpan](https://github.com/thibaultduponchelle/action-upload-to-cpan) :sparkles:
+## [thibaultduponchelle/action-upload-to-cpan](https://github.com/thibaultduponchelle/action-upload-to-cpan)
 
 I tested it with [Acme::Automatix](https://metacpan.org/pod/Acme::Automatix)
 
@@ -64,7 +64,7 @@ You can be smarter than me and introduce conditions to upload (only release when
 ## Conclusion
 I really think this action is useful and since I wrote it, I discovered that these kind of things exist for other ecosystems (e.g. rubygems, pypi...) so it confirmed my feeling :smile:
 
-Then all that remains is to wish you Happy releasing! :sparkles:
+Then all that remains is to wish you Happy releasing!
  
 ![Muppet](/assets/images/kco5uq6sjtyag2a7bpvy.gif) 
  

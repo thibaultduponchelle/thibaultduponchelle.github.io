@@ -7,12 +7,12 @@ Dear Tim,
 
 I've been thinking about this letter for a while now.
 
-There was a time (an eternity in IT age) where you did a lot for Perl and I thank you so much for this :pray:
+There was a time (an eternity in IT age) where you did a lot for Perl and I thank you so much for this.
 
 But time passed and Perl has lost its value to your eyes. 
 
 Thanks to you :heart: Perl inherited a logo: the camel 
-But because of you, Perl actually never had a logo at all :cry:
+But because of you, Perl actually never had a logo at all.
 
 Over the years, you never ever made the Perl camel open enough for us (Perl community) to freely use or modify.
 Consequently, we are in a very uncomfortable position.
@@ -34,7 +34,7 @@ Now, the thing is, only YOU can fix this :dart:
 
 And it's time.
 
-So I'm asking solemnly, **free the Perl camel**! :free:
+So I'm asking solemnly, **free the Perl camel**!
 And do it with a nice and clear license.
 
 \#FreeThePerlCamel
@@ -58,13 +58,14 @@ As far as I know, O'Reilly never enforced restrictions and kept friendly to Perl
 
 ## Past O'Reilly position on Camel
 - [Perl camel usage](https://web.archive.org/web/20180425080044/http://archive.oreilly.com/pub/a/oreilly/perl/usage) (webarchive)
+
 ![Perl Camel usage old](/assets/images/7it49w6as2ztukswo94v.png)
 
 > Non-commercial use
 >
 > We will license the camel image widely for open source products and non-commercial sites related to Perl, requiring only an acknowledgement of its trademark status and a link to www.perl.com. To request the camel artwork, please send email to permissions@oreilly.com, indicating where, how, and for what purpose you plan to use the image. Please note that we generally do not allow alterations of the Perl camel artwork.
 
-It sounds free at first but it's not at all :disappointed:
+It sounds free at first but it's not at all.
 
 Also note the following sentence (at the beginning) which sounds particularly rude: 
 
@@ -73,6 +74,7 @@ Also note the following sentence (at the beginning) which sounds particularly ru
 Ouch! The last edition of [Programming Perl](https://www.oreilly.com/library/view/programming-perl-4th/9781449321451/) was 11 years ago.
 
 - Some clarification in [Perl camel FAQ](https://web.archive.org/web/20180123132933/http://archive.oreilly.com/pub/a/oreilly/perl/usage/faq.html) (webarchive)
+
 ![Perl Camel FAQ](/assets/images/7bd7cxa7ks4ek2tx243f.png)
 
 > Q: I want to design a T-shirt with the Perl camel on it. Do I need to get your permission?
@@ -102,6 +104,7 @@ Thank you sir, now let's move one step forward and Free The Perl Camel :wink:
 
 ## Recent position
 - From [Perl and Camels](http://neilb.org/2020/12/04/perl-and-camels.html), Tim O'Reilly answered questions from [Neil Bowers](http://neilb.org/index.html) (Perl figure and former perl maintainer). Here's what we can (not) do now:
+
 ![Perl Camel usage recent](/assets/images/1xdu48ck4wa8d3iil0ae.png)
 
 It's even worse :angry:

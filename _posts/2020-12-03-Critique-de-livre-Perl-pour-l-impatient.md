@@ -9,6 +9,7 @@ date: 2020-12-03 14:14:38
 This is a french book, my review will be in French :smile:
 
 ## Introduction qui donne envie
+
 ![Jojo](/assets/images/3ljssfim72xafef3fb8n.jpg)
 
 J'ai bien aime la facon d'introduire le langage Perl :
@@ -40,6 +41,7 @@ Le chapitre regex est très bien : explication douce évolutive et pointue.
 Le style est bien écrit.
 
 ### De bons conseils
+
 ![Conseil](/assets/images/8kbtudp5fivfvsy6uj1v.png)
 
 * "N’abusez pas des conversions automatiques, elles obscurcissent le code" 
