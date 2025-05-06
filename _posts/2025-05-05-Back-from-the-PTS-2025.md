@@ -125,7 +125,7 @@ I worked with [ELBEHO](https://metacpan.org/author/ELBEHO) and [BOOK](https://me
 
 Later, I paired with [ATOOMIC](https://metacpan.org/author/ATOOMIC) to look at [CPAN::Distroprefs](https://metacpan.org/pod/CPAN::Distroprefs) (that I plan to use for a CPAN Patch Tooling "Proof Of Concept"). Several people intervened (e.g. [LEONT](https://metacpan.org/author/LEONT), [TODDR](https://metacpan.org/author/TODDR)), it was great!
 
-[PEVANS](https://metacpan.org/author/PEVANS) delivered a talk about signatures, classes and roles in Perl (a bit "past, present and futur").
+[PEVANS](https://metacpan.org/author/PEVANS) delivered a talk about signatures, classes and roles in Perl.
 It was complex, in term of syntax and object oriented concepts. But some people were more confortable than me and it triggered several questions and discussions.
 
 Then we did 2 CPANSec meetings:
