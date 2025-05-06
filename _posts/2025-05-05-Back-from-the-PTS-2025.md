@@ -96,7 +96,7 @@ Retrospectively, I think:
 2. Items presented were totally in scope of PTS
 3. It spread topics to everyone to think about (with or without me) for the rest of the summit
 
-It also means I isolate for some time before (final preparations) which was  great (but I had to).
+It also means I isolated for some time before (final preparations) which was  great (but I had to).
 
 After my presentations, I preempted quickly [OALDERS](https://metacpan.org/author/OALDERS) for a quick sync to get his insights on some "indexes" oddities (being related to MetaCPAN API or MetaDB).
 
