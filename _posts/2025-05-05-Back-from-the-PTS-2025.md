@@ -222,7 +222,7 @@ Also, for the record, German people were friendly with us all during the summit.
 ## Conclusion
 I had a fantastic time at PTS. 
 
-The total of attendees was 33 including 5 first-timers (I was one of them).
+There were 33 attendees with 5 first-timers (I was one of them).
 
 Everyone was very nice and available. I learned a lot, made connections and tried to speak to everyone.
 Now, I even more consider this event vital for Perl sustainability and all companies using the language.
