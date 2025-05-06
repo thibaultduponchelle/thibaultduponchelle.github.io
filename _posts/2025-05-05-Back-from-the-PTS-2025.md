@@ -156,7 +156,9 @@ I discussed quickly with [TUX](https://metacpan.org/author/HMBRAND) since he's d
 
 I started to implement a patching facility (using an hypothetical `smokecurrent.patches` and a `patches/` directory) inside [Test::Smoke](https://metacpan.org/pod/Test::Smoke). Right now, you can already emulate that use case easily for instance with fork+branches (syncer "git" or "snapshot") or patching first (syncer "copy")... But TIMTOWTDI and local patching can be slightly more handy for some use cases.
 
-In parallel, I spent some time on Perl logo, changing the logo of [perlres](https://github.com/thibaultduponchelle/perlres), proposing the [081](https://github.com/metacpan/perl-assets/pull/20) ("gradient without medallion") to the official repository of assets.
+In parallel, I spent some time on Perl logo, changing the logo of [perlres](https://github.com/thibaultduponchelle/perlres).
+
+Then proposing the [081](https://github.com/metacpan/perl-assets/pull/20) ("gradient without medallion") to the official repository of assets.
 
 ![081](/assets/images/pts2025/081.svg)
 
