@@ -211,7 +211,7 @@ As a constant, portions were very generous and we enjoyed that they have their b
 
 Proof of the good atmosphere, people frequently switched from one group to another. 
 
-There's folks that I enjoyed the company like [FERKI](https://metacpan.org/author/FERKI), [INGY](https://metacpan.org/author/INGY) and [MITHALDU](https://metacpan.org/author/MITHALDU) without actually not that much interacting on technical topics in the end.
+There's folks (that I did not cite so far) and that I enjoyed the company like [FERKI](https://metacpan.org/author/FERKI), [INGY](https://metacpan.org/author/INGY) and [MITHALDU](https://metacpan.org/author/MITHALDU)  without actually not that much interacting on technical topics in the end.
 
 And sometimes, like on Sunday, we ate altogether. For the record, we choose a Doner where Angela Merkel did visit in the past!
 
