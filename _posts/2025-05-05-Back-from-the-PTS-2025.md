@@ -135,7 +135,7 @@ Then we did 2 CPANSec meetings:
 We ended the day with a "sponsored meal" being altogether in a private restaurant room. It was probably the most typical german diner and a very lively one. I was sit close to [ARISTOTLE](https://metacpan.org/author/ARISTOTLE), [TIMLEGGE](https://metacpan.org/author/TIMLEGGE) (my "twin brother of the day"!) and [SIMBABQUE](https://metacpan.org/author/SIMBABQUE) to only cite some of them.
 
 ## Day 3
-Saturday started with [Test::Smoke](https://metacpan.org/pod/Test::Smoke), finally!!
+Saturday started with [Test::Smoke](https://metacpan.org/pod/Test::Smoke), finally!
 
 I'm the maintainer after [ABELTJE](https://metacpan.org/author/ABELTJE) passed away and it is actually one of my priorities. 
 
