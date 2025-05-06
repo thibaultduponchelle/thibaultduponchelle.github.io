@@ -150,7 +150,7 @@ Later I joined the MetaCPAN table for discussion with [MICKEY](https://metacpan.
 I tested the merge of my change [Do not index Local:: namespace (nor Local)](https://github.com/andk/pause/commit/5e04e74bd21db0f4e3417bd3e007578d1f4fb422) by PAUSE table. I did it with [Local::No::Longer::Indexable](https://metacpan.org/release/CONTRA/Local-No-Longer-Indexable-0.01). I discovered that it has a connection with [Acme::Not::Indexed](https://metacpan.org/release/CONTRA/Acme-Not-Indexed-0.01) discussion.
 
 ## Day 4
-On Sunday, I wanted ton continue on [Test::Smoke](https://metacpan.org/pod/Test::Smoke) and do more "hacking".
+On Sunday, I wanted to continue on [Test::Smoke](https://metacpan.org/pod/Test::Smoke) and do more "hacking".
 
 I discussed quickly with [TUX](https://metacpan.org/author/HMBRAND) since he's doing some Proof Of Concept to send reports to future CPANTesters infrastructure.
 
