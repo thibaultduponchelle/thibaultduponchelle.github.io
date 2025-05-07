@@ -139,7 +139,7 @@ Saturday started with [Test::Smoke](https://metacpan.org/pod/Test::Smoke), final
 
 I'm the maintainer after [ABELTJE](https://metacpan.org/author/ABELTJE) passed away and it is actually one of my priorities. 
 
-With [TUX](https://metacpan.org/author/HMBRAND) (creator of [Test::Smoke](https://metacpan.org/pod/Test::Smoke) and perl core porter) we initiated the discussion about deprecating dual testing of PerlIO/StdIO in core smoke testing. Having [LEONT](https://metacpan.org/author/LEONT) right there, we were able to clarify and reach a consensus about that: "it will happen".
+With [HMBRAND](https://metacpan.org/author/HMBRAND) (creator of [Test::Smoke](https://metacpan.org/pod/Test::Smoke) and perl core porter) we initiated the discussion about deprecating dual testing of PerlIO/StdIO in core smoke testing. Having [LEONT](https://metacpan.org/author/LEONT) right there, we were able to clarify and reach a consensus about that: "it will happen".
 
 I demoed also quickly my start of a (Linux  focused) [Test::Smoke](https://metacpan.org/pod/Test::Smoke) farm.
 
@@ -152,7 +152,7 @@ I tested the merge of my change [Do not index Local:: namespace (nor Local)](htt
 ## Day 4
 On Sunday, I wanted to continue on [Test::Smoke](https://metacpan.org/pod/Test::Smoke) and do more "hacking".
 
-I discussed quickly with [TUX](https://metacpan.org/author/HMBRAND) since he's doing some Proof Of Concept to send reports to future CPANTesters infrastructure.
+I discussed quickly with [HMBRAND](https://metacpan.org/author/HMBRAND) since he's doing some Proof Of Concept to send reports to future CPANTesters infrastructure.
 
 I started to implement a patching facility (using an hypothetical `smokecurrent.patches` and a `patches/` directory) inside [Test::Smoke](https://metacpan.org/pod/Test::Smoke). Right now, you can already emulate that use case easily for instance with fork+branches (syncer "git" or "snapshot") or patching first (syncer "copy")... But TIMTOWTDI and local patching can be slightly more handy for some use cases.
 
@@ -173,12 +173,11 @@ Or [PR#192](https://github.com/exercism/website-icons/pull/192) for exercism.io 
 
 
 
-On sunday, [BOOK](https://metacpan.org/author/BOOK) and [SJN](https://metacpan.org/author/SJN) did record a podcasts and I was interviewed by [BOOK](https://metacpan.org/author/BOOK) with [TUX](https://metacpan.org/author/HMBRAND) to talk about [Test::Smoke](https://metacpan.org/pod/Test::Smoke). I think we well covered the topic :)
+On sunday, [BOOK](https://metacpan.org/author/BOOK) and [SJN](https://metacpan.org/author/SJN) did record a podcasts and I was interviewed by [BOOK](https://metacpan.org/author/BOOK) with [HMBRAND](https://metacpan.org/author/HMBRAND) to talk about [Test::Smoke](https://metacpan.org/pod/Test::Smoke). I think we well covered the topic :)
 
 [PJCJ](https://metacpan.org/author/PJCJ) came to me (thank you!) and we discussed [Devel::Cover](https://metacpan.org/dist/Devel-Cover), gcov in perl core and the (defunct) [kritika.io](https://web.archive.org/web/20210415180423/https://kritika.io/) and [Devel::Cover::Report::Kritika](https://metacpan.org/pod/Devel::Cover::Report::Kritika).
 
 Finally, [STIGTSP](https://metacpan.org/author/STIGTSP) and [LEONT](https://metacpan.org/author/LEONT) shared with me some hardening TODO items or WIP pull request for PAUSE and I accepted to handle some and help for others.
-
 
 ## Walking around the venue
 In little groups, we did some quick exploration around the venue.
@@ -231,7 +230,25 @@ I had a great time well beyond the primary focus of technical work.
 
 A huge thank you to organizers [BOOK](https://metacpan.org/author/BOOK), [ELBEHO](https://metacpan.org/author/ELBEHO), [TINITA](https://metacpan.org/author/TINITA), [GARU](https://metacpan.org/author/GARU), [DBOEHMER](https://metacpan.org/author/DBOEHMER)
 
+## Monetary Sponsors
 
+[Booking.com](https://www.booking.com/), [WebPros](https://www.webpros.com/), 
+[CosmoShop](https://www.cosmoshop.de/), [Datensegler](https://datensegler.at/), 
+[OpenCage](https://opencagedata.com), [SUSE](https://www.suse.com/), 
+[Simplelists Ltd](https://www.simplelists.com/), [Ctrl O Ltd](https://www.ctrlo.com/), 
+[Findus Internet-OPAC](https://www.findus-internet-opac.de/), [plusW GmbH](https://www.plusw.de/)
+
+## In-kind sponsors
+
+[Grant Street Group](https://www.grantstreet.com/), [Fastmail](https://www.fastmail.com/), 
+[shift2](https://en.shift2.nl/), [Oleeo](https://www.oleeo.com/), [Ferenc Erki](https://ferki.it/)
+
+## Community Sponsors 
+
+[The Perl and Raku Foundation](https://www.perlfoundation.org/), [Japan Perl Association](https://japan.perlassociation.org/), 
+Harald Joerg, Alexandros Karelas [PerlModules.net](https://www.perlmodules.net/),  Matthew Persico,
+Michele Beltram [Sigmafin](https://www.blendgroup.it/), Rob Hall, Joel Roth, Richard Leach, 
+Jonathan Kean, Richard Loveland, Bojan Ramsa
 
 
 
