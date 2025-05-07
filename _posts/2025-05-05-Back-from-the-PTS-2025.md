@@ -247,7 +247,7 @@ A huge thank you to organizers [BOOK](https://metacpan.org/author/BOOK), [ELBEHO
 
 [The Perl and Raku Foundation](https://www.perlfoundation.org/), [Japan Perl Association](https://japan.perlassociation.org/), 
 Harald Joerg, Alexandros Karelas [PerlModules.net](https://www.perlmodules.net/),  Matthew Persico,
-Michele Beltram [Sigmafin](https://www.blendgroup.it/), Rob Hall, Joel Roth, Richard Leach, 
+Michele Beltrame [Sigmafin](https://www.blendgroup.it/), Rob Hall, Joel Roth, Richard Leach, 
 Jonathan Kean, Richard Loveland, Bojan Ramsa
 
 
