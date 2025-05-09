@@ -21,6 +21,7 @@ During 4 days, vital maintainers of Perl toolchain are grouped together in order
 
 People joining the event are active outside the event all along the year and they recharge battery and motivation during event. And they generally go back home with a TODO list well filled :) 
 
+# /me and the venue
 I arrived on site on Wednesday 30 april, but late (around midnight). I was immediately welcomed by some night owls in the lobby.
 
 I did not know that at that time, but the lobby was about to become a very important place of the summit where people would gather before going outside for lunch or for long discussions around Perl technical or social stuff.
