@@ -109,8 +109,8 @@ I went outside to synchronize with [SJN](https://metacpan.org/author/SJN/) from 
 
 I reached the "[PAUSE](https://pause.perl.org) table" ([ANDK](https://metacpan.org/author/ANDK), [ISHIGAKI](https://metacpan.org/author/ISHIGAKI) and [SREZIC](https://metacpan.org/author/SREZIC)) for "pushing" some issues/PRs.
 
-- [PR#550 - GET URL: HTTPS is now supported](https://github.com/andk/pause/pull/550) (related to PAUSE uploads)
-- [PR#551 - Update PAUSE Operating Model for giving up first-come permissions](https://github.com/andk/pause/pull/551) (related to [namespace vacuum](https://security.metacpan.org/docs/cpan-dependency-confusion.html#namespace-vacuum))
+- [GET URL: HTTPS is now supported](https://github.com/andk/pause/pull/550) (related to PAUSE uploads)
+- [Update PAUSE Operating Model for giving up first-come permissions](https://github.com/andk/pause/pull/551) (related to [namespace vacuum](https://security.metacpan.org/docs/cpan-dependency-confusion.html#namespace-vacuum))
 - [Do not index Local:: namespace (nor Local)](https://github.com/andk/pause/pull/541) (related to [reserved namespaces](https://security.metacpan.org/docs/cpan-dependency-confusion.html#reserved-namespaces))
 
 I discussed the "Admin permission" and we decided to keep the statu quo on that.
