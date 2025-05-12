@@ -152,15 +152,15 @@ On sunday, [BOOK](https://metacpan.org/author/BOOK) and [SJN](https://metacpan.o
 Finally, [STIGTSP](https://metacpan.org/author/STIGTSP) and [LEONT](https://metacpan.org/author/LEONT) shared with me some hardening TODO items or WIP pull request for PAUSE and I accepted to handle some and help for others.
 
 ## /me and the venue
-When I arrived on site on Wednesday 30 april, but late (around midnight). I was immediately welcomed by some night owls in the lobby.
+When I arrived on site on Wednesday 30 april, it was late (around midnight), but I was immediately welcomed by some night owls in the lobby.
 
 I did not know that at that time, but the lobby was about to become a very important place of the summit where people would gather before going outside for lunch or for long discussions around Perl technical or social stuff.
 
-The next day, I discovered the conference/hack rooms where we would spend 9AM to 7PM (at least).
+It's the next day that I discovered the conference/hack rooms where we would spend 9AM to 7PM (at least).
 
 ![venue](/assets/images/pts2025/venue.jpg)
 
-From the outside, it looks like very much a peaceful environment.
+From the outside, it looked like very much a peaceful environment.
 
 ![peaceful](/assets/images/pts2025/serenity.jpg)
 
@@ -172,7 +172,7 @@ Back to commodities, we got a great breakfast offer to start.
 
 ![breakfast](/assets/images/pts2025/breakfast.jpg)
 
-All along the day, catering was at disposal, which allowed us to (re)charge energy for intense brainstormings!
+All along the days, catering was at disposal, which allowed us to (re)charge energy for intense brainstormings!
 
 ![catering](/assets/images/pts2025/catering.png)
 
