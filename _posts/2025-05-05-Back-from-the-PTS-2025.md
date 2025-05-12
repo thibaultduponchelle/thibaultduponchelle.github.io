@@ -21,37 +21,6 @@ During 4 days, vital maintainers of Perl toolchain are grouped together in order
 
 People joining the event are active outside the event all along the year, recharging battery and motivation during event. They go back home with a TODO list well filled :) 
 
-## /me and the venue
-I arrived on site on Wednesday 30 april, but late (around midnight). I was immediately welcomed by some night owls in the lobby.
-
-I did not know that at that time, but the lobby was about to become a very important place of the summit where people would gather before going outside for lunch or for long discussions around Perl technical or social stuff.
-
-The next day, I discovered the conference/hack rooms where we would spend 9AM to 7PM (at least).
-
-![venue](/assets/images/pts2025/venue.jpg)
-
-From the outside, it looks like very much a peaceful environment.
-
-![peaceful](/assets/images/pts2025/serenity.jpg)
-
-A little hedgehog seemed to have the same positive opinion and was visiting us regularly. 
-
-![hedgehog](/assets/images/pts2025/hedgehog.jpg)
-
-Back to commodities, we got a great breakfast offer to start.
-
-![breakfast](/assets/images/pts2025/breakfast.jpg)
-
-All along the day, catering was at disposal, which allowed us to (re)charge energy for intense brainstormings!
-
-![catering](/assets/images/pts2025/catering.png)
-
-Side effect, it enabled the possibility to skip lunch if we wanted to.
-
-But we also had opportunities to lunch altogether (e.g. it happened on Thursday).
-
-![lunch](/assets/images/pts2025/lunch.jpg)
-
 ## The conference/hackathon
 I got a bit of a shock during my first hours.
 
@@ -176,16 +145,45 @@ Or [PR#192](https://github.com/exercism/website-icons/pull/192) for exercism.io 
 
 ![exercism](/assets/images/pts2025/exercism.png)
 
-
-
 On sunday, [BOOK](https://metacpan.org/author/BOOK) and [SJN](https://metacpan.org/author/SJN) did record a podcasts and I was interviewed by [BOOK](https://metacpan.org/author/BOOK) with [HMBRAND](https://metacpan.org/author/HMBRAND) to talk about [Test::Smoke](https://metacpan.org/pod/Test::Smoke). I think we well covered the topic :)
 
 [PJCJ](https://metacpan.org/author/PJCJ) came to me (thank you!) and we discussed [Devel::Cover](https://metacpan.org/dist/Devel-Cover), gcov in perl core and the (defunct) [kritika.io](https://web.archive.org/web/20210415180423/https://kritika.io/) and [Devel::Cover::Report::Kritika](https://metacpan.org/pod/Devel::Cover::Report::Kritika).
 
 Finally, [STIGTSP](https://metacpan.org/author/STIGTSP) and [LEONT](https://metacpan.org/author/LEONT) shared with me some hardening TODO items or WIP pull request for PAUSE and I accepted to handle some and help for others.
 
+## /me and the venue
+When I arrived on site on Wednesday 30 april, but late (around midnight). I was immediately welcomed by some night owls in the lobby.
+
+I did not know that at that time, but the lobby was about to become a very important place of the summit where people would gather before going outside for lunch or for long discussions around Perl technical or social stuff.
+
+The next day, I discovered the conference/hack rooms where we would spend 9AM to 7PM (at least).
+
+![venue](/assets/images/pts2025/venue.jpg)
+
+From the outside, it looks like very much a peaceful environment.
+
+![peaceful](/assets/images/pts2025/serenity.jpg)
+
+A little hedgehog seemed to have the same positive opinion and was visiting us regularly. 
+
+![hedgehog](/assets/images/pts2025/hedgehog.jpg)
+
+Back to commodities, we got a great breakfast offer to start.
+
+![breakfast](/assets/images/pts2025/breakfast.jpg)
+
+All along the day, catering was at disposal, which allowed us to (re)charge energy for intense brainstormings!
+
+![catering](/assets/images/pts2025/catering.png)
+
+Side effect, it enabled the possibility to skip lunch if we wanted to.
+
+But we also had opportunities to lunch altogether (e.g. it happened on Thursday).
+
+![lunch](/assets/images/pts2025/lunch.jpg)
+
 ## Walking around the venue
-In little groups, we did some quick exploration around the venue.
+During the summit, in little groups, we did some quick exploration around the venue.
 
 ![archi](/assets/images/pts2025/narrow.jpg)
 
