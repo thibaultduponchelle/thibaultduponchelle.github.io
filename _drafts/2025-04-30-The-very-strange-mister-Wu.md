@@ -42,7 +42,7 @@ It was not that strange at first, but after days, months, years… His office be
 
 I’m not sure that you can imagine, but screen, keyboard, mouse and his personal stuffs were like swimming in an ocean of paper birds.
 
-I would love to have a picture of it, so you would get shocked the same than me, but I'm also happy not to have pictured that (in regard to privacy and respecting this person).
+I would love to have a picture of that, so you would get shocked the same than I was, but I'm also happy not to have pictured that (in regard to privacy and respecting this person).
 
 This was strange.
 
