@@ -20,7 +20,7 @@ He was a nice guy, but odd.
 
 Mister Wu was a foreigner, mostly hanging out with people from same country during lunch but working in a team of international developers.
 
-He was dressed exactly the same, every single day. Pants and T-Shirt, black. He was never wearing a jacket during winter, whatever the weather.
+He was dressed the same, exactly the same, every single day. Pants and T-Shirt, black. He was never wearing a jacket during winter, whatever the weather.
 
 Mister Wu was living near the workplace and going at work by foot.
 
