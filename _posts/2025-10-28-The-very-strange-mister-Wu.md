@@ -52,7 +52,7 @@ Then, long time later, I got it.
 
 For years now I’m doing a work journal. It’s in order to keep traces of what I do and ease my future reporting etc...
 
-Looking back later at the journal, with days that transforms into months then years, it’s frightening how it represents the time spent.
+Looking back later at the journal, with days that transforms into months then years, it’s frightening how it represents the time passing.
 
 Mister Wu, looking at the heap of paper birds, was likely thinking that each paper bird was, once, a day. It appears to me very deep and philosophical now.
 
