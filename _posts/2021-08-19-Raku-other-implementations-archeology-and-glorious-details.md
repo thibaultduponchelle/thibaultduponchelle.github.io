@@ -28,6 +28,7 @@ Thank you to **Elizabeth Mattijsen** who helped to proofread and with advices.
   * [Niecza](#niecza)
   * [Topaz](#topaz)
   * [Moe](#moe)
+  * [PerlOnJava](#perlonjava)
   * [Sapphire](#sapphire)
 * [Conclusion](#conclusion)
 
@@ -370,6 +371,9 @@ Elf was a compiler written in Raku with a Ruby grammar. It could issue Perl 5 or
 
 ## Moe <a name="moe"></a>
 [Moe](https://github.com/MoeOrganization/moe) was a Perl 5 core rewrite in Scala in 2013. See [slides from Stevan Little](https://speakerdeck.com/stevan_little/perl-is-not-dead-it-is-a-dead-end) 
+
+## PerlOnJava <a name="perlonjava"></a>
+[PerlOnJava](https://github.com/fglock/PerlOnJava) is a Perl 5 core rewrite in Java to run on JVM.
 
 ## Sapphire <a name="sapphire"></a>
 [Sapphire](https://www.perl.com/pub/2000/09/sapphire.html/) was another rewrite of Perl 5 internals in September 2000, shortly after the announcement of Perl 6. More experimentation than something else.
