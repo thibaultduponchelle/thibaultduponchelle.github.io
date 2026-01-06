@@ -57,7 +57,7 @@ When I tried to post [Open Letter To Tim O'Reilly To Free The Perl Camel](https:
 
 ![DevTo shadow banned in Hacker News](/assets/images/devto-hackernews-shadowban.png)
 
-### The low quality creators and audience
+### The low quality problem
 For years, DevTo seemed to be filled with "5 best TypeScript frameworks that you need to know", "10 Kubernetes design patterns that you have to understand"... Clickbaits posts following the trend du jour.
 
 The platform had a reputation of being junior oriented, so far so good no problem, but it somehow discouraged a bit to do deep research posts.
