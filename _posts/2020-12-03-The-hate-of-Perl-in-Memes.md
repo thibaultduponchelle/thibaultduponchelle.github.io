@@ -92,6 +92,11 @@ I added mine, for posterity :
 
 ![Headache](/assets/images/0t9n3lbf9wcyawsqd1z7.jpg)
 
+With [TIOBE index](https://www.tiobe.com/tiobe-index/) in Jan 2026 saying " Perl made a surprising comeback, jumping from position #32 to #11 and re-entering the top 20", I got the idea to create this new meme:
+
+![Headache](/assets/images/perl-out.jpg)
+
+
 ## Still use
 And finally, don't hear other people and do what you want :smile:
 
