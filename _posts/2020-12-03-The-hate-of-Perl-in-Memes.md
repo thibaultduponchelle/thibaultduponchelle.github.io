@@ -11,7 +11,7 @@ It makes me laugh so I gathered some "Perl internet memes" below :smile:
 
 EDIT: I just noticed this [buddy post](https://blog.builtinperl.com/post/perl-memes-all-around), I share you the link ! :smiley:
 
-## Pure hate :poop:
+## Pure hate
 The people behind these memes seems really hating Perl:
 
 ![WTF](/assets/images/8rn2xeu85jfvbg2eqax6.jpeg)
