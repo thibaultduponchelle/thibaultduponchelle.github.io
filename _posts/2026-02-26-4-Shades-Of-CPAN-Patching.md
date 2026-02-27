@@ -140,7 +140,7 @@ get '/*distpath' => sub {
 	my $patcher = CPAN::Tarball::Patch->new("/home/tib/rprox/prefs/", "/home/tib/rprox/patches/");
 
 	print "Patching $tarball\n";
-    $patcher->patch($tarball);
+	$patcher->patch($tarball);
 	
 	print "Return raw stream of (new) $tarball\n";
 	my $patched_raw = Archive::Tar->new($tarball, 1)->write;
