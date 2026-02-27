@@ -61,7 +61,7 @@ My self assessment of this approach:
 ### The CPAN++
 Sorry, no `cpanplus` was injured during this blog entry writing.
 
-We could introduce an alternative version of distributions, being origin artifact + patch(es). but ready to be consumed.
+We could introduce an alternative version of distributions, being origin artifact + patch(es) but ready to be consumed.
 
 It could be either hosted in MetaCPAN or another webserver. It should be opt-in in installers, either via alternative index and mirror or by specifying a flavor (like current "dev" flag).
 
