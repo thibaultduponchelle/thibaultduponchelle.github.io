@@ -243,6 +243,5 @@ Checksum mismatch for distribution file. Please investigate.
 My self assessment of this approach:
 - I like it because no change on installers
 - I like it because it does not look like forking CPAN
-- I don't have any negative for it
 
 I don't know what I will do next.
