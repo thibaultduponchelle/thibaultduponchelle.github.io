@@ -61,17 +61,17 @@ My self assessment of this approach:
 ### The CPAN++
 Sorry, no `cpanplus` was injured during this blog entry writing.
 
-We could introduce an alternative version of distributions, being origin artifact + patch(es) but ready to be consumed.
+We could introduce an alternative version of distributions, being origin artifact + patch(es) but ready to be consumed (assembled at origin).
 
 It could be either hosted in MetaCPAN or another webserver. It should be opt-in in installers, either via alternative index and mirror or by specifying a flavor (like current "dev" flag).
 
-This looks like pretty much what Linux distributions are doing.
+This looks like pretty much what Linux distributions (or BSDports/ HaikuPorts) are doing.
 This prevents forking at namespace level but introduces something like forking at CPAN level. (your humble servant is sweating after writing these words)
 
 My self assessment of this approach:
 - I like it because of the relatively more upstream position of it.
 - I don't like it because it introduces yet another layer (CPAN, Linux distribution patches, DistroPrefs, CPAN++).
-- I don't like it because it can end up with just forking CPAN
+- I don't like it because it can end up with just forking CPAN, if we don't keep origin and patches well separated
 
 ### The crazy idea
 I remember exactly the time I got this idea, not because it's brilliant, but because I find it ingenious and crazy.
