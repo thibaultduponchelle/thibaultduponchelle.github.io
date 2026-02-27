@@ -52,11 +52,11 @@ $ cpm install Acme::LSD --with-security-fixes
 
 Ideally, I should have used DistroPrefs instead CPAN::Patches to buy compatibility with CPAN (and one less dependency), but that was and will remain a quick and dirty Proof Of Concept :)
 
+Please note: Totally independly, [DAKKAR](https://metacpan.org/author/DAKKAR) came later with [App::CpanDak](https://metacpan.org/pod/App::CpanDak) implementing very similar patching in `cpanm`.
+
 My self assessment of this approach:
 - I like this idea because it does not hurt operational model.
 - I don't like it because it *still* requires changes in installer.
-
-Please note: Totally independly, [DAKKAR](https://metacpan.org/author/DAKKAR) came later with [App::CpanDak](https://metacpan.org/pod/App::CpanDak) implementing very similar patching in `cpanm`.
 
 ### The CPAN++
 Sorry, no `cpanplus` was injured during this blog entry writing.
