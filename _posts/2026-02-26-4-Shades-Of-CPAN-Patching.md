@@ -139,10 +139,10 @@ get '/*distpath' => sub {
   
 	my $patcher = CPAN::Tarball::Patch->new("/home/tib/rprox/prefs/", "/home/tib/rprox/patches/");
 
-	print "Patch $tarball\n";
-        $patcher->patch($tarball);
+	print "Patching $tarball\n";
+    $patcher->patch($tarball);
 	
-	print "Return raw stream of $tarball\n";
+	print "Return raw stream of (new) $tarball\n";
 	my $patched_raw = Archive::Tar->new($tarball, 1)->write;
 	my $gzipped;
         gzip \$patched_raw => \$gzipped
@@ -218,11 +218,11 @@ Web application available at http://127.0.0.1:3000
 [2026-02-27 17:21:04.87249] [344416] [trace] [juolRtwLbUw7] Routing to a callback
 Create CONTRA dir if not already existing
 Copy /tmp/rprox-ktUaEb.tar.gz to CONTRA/Acme-LSD-0.04.tar.gz
-Patch CONTRA/Acme-LSD-0.04.tar.gz
+Patching CONTRA/Acme-LSD-0.04.tar.gz
 Prefs /home/tib/rprox/prefs/
 Patch with Acme-LSD-0.04-TIB-01.patch
 Patching CONTRA/Acme-LSD-0.04.tar.gz with /home/tib/rprox/patches/Acme-LSD-0.04-TIB-01.patch
-Return raw stream of CONTRA/Acme-LSD-0.04.tar.gz
+Return raw stream of (new) CONTRA/Acme-LSD-0.04.tar.gz
 ```
 
 Proxy is only a pass-through for distributions not matching any distroprefs.
