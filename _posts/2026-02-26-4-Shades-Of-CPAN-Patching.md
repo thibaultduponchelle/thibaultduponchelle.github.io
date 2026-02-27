@@ -232,7 +232,7 @@ Also it remains a totally opt-in choice to the user to use this "proxy".
 
 It could be used as a local proxy, or hosted via a `patchpan.org` or something.
 
-Of course it needs it needs to handle HTTPS (and handle TLS temination).
+Of course it would need to handle HTTPS (hence TLS termination).
 Also it needs to handle more formats, not just tar.gz
 
 Also, it needs to rewrite signature when using with `cpan`, or you will get:
