@@ -165,7 +165,7 @@ It is important to note that [CPAN::DistroPrefs](https://metacpan.org/pod/CPAN::
 
 It is also compatible out of the box with installers, because it relies on alternate mirror capability (not even index!).
 
-The "prefs" are located in `~/rprox/prefs` and look like this:
+My "prefs" are located in `~/rprox/prefs` and they look like this:
 ```yaml
 ---
 comment: "Patch Acme::LSD 0.04"
@@ -236,7 +236,7 @@ Of course it would need to handle HTTPS (hence TLS termination).
 Also it needs to handle more formats, not just tar.gz
 
 Also, it needs to rewrite signature when using with `cpan`, or you will get:
-```bash
+```
 Checksum mismatch for distribution file. Please investigate.
 ```
 
