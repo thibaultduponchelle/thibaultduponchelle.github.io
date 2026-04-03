@@ -110,7 +110,6 @@ The very minimum triplet is SPF/DKIM/DMARC, let's start with this.
 
 #### DMARC Alignment Examples
 - @example.com - MAIL FROM/Header From aligned - Need valid SPF or DKIM
-- @aliasexample.com - Header From aligned - Need valid DKIM
 - @mailgun.example.com - Header From aligned - Need valid DKIM
 
 #### DMARC Trap
