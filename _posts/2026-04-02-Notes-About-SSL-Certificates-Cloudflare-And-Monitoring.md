@@ -93,6 +93,7 @@ Connection is encrypted
 
 ## More
 - Certificate chain / CA Bundle
+- CSR
 - Private key
 - Lists of revoked certs (CRL, OCSP)
 
