@@ -129,7 +129,7 @@ I had also a short discussion about knowning acceptable AI contributions policy 
 ### CPANSec
 I had another discussion about the "proxy" thing and discussed and clarified CPAN Patch Tooling with Todd, since I initially though he was taking ownership on that (but no).
 
-I discussed vulnerabilities triage with Stig then participated to meeting about "Steward organization"
+I discussed vulnerabilities triage with Stig then participated to meeting about "Steward organization" led by Salve.
 
 ![](/assets/images/pts2026/meeting.jpg)
 
