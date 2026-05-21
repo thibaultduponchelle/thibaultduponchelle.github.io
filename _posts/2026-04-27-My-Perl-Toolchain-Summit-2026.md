@@ -7,6 +7,8 @@ published: true
 
 ![](/assets/images/pts2026/group.jpg)
 
+(I'm the guy in blue hoodie and eyes closed - picture courtesy of Salve J. Nilsen)
+
 I had the privilege to go for a second time to the [Perl Toolchain Summit](https://perltoolchainsummit.org/pts2026/). 
 Actually, I was involved into the organization of it, but I almost left this hat at home during the event, since they were many other helping hands and I felt my pair of hands was not needed for this :)
 
