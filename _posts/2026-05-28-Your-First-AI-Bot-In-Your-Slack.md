@@ -348,7 +348,7 @@ This second option is not difficult (a deployment, a network policy, install sec
 
 Since we are on "Going further" section, some deployment on commit is also a must have ;)
 
-But to start you should extend your bot system prompt and possibly add knowledge to it, so it can actually be more than a Slack interface than Anthropic LLM.
+But to start you should extend your bot system prompt and possibly add knowledge to it, so it can actually be more than a Slack interface to the Anthropic LLM.
 It can be simply loading few files at startup into the AI bot context.
 Some tooling can be a powerful addition as well as some sort of memory, but this later adds some more operational complexity.
 
