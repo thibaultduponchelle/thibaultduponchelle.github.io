@@ -66,6 +66,11 @@ The very minimum triplet is SPF/DKIM/DMARC, let's start with this.
 - `v=DKIM1; k=rsa; p=MIIB...IDAQAB`
 - In email, `DKIM-Signature: d=example.com; b=Ms9[...]PpQ4==`
 
+## ARC
+ARC is involved in forwarding only, it's very possible that you never have to care about that.
+
+This is my case, so I won't give any detail on it.
+
 ## DMARC
 - Policy on top of SPF and DKIM
 - Can be delegated (VERY common)
