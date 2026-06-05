@@ -108,10 +108,13 @@ This is my case, so I won't give any detail on it.
 - Return-Path
 - smtp.from
 - mail.from
+- smtp.mailfrom
 
 #### Header FROM
 - From
 - Reply-To
+- header.From
+- RFC5322.from
 
 #### DMARC Alignment Examples
 - @example.com - MAIL FROM/Header From aligned - Need valid SPF or DKIM
