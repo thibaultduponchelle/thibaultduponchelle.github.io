@@ -173,6 +173,9 @@ In particular, it will print a logo and blue check in your header email:
 - Also need DMARC or noop
 - Retroactive
 
+#### BIMI alignment
+- BIMI uses header.From
+
 ## MTA-STS
 - Purpose: prevent "Man In The Middle" attack
 - Because SMTP is "insecure by default"
