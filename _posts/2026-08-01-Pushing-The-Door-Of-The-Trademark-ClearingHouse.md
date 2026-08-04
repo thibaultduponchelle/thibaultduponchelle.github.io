@@ -54,14 +54,14 @@ In order to do that, click on "Submit Mark" button.
 
 ![TMCH claim mark](/assets/images/tmch/tmch-declare-mark-1.png)
 
-You will need access to your WIPO/EUIPO registration (use the search to find your service mark application number and date)
+You will need access to your WIPO/EUIPO registration (use the search like [EUIPO search](https://euipo.europa.eu/eSearch/) to find your service mark application number and date)
 
 Few more details are required in the bottom section.
 
 ![TMCH claim mark](/assets/images/tmch/tmch-declare-mark-2.png)
 
 Download the "Declaration of Proof of use" template, sign it then upload it as PDF.
-Provide also another proof of use (e.g. screeshot of website).
+Provide also another proof of use (e.g. screenshot of website).
 
 Then you will need to pay $155 (for one year).
 
