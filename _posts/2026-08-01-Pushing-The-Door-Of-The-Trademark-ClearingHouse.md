@@ -72,7 +72,7 @@ And you're done with submitting your mark and now need to wait for mark being ac
 ^ The mark immediately appears as "New" and "New" in the mark list.
 
 ## TMCH mark status journey
-TMCH announces up to 4 weeks for this, but again my experience was less than 2 days.
+TMCH announces up to 4 weeks for validation, but again my experience was less than 2 days.
 
 First the mark application will move to "verified":
 
