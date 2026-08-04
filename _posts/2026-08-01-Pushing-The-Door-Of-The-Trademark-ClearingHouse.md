@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Pushing The Door Of the Trademark ClearingHouse
+title: Pushing The Door Of The Trademark ClearingHouse
 date: 2026-08-01 00:18:32
 published: true
 ---
