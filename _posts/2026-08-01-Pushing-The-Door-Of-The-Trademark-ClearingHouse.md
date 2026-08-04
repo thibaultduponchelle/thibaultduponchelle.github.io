@@ -82,6 +82,10 @@ Then the Proof Of Use of the mark will move into "Valid":
 
 ![Mark new](/assets/images/tmch/tmch-mark-3-approved.png)
 
+If you ever got rejected because you filled wrong informations, you would still benefit from 35 days to edit your mark declaration and resubmit:
+
+![Fix TMCH mark submission](/assets/images/tmch/tmch-correct-35days.png)
+
 ## Using the TMCH for registering TLDs in sunrise period
 The TMCH verified mark gives you access to a Signed Mark Data (SMD) that you can use to register TLDs in sunrise period.
 
