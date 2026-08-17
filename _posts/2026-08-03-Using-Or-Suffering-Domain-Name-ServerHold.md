@@ -9,21 +9,19 @@ published: true
 
 Picture from [here](https://www.pexels.com/photo/wet-road-with-painted-yellow-stop-sign-29407196/), courtesy of [Jan van der Wolf](https://www.pexels.com/@jan-van-der-wolf-11680885/) (thank you!)
 
-To get context, I'm an experienced [Domains Portfolio Manager](/Unsuspected-role-of-domains-portfolio-manager) and we really need to talk about the very strong **serverHold** EPP status.
-
-Yes, [this one](https://www.icann.org/resources/pages/epp-status-codes-2014-06-16-en#serverHold)!
+To get context, I'm an experienced [Domains Portfolio Manager](/Unsuspected-role-of-domains-portfolio-manager) and we really need to talk about the very strong [**serverHold**](https://www.icann.org/resources/pages/epp-status-codes-2014-06-16-en#serverHold) EPP status code!
 
 ## The EPP status codes
-EPP status codes, also known as "domain name status code" indicate the status of a domain. They really signal where a domain name stands into its lifecyle (e.g. `pendingTransfer`m `renewPeriod`), how much it is protected (e.g. `client*Prohibited`, `server*Prohibited`) and sometimes, problems.
+EPP status codes, also known as "domain name status code" indicate the status of a domain. They really signal where a domain name stands into its lifecyle (e.g. `pendingTransfer`, `renewPeriod`), how much it is protected (e.g. `client*Prohibited`, `server*Prohibited`) and sometimes, problems.
 
 The strongest (and most worrying) codes are the ones starting with `server*` since they are status from the *registry* hence the entity ultimately managing the domain name.
 
 As domain owners (end users), we can not retrieve EPP status codes for all domains, neither all TLDs (registries) behave the same regarding the EPP statuses, but most of them behave more or less the same regarding some major EPP status codes.
 
 ## The EPP serverHold
-From all those EPP status codes, there's one that is terrible, powerful like the Thanos Gauntlet: it is **serverHold**.
+From all those EPP status codes, there's one that is terrible, powerful like the Thanos Gauntlet: that's **serverHold**.
 
-This status has the effect to prevent the DNS resolution (`DNS_PROBE_FINISHED_NXDOMAIN`), making a domain actually obsolete. 
+This status has the effect to prevent the DNS resolution (hence the `DNS_PROBE_FINISHED_NXDOMAIN` when accessing), making a domain actually obsolete. 
 
 For a long time, I considered this status as an ally, since it was set to a domain after we disputed it, hence to our advantage.
 
@@ -32,18 +30,16 @@ The usual processus would have looked like this:
 2. After few weeks, scammer's domain is suspended, domain does not resolve with status serverHold
 3. After few months, domain is released (or transferred directly to us)
 
-Please note that between 1 and 2 can fit URS for a rapid suspension, but it's only a nice to have.
+Please note that 1 and 2 can fit URS for a rapid suspension, but it's only a nice to have.
 
-But serverHold can strike in a more unpredictable and annoying way. 
+But serverHold is not always an ally and can strike in a more unpredictable and annoying way. 
 
 ## serverHold and the domain reputation
 
 As I said, I used to appreciate the power of serverHold, since it played in our team of a long time, but then we got it backfire against us.
-Indeed, a low domain reputation can also make the registry to suspend the domain DNS resolution. 
+Indeed, when we decided to use a young domain, the low reputation made the registry suspend the domain DNS resolution. 
 
-I experienced this.
-
-In practice, it means block lists flagging the domain as malicious (surfacing in [VirusTotal](https://www.virustotal.com/gui/domain/example.com)):
+In practice, it consists in block lists flagging the domain as malicious (surfacing in [VirusTotal](https://www.virustotal.com/gui/domain/example.com)):
 
 ![virustotal](/assets/images/serverhold/virustotal-flags.png)
 
@@ -62,11 +58,11 @@ Beyond bad luck, some missing precautions can lead to this situation:
 - Not matching the TLD use case
 - Low reputation registry (weak/uncommon registry)
 
-Ideally, production websites should not land on "bought last week" domain names and fragile domain names should follow a warm up phase (clean apex, email records, TXT records verifying against webmaster tools and third parties, etc... for at very minimum 6 months)
+Ideally, production websites should not land on "bought last week" domain names and young (or fragile) domain names should follow a warm up phase (clean apex, email records, TXT records verifying against webmaster tools and third parties, etc... for a very minimum of 6 months)
 
 ## How to fix a serverHold (resulting from domain reputation defect)
-First, contacting your registrar can help, but it really depends the level of support they want to provide. In clear, a MarkMonitor, NameShield, LexSynergy would help where GoDaddy, Cloudflare will not.
-Second, contact the registry to understand the serverHold and ask for removal. The registry would probably point you to the third party security vendors that flagged the domain. 
+First, contact your registrar for help, but it really depends the level of support they want to provide. In clear, a MarkMonitor, NameShield, LexSynergy would help where GoDaddy, Cloudflare will not.
+Second, contact the registry to understand the serverHold and ask for removal. The registry will probably point you to the third party security vendors that flagged the domain. 
 
 Then you have to contact each third party security vendor to fix the false positive flagging. 
 
