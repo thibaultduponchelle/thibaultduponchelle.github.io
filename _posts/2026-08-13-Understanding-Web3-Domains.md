@@ -57,7 +57,7 @@ Web3 domains are meant to attach wallet id so we can pass an human friendly `exa
 They also intended to provide "reverse resolving" but in practice it's really left to implementers.
 
 ### Decentralized web
-The Web3 domains also come with promiss of decentralized web (censorship resistence, p2p protocol...).
+The Web3 domains also come with promises of decentralized web (censorship resistence, p2p protocol...).
 
 It is achieved with the help of new resolution services and new hosting technologies and protocols.
 
@@ -69,7 +69,7 @@ UnstoppableDomain can be seen more like a registrar, offering facilities to regi
 It actually has more than that single hat, providing resolution API but it is not acting as a registry (which is actually the Polygon blockchain)
 
 ### The list of domains
-This is th list of domains as appearing in the registrar web view:
+This is the list of domains as appearing in the registrar web view:
 
 ![](/assets/images/web3/ud-list.png)
 
@@ -85,13 +85,13 @@ Please note that this is not the case for all Web3 TLDs, for instance `.eth` liv
 Also, if the Web3 domains are attached to a crypto wallet, they are/were not necessarily paid with crypto.
 
 ### Resolving a Web3 domain to a wallet
-One interesting, maybe the most interesting one, feature of Web3 domain is to attach identities to it.
+One interesting, maybe the most interesting, feature of Web3 domain is to attach identities to it.
 
 In practice, you can attach wallets id to a domain:
 
 ![](/assets/images/web3/ud-resolve-to-wallets.png)
 
-Wallet ids can be different for different chains. 
+Wallet ids can be different for different blockchains. 
 
 With this setup, you can later share `example.nft` to people to send crypto to you. Handy! :)
 
@@ -114,12 +114,12 @@ Publishing a website via [InterPlanetary File System](https://en.wikipedia.org/w
 
 ![](/assets/images/web3/ud-ipfs.png)
 
-Having a website published won't make your website easily accessible, because of the reolution barrier.
+Having a website published won't make your website easily accessible, because of the resolution barrier.
 
 For instance, the website `vitalik.eth` is valid, but won't resolve in your browser. It will, if you use brave and install a browser plugin.
 Then it will transform it into a `cid` like `xt4hluh....byui` then can be served by a proxy like `https://cid.ipfs.inbrowser.link`. 
 
-Another proxy (for `eth`) is [eth.limo/](https://eth.limo/). It will resolve and serve `.eth` website, see for instance [vitalik.eth via limo](https://vitalik.eth.limo/)!
+Another proxy (for `eth`) is [eth.limo](https://eth.limo/). It will resolve and serve `.eth` website, see for instance [vitalik.eth via limo](https://vitalik.eth.limo/)!
 
 ## About Web3 in general
 UnstoppableDomains looks like the major actor (registrar of `.bitcoin`, `.blockchain`, `.crypto`, `.dao`, `.nft`, `.wallet`). `.blockchain` is co-managed (registrar) with [blockchain.com](https://www.blockchain.com/).
