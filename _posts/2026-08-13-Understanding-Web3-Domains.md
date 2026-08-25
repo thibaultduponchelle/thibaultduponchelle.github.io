@@ -117,9 +117,9 @@ Publishing a website via [InterPlanetary File System](https://en.wikipedia.org/w
 Having a website published won't make your website easily accessible, because of the resolution barrier.
 
 For instance, the website `vitalik.eth` is valid, but won't resolve in your browser. It will, if you use brave and install a browser plugin.
-Then it will transform it into a `cid` like `xt4hluh....byui` then can be served by a proxy like `https://cid.ipfs.inbrowser.link`. 
+Then it will transform it into a `CID` like `xt4hluh....byui` then can be served by a proxy like `https://cid.ipfs.inbrowser.link`. 
 
-I managed to resolve the cid (`k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw`) for you so you can have a preview at [k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw.ipfs.inbrowser.link](https://k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw.ipfs.inbrowser.link/). Please note that I think cid is changing at each (IPFS website) deployment, not very handy :/
+I managed to resolve a CID for you (`k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw`) so you can have a preview at [k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw.ipfs.inbrowser.link](https://k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw.ipfs.inbrowser.link/). Please note that CID is changing at each (IPFS website) deployment, not very handy :/ But there's InterPlanetary Name System (IPNS) that is made just for solving this use case.
 
 Another proxy (for `eth`) is [eth.limo](https://eth.limo/). It will resolve and serve `.eth` website, see for instance [vitalik.eth via limo](https://vitalik.eth.limo/)!
 
@@ -146,7 +146,7 @@ Once done, you can create your IPFS gateway.
 
 ![](/assets/images/web3/web3-create-gateway.png)
 
-Choose your subdomain, e.g. `ipfs.example.com` and target the cid like this `/ipfs/k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw`.
+Choose your subdomain, e.g. `ipfs.example.com` and target the CID like this `/ipfs/k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw`.
 
 ![](/assets/images/web3/web3-ipfs-setup-1.png)
 
@@ -161,6 +161,16 @@ And you would see your gateway listed under "Web3 gateways" page.
 After a few seconds, you can access the IPFS recource via your newly created HTTP subdomain!
 
 ![](/assets/images/web3/web3-ipfs-working.png)
+
+This is an old version of the IPFS website `vitalik.eth`, because I specified a CID that points to a 2024 deployment.
+
+Using IPNS instead is addressing this. Let's recreate a gateway with `/ipns/vitalik.eth`
+
+![](/assets/images/web3/web3-ipns-1.png)
+
+This time, the most up to date version of the `vitalik.eth` is showing.
+
+![](/assets/images/web3/web3-ipns-2.png)
 
 Cool, no? :)
 
