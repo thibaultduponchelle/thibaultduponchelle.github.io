@@ -119,7 +119,50 @@ Having a website published won't make your website easily accessible, because of
 For instance, the website `vitalik.eth` is valid, but won't resolve in your browser. It will, if you use brave and install a browser plugin.
 Then it will transform it into a `cid` like `xt4hluh....byui` then can be served by a proxy like `https://cid.ipfs.inbrowser.link`. 
 
+I managed to resolve the cid (`k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw`) for you so you can have a preview at [k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw.ipfs.inbrowser.link](https://k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw.ipfs.inbrowser.link/). Please note that I think cid is changing at each (IPFS website) deployment, not very handy :/
+
 Another proxy (for `eth`) is [eth.limo](https://eth.limo/). It will resolve and serve `.eth` website, see for instance [vitalik.eth via limo](https://vitalik.eth.limo/)!
+
+Cloudflare allows you to setup Web3 Cloudflare gateways for IPFS. It used to also provide a public IPFS gateway service but was stopped in 2024. Still, you can define classic DNS subdomains to point to an IPFS resource (either they continue to provide ipfs gateway for paying customers or they use external ipfs gateway?).
+
+Let's do that now!
+
+#### Setup IPFS gateway in Cloudflare
+If you have a Cloudflare account, you can bridge a domain or subdomain to point to an IPFS resource.
+
+First go to your domain then "Web3":
+
+![](/assets/images/web3/cf-web3-gateways.png)
+
+Enable "IPFS Gateways" then subscribe to the product.
+
+![](/assets/images/web3/web3-subscribe-1.png)
+
+Finalize the subscription (free but you could pay for extra data transfer).
+
+![](/assets/images/web3/web3-subscribe-2.png)
+
+Once done, you can create your IPFS gateway. 
+
+![](/assets/images/web3/web3-create-gateway.png)
+
+Choose your subdomain, e.g. `ipfs.example.com` and target the cid like this `/ipfs/k2jmtxt5zh5vu5y8r7em2che3d4ghyftfr6h1yofdhibxai88k1wj5uw`.
+
+![](/assets/images/web3/web3-ipfs-setup-1.png)
+
+Once you click "Deploy", Cloudflare will then add ad DNS record for you + a [DNSLink](https://dnslink.dev/) (TXT record)
+
+![](/assets/images/web3/web3-dns.png)
+
+And you would see your gateway listed under "Web3 gateways" page.
+
+![](/assets/images/web3/web3-ipfs-setup-2.png)
+
+After a few seconds, you can access the IPFS recource via your newly created HTTP subdomain!
+
+![](/assets/images/web3/web3-ipfs-working.png)
+
+Cool, no? :)
 
 ## About Web3 in general
 UnstoppableDomains looks like the major actor (registrar of `.bitcoin`, `.blockchain`, `.crypto`, `.dao`, `.nft`, `.wallet`). `.blockchain` is co-managed (registrar) with [blockchain.com](https://www.blockchain.com/).
@@ -134,9 +177,15 @@ So UnstoppabbleDomains is pivoting: recently (Dec 2025) opened platform to tradi
 
 After transitioning to regular domains, domains will become normally resolvable (DNS) while continuing to be purchased and managed in blockchain along with IPFS still working (possibility to serve different website between those 2 protocols/networks?).
 
+Also, in 2024, Cloudflare stopped its [IPFS gateway service](https://blog.cloudflare.com/cloudflares-public-ipfs-gateways-and-supporting-interplanetary-shipyard/) in favor to Shipyards gateways. Shipyards announced in 2026 they will [stop supporting IPFS gateways](https://ipshipyard.com/blog/2026-the-end-of-ipfs-at-shipyard/). 
+
+I mentionned Brave browser earlier, but if it still work with a browser plugin, it used to have builtin IPFS support, that [they removed in 2024](https://github.com/brave/brave-browser/issues/37735). 
+
+So, IPFS and Web3 in general are traversing a difficult period, to say the less.
+
 ## Conclusion
 I hope you get better understanding of the Web3 domain functionning. 
 
 Still, it's a fragmented ecosystem with uncertain future.
 
-But that's cool technologies to dig and at some point, as a Domain portfolio Manager, you would probably end having some Web3 domains in your portfolio, at least for the wallet identity use case, if that makes sense for you.
+But that's cool technologies to dig and at some point, as a Domain portfolio Manager, you would probably end up having some Web3 domains in your portfolio, at least for the wallet identity use case, if that makes sense for you.
