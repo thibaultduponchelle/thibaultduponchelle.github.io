@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Opinion About and Evaluation of Domain Name Blocklists 
-date: 2026-08-13 00:18:32
+date: 2026-08-27 00:18:32
 published: true
 ---
 
