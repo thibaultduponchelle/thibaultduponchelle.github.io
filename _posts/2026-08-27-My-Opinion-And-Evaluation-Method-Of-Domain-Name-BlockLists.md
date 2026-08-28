@@ -76,7 +76,7 @@ They are way too expensive if you want my opinion, but I can share some names:
 - UpGuard
 
 ## My conclusion
-It's good that we explored and reviewed these services.
+It's good to explore and review these services.
 But while in theory we would want to block or own a maximum of TLDs for the name we want to protect, these block lists actually provide a poor protection.
 
 When you consider that it exists more than 2000 TLDs (and growing constantly), it creates a fake feeling of defense, I imagine it would resemble a bit like the picture below..
