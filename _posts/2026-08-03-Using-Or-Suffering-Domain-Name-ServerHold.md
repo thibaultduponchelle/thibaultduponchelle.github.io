@@ -37,7 +37,7 @@ But serverHold is not always an ally and can strike in a more unpredictable and 
 ## serverHold and the domain reputation
 
 As I said, I used to appreciate the power of serverHold, since it played in our team of a long time, but then we got it backfire against us.
-Indeed, when we decided to use a young domain, the low reputation made the registry suspend the domain DNS resolution. 
+Indeed, when we decided to use a young domain, the low reputation made the registry suspend the domain DNS resolution (the first thing we did was to ask registry to know the reason of the suspension).
 
 In practice, it consists in block lists flagging the domain as malicious (surfacing in [VirusTotal](https://www.virustotal.com/gui/domain/example.com)):
 
