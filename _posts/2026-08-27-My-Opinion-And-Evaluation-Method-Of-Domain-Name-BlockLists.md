@@ -59,6 +59,10 @@ My decision making approach is the following:
 
 Again, 4 is probably used the wrong way in this decision process, since it's actually a pro of BlockList?
 
+3 is also used the wrong way? 
+
+EDIT: Back from NDDCamp in Paris and I confirm that some companies with several TLDs owned in the block list are releasing them after subscribing to the block list to somehow source money
+
 In my case, I did this exercise for DPML+ (proposed to me at $3,000 per year) and at the end it was about 90 domains, not worth the cost!
 
 But it really depends also how much aggressive you are with defensive registration and brand protection (and budget allocated to it).
