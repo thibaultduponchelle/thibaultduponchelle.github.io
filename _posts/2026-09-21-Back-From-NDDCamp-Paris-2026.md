@@ -75,7 +75,7 @@ My notes, we are going very deep into domain name professional topics. It's poss
 - UDRP can be a "last chance whois".
 - Bad opinion of URS "cure the symptoms" when UDRP "cure the sickness".
 - WIPO introduced "Expedited UDRP" with effect to reduce suspension/transfer of domain from ~60days to ~25days.
-- Disputing a newly created TLDs: "wait for String Confirmation & Objections first" (because purified list) then the right procedure would be [Legal Rights Objection](https://www.wipo.int/en/web/amc/domain-name-disputes/lro/index) (recommended over [String Confusion Objections](https://www.wipo.int/en/web/amc/domain-name-disputes/sco/string-confusion-objections-under-icann-s-new-gtld-program))
+- Disputing a newly created TLD: "wait for String Confirmation & Objections first" (because purified list) then the right procedure would be [Legal Rights Objection](https://www.wipo.int/en/web/amc/domain-name-disputes/lro/index) (recommended over [String Confusion Objections](https://www.wipo.int/en/web/amc/domain-name-disputes/sco/string-confusion-objections-under-icann-s-new-gtld-program))
 
 ### Security:
 
