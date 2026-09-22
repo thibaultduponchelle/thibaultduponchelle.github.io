@@ -91,7 +91,7 @@ My notes, we are going very deep into domain name professional topics. It's poss
 - SEO experts are waiting less than a month to decide if a domain will actually rank correctly or abandon and trash.
 - Creator of [dom-verify.fr](https://dom-verify.fr) (analysis of domain reputation) was there and pitched me his product (french only).
 - Domain re-purposing (e.g. changing thematic of a domain from town hall to shop) works without problem.
-- Domain juice backlinks is one if not the best SEO trick .
+- Domain juice backlinks is one if not the best SEO trick.
 - You can manipulate gemini (actual POC from one speaker) by manipulating corpus (revealed to be easy).
 
 ### Other:
