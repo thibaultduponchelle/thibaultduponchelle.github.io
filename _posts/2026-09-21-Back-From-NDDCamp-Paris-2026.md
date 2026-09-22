@@ -28,7 +28,7 @@ For me, it results into a sort of loneliness feeling, even if I have people assi
 
 I also have the strong feeling to have reached a level of expertise (from portfolio reshuffle, TMCH enrollment, registry lock, brand protection, ConsoliDate, Web3 domains...) where I can talk with experts of the matter, and in particular ask (or share) on topics that involves deep understanding and (more important) real experience of this field. 
 
-When looking for forums a few weeks ago, I was delighted to also get aware that gatherings actually existed, and multiple times a year!
+When looking for forums a few weeks ago, I was delighted to also get aware that gatherings on the topic of domain names actually existed, and multiple times a year!
 
 So I decided to join the event, a bit "last minute", but I'm so glad I dared.
 
