@@ -41,7 +41,7 @@ In memoriam and posterity, I will post a few of the most used one that I can rem
 
 ![Nooo](/assets/images/memoriam/nooo.gif)
 
-"GG Bros" - This one is enigmatic but tells everything
+"GG Bro" - This one is enigmatic but tells everything
 
 ![Bros](/assets/images/memoriam/bros.gif)
 
