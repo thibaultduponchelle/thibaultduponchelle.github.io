@@ -69,7 +69,7 @@ In memoriam and posterity, I will post a few of the most used one that I can rem
 
 ![Jonah](/assets/images/memoriam/embarrassed.gif)
 
-The office and Michel Scott were declined into several GIFS, same for Ben Affleck (why?), Ben Stiller and others I forget.
+The office and Steve Carell were declined into several GIFS, same for Ben Affleck (why?), Ben Stiller and others I forget.
 
 I could post many more, but its era is over and I need to let it go and bury again those GIFs with it.
 
