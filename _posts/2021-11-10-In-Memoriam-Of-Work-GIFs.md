@@ -53,6 +53,10 @@ In memoriam and posterity, I will post a few of the most used one that I can rem
 
 ![Brothers](/assets/images/memoriam/brothers.gif)
 
+"Excitement" - Can't wait for it!
+
+![Excited](/assets/images/memoriam/excited.gif)
+
 "Approved" - PR approved
 
 ![Chuck](/assets/images/memoriam/chuck.gif)
