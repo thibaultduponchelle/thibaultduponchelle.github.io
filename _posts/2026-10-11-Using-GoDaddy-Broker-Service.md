@@ -13,7 +13,7 @@ Note that I'm not a domain investor, so it's neither a daily activity for me.
 In this post, I'm going to detail the process of buying a domain using a broker service (here the one from GoDaddy).
 
 ## Marketplaces versus brokerage
-It's possible that domain holder has put the domain publicly for sale at a fixed price. 
+It's possible that domain holder has put the domain publicly for sale at a fixed price.
 
 To know if it's the case, you should visit marketplaces like [Dynadot Aftermarket](https://www.dynadot.com/market/search), [GoDaddy](https://www.godaddy.com/en) (integrates [Afternic](https://www.afternic.com/) Marketplace) or [Sedo](https://sedo.com/search/).
 
@@ -27,7 +27,7 @@ In my last purchase, having myself a GoDaddy account and reseller using GoDaddy,
 
 After I decided to use GoDaddy, I logged into my account then looked for the domain to purchase.
 
-### Initiating the brokerage process 
+### Initiating the brokerage process
 
 At the very start, I just added the broker service for the domain to my cart.
 
@@ -39,7 +39,7 @@ Broker Service fee is to be paid upfront, not refundable whatever the process is
 
 There's also a 20% broker fee to be added to the final price later if we finally agree with reseller and purchase the domain. That's relatively high, but since it also covers "get in touch", negotiation and securing the transaction, it's worth the cost.
 
-I would recommend to use a brokerage service most of the time, even if/when you are able to get in touch directly with domain holder, at least for securing transaction. 
+I would recommend to use a brokerage service most of the time, even if/when you are able to get in touch directly with domain holder, at least for securing transaction.
 
 
 Add it to cart then pay for it:
@@ -102,10 +102,10 @@ After a while (can be within a day), you get the domain successfully transferred
 
 ![](/assets/images/broker/godaddy-broker-step-6b-success.png)
 
-At this point, the domain is living in your GoDaddy account. 
+At this point, the domain is living in your GoDaddy account.
 
 Few extra steps to do now:
-- Think about enabling auto-renew 
+- Think about enabling auto-renew
 - Verify linked payment method or if not set, attach a payment method for renewal (this is done automatically for new purchase but not for transfers via broker service).
 - Verify that your domain get delisted from reselling marketplace, or contact marketplace support (e.g. `orders@dynadot.com`) to force it
 
@@ -114,6 +114,8 @@ All done!
 ## Conclusion
 
 It takes a few days but this is really straightforward process.
+
+![](/assets/images/broker/godaddy-broker-steps-1-2-3-4-5-6.png)
 
 Except for little prices, I would recommend to always go through a brokerage service even for domains listed on reselling marketplace (the "Buy Now" option).
 
