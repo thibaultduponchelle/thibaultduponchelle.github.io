@@ -54,6 +54,12 @@ There's not yet any broker assigned to you, it's just a matter of time.
 
 Note that once started, the procedure has 30 days to complete, so both sides have to be reactive!
 
+Before getting a broker, you have to provide some informations about how much you're ready to pay:
+
+![](/assets/images/broker/godaddy-broker-step-0c-choose-offer-range.png)
+
+Don't worry, this is informative and not graved in stone, it can be revised later during negotiation.
+
 ### Get in touch with broker
 
 Then it's time to get a broker assigned and get in touch with our negotiator!
