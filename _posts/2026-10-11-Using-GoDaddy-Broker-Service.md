@@ -1,6 +1,6 @@
 ---
 layout: post
-title: About Using GoDaddy Broker Service
+title: Using GoDaddy Broker Service
 date: 2026-10-11 00:18:32
 published: true
 ---
