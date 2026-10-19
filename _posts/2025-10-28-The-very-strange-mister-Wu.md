@@ -12,7 +12,7 @@ We will call him Mister Wu (fake name).
 
 He was a nice guy, but odd.
 
-![Strange](/assets/images/bob-price-alone.jpg)
+![Strange](/assets/images/wu/bob-price-alone.jpg)
 
 (picture from [Bob Price](https://www.pexels.com/@bob-price-252175/))
 
@@ -34,7 +34,7 @@ But there’s even more strange.
 
 Every day, he would sit on his desk and make an origami, more precisely a paper bird.
 
-![](/assets/images/1*mNl3N-xAoMcMJXRgXbQGdg.png)
+![](/assets/images/wu/paperbird.png)
 
 A paper bird (origami)
 
@@ -59,4 +59,18 @@ Mister Wu, looking at the heap of paper birds, was likely thinking that each pap
 After all, Mister Wu was maybe not that strange.
 
 After a few years as a developer, Mister Wu went back to his country and changed his job to become a teacher.
+
+## Edits
+
+EDIT 1: I think it was actually paper cranes
+
+![](/assets/images/wu/papercrane.jpg)
+
+(picture from [tieonline.com](https://www.tieonline.com/article/5723/how-to-fold-a-paper-crane))
+
+EDIT 2: I managed to somehow recreate what the desk looked like using AI.
+
+![](/assets/images/wu/desk-papercrane.png)
+
+EDIT 3: I think he was actually running the Japanese cultural practice of ["senbazuru" - One thousand origami cranes](https://en.wikipedia.org/wiki/One_thousand_origami_cranes), despite being not Japanese but Chinese (but cranes are sacred in China also, and a very similar practice exists as "Chinese Lucky Stars"). This sounds a very beautiful, deeply touching and poetic cultural practice.
 
