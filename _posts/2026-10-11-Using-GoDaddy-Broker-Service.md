@@ -58,6 +58,10 @@ Before getting a broker, you have to provide some informations about how much yo
 
 ![](/assets/images/broker/godaddy-broker-step-0c-choose-offer-range.png)
 
+After you gave numbers, the "Get Started" will be checked:
+
+![](/assets/images/broker/godaddy-broker-step-1.png)
+
 Don't worry, this is informative and not graved in stone, it can be revised later during negotiation.
 
 ### Get in touch with broker
@@ -110,10 +114,21 @@ After a while (can be within a day), you get the domain successfully transferred
 
 At this point, the domain is living in your GoDaddy account.
 
-Few extra steps to do now:
-- Think about enabling auto-renew
-- Verify linked payment method or if not set, attach a payment method for renewal (this is done automatically for new purchase but not for transfers via broker service).
-- Verify that your domain get delisted from reselling marketplace, or contact marketplace support (e.g. `orders@dynadot.com`) to force it
+### Set auto-renew and a payment method
+
+The transferred domain has not necessarily auto-renew enabled, switch it to ON.
+
+Then verify linked payment method or if not set, attach a payment method for renewal. This is done automatically for new purchase but not for transfers via broker service.
+
+### Delist from marketplaces
+After the purchase and transfer, it's possible that domain still appear as "for sale" with a price on public marketplaces (Dynadot, Sedo, Afternic...)
+
+Multiple options to delist domain:
+- Contact former domain holder to ask him to remove domain from his Dynadot/Sedo/... account
+- Attach new domain to your own Dynadot/Sedo/... account, set temporarily a price (very high) then remove domain from there
+- Contact marketplace support (e.g. `orders@dynadot.com`) to force removal from listing
+
+I used second option successfully in the past.
 
 All done!
 
